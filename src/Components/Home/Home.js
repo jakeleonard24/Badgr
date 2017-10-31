@@ -30,6 +30,9 @@ class Home extends Component {
                 </Link>
                 <Newsfeed/>
 
+                <br/>
+                <Newsfeed></Newsfeed>
+
             </div>
         );
     }

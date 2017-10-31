@@ -99,3 +99,11 @@ app.get('/api/user',  passport.authenticate('auth0'), (req, res) => {
         res.status(200).send(user)
         }).catch((err) => {console.log(err)})
 })
+
+//other endpoints
+
+app.get('/api/allposts', (req, res) => {
+        req.app.get('db').get_posts().then(posts =>{
+                res.status(200).send(posts);
+        }).catch((err) => {console.log(err)})
+})
