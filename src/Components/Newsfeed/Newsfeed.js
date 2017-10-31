@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import './Newsfeed.css'
 import {getPosts} from '../../ducks/reducer';
 
 class Newsfeed extends Component {
@@ -13,18 +14,21 @@ class Newsfeed extends Component {
     }
 
     componentDidMount(){
-        axios.get('/api/posts').then((response) => {
-            this.setState({
-                posts: response.data
-            })
-        })
+        // axios.get('/api/allposts').then((response) => {
+        //     this.setState({
+        //         posts: response.data
+        //     })
+        // })
+
+        this.props.getPosts()
     }
     render() {
+        console.log('props', this.props)
         let posts = this.props.posts.map((post, i) => {
             return(
                 <div key={i}>
-                    <div>
-                        {post.logo}{post.title}{post.description}{post.content}
+                    <div className='postBorder'>
+                       <img className='imageSize' src={post.logo}/> title: {post.title}  Description: {post.description} <img className='imageSize' src={post.content}/>
                     </div>
 
                 </div>
@@ -33,6 +37,7 @@ class Newsfeed extends Component {
         return (
             <div>
                 The Newsfeed Component
+                {posts}
             </div>
         );
     }
@@ -42,7 +47,7 @@ function mapStateToProps( state ) {
     const { posts } = state;
   
     return {
-      posts
+      posts,
     };
   }
   

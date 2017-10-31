@@ -1,0 +1,9 @@
+.imageSize{
+    width: 200px;
+    height: 200px;
+}
+
+.postBorder{
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
