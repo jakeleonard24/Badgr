@@ -17,7 +17,7 @@ function reducer(state = initialState, action){
 }
 
 export function getPosts(){
-    const allPosts = axios.get('/api/allPosts').then(response => {
+    const allPosts = axios.get('/api/allposts').then(response => {
         return response.data
     })
 
