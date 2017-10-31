@@ -45,6 +45,10 @@ a:visited{
   color: white;
 }
 
+a:link {
+  color: white;
+}
+
 .alpha-logo{
   width: 90px;
   height: 44%;
