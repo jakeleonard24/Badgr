@@ -28,7 +28,6 @@ class Home extends Component {
                 <Link to='/notifications'>
                 <button>Notifications</button>
                 </Link>
-                <Newsfeed/>
 
                 <br/>
                 <Newsfeed></Newsfeed>
