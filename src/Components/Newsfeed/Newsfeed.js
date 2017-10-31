@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
-import {getPosts} from '../../ducks/reducer'
+import axios from 'axios';
+import {getPosts} from '../../ducks/reducer';
 
 class Newsfeed extends Component {
     constructor(props){
@@ -13,10 +13,14 @@ class Newsfeed extends Component {
     }
 
     componentDidMount(){
-        this.props.getPosts()
+        axios.get('/api/posts').then((response) => {
+            this.setState({
+                posts: response.data
+            })
+        })
     }
     render() {
-        let posts = this.props.tasks.map((post, i) => {
+        let posts = this.props.posts.map((post, i) => {
             return(
                 <div key={i}>
                     <div>

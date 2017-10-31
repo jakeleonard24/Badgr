@@ -6,7 +6,7 @@ const initialState = {
 
 const GET_POSTS = "GET_POSTS";
 
-function reducer(state = initialState, action){
+export default function reducer(state = initialState, action){
     switch (action.type) {
         case GET_POSTS + "_FULFILLED":
             return Object.assign({}, state, {tasks: action.payload})
