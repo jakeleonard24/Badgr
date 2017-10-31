@@ -9,6 +9,9 @@ class Home extends Component {
             <div>
                 This is the Home Page
             </div>
+                <Link to='/login'>
+                <button>Login</button>
+                </Link>
                 <Link to='/create'>
                 <button>Create Badge</button>
                 </Link>

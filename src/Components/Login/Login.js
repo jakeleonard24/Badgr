@@ -7,9 +7,10 @@ class Login extends Component {
             <div>
                 Login Page
                 <div>
-                    <Link to="/home">
+                    <a href={process.env.REACT_APP_LOGIN}>
                     <button>Login</button>
-                    </Link>
+                    </a>
+                 
                 </div>
             </div>
         );

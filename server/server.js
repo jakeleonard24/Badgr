@@ -45,23 +45,41 @@ clientSecret: process.env.AUTH_CLIENT_SECRET,
 callbackURL: process.env.AUTH_CALLBACK
 }, function(accessToken, refreshToken, extraParams, profile, done) {
 const db = app.get('db');
-        db.get_user([profile.identities[0].user_id]).then( user => {
+db.get_user([profile.identities[0].user_id]).then( user => {
         if (user[0]) {
-                done(null, user[0].id)
+            done(null, user[0])
         } else {
-                db.create_user([
+            if(profile.nickname){
+            db.create_user([
                 profile.emails[0].value,
-                profile.identities[0].user_id]).then( user => {
-                        done(null, user[0].id)
- })
-}})
-}))
-passport.serializeUser(function(userId, done) {
-        done(null, userId);
+                profile.nickname,
+                profile.password,
+                profile.picture,
+                profile.identities[0].user_id])
+                .then( user => {
+                    done(null, user[0])
+                })}
+                else {
+                    db.create_user([
+                        profile.emails[0].value,
+                        profile.emails[0].value,
+                        profile.password,
+                        profile.identities[0].user_id])
+                        .then( user => {
+                            done(null, user[0])
+                        })
+                }
+        }})
+  }))
+passport.serializeUser(function(user, done) {
+
+done(null, user);
 })
-        passport.deserializeUser( function( userId, done) {
-        app.get('db').current_user(userId).then(user => {
-                done(null, user[0])
+passport.deserializeUser(( userId, done) => {
+
+app.get('db').current_user([userId.id]).then(user => {
+        
+        done(null, user[0])
 })
 })
 // =============================================================================
@@ -69,7 +87,7 @@ passport.serializeUser(function(userId, done) {
 // =============================================================================
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0',{
-        successRedirect: `${process.env.SERVERHOST}/#/`,
+        successRedirect: 'localhost:3000/#/home',
         failureRedirect: '/auth'
 }))
 app.get('/auth/logout', (req,res) => {
