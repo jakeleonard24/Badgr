@@ -95,7 +95,7 @@ app.get('/auth/logout', (req,res) => {
         res.redirect(302, `https:${process.env.AUTH_DOMAIN}/v2/logout?returnTo=${process.env.SERVERHOST}`)
 })
 app.get('/api/user',  passport.authenticate('auth0'), (req, res) => {
-        req.app.get('db').current_user().then(user =>{
+        req.app.get('db').current_user([req.user]).then(user =>{
         res.status(200).send(user)
         }).catch((err) => {console.log(err)})
 })
