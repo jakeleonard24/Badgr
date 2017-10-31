@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Newsfeed from '../Newsfeed/Newsfeed'
 
 class Home extends Component {
     render() {
@@ -27,6 +28,7 @@ class Home extends Component {
                 <Link to='/notifications'>
                 <button>Notifications</button>
                 </Link>
+                <Newsfeed/>
 
             </div>
         );
