@@ -7,7 +7,10 @@ class Login extends Component {
             <div>
                 Login Page
                 <div>
-                    <a href={process.env.REACT_APP_LOGIN}>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <a href={'http://localhost:3333/auth'}>
                     <button>Login</button>
                     </a>
                  

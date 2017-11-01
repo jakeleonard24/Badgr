@@ -1,5 +1,5 @@
 insert into users
-(email, username, password, image, auth_id)
+(email, username, picture, auth_id)
 values
-($1, $2, $3, $4, $5)
+($1, $2, $3, $4)
 RETURNING *;

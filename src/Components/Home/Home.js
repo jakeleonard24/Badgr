@@ -11,7 +11,7 @@ class Home extends Component {
                 This is the Home Page
             </div>
                 <Link to='/login'>
-                <button>Login</button>
+                <button>bob</button>
                 </Link>
                 <Link to='/create'>
                 <button>Create Badge</button>

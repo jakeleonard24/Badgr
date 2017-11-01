@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import './Newsfeed.css'
-import {getPosts} from '../../ducks/reducer';
+import {getPosts, getCurrentUser} from '../../ducks/reducer';
 
 class Newsfeed extends Component {
     constructor(props){
         super(props)
 
         this.state = {
-            posts: []
+            posts: this.props.posts,
+            currentUserId: this.props.currentUserId
         }
     }
 
@@ -21,9 +22,11 @@ class Newsfeed extends Component {
         // })
 
         this.props.getPosts()
+        this.props.getCurrentUser()
     }
     render() {
         console.log('props', this.props)
+        console.log(this.state)
         let posts = this.props.posts.map((post, i) => {
             return(
                 <div key={i}>
@@ -44,11 +47,12 @@ class Newsfeed extends Component {
 }
 
 function mapStateToProps( state ) {
-    const { posts } = state;
+    const { posts, currentUserId } = state;
   
     return {
       posts,
+      currentUserId,
     };
   }
   
-  export default connect( mapStateToProps, {getPosts})( Newsfeed ); 
+  export default connect( mapStateToProps, {getPosts, getCurrentUser})( Newsfeed ); 
