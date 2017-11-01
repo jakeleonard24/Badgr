@@ -94,6 +94,14 @@ passport.use( new Auth0Strategy({
                 }).catch((err) => {console.log(err)})
         })
 
+        app.get(`/api/following/:id`, ( req, res ) => {
+                console.log('this ran', req.params)
+                let {id} = req.params;
+                req.app.get('db').get_following([id]).then( user => {
+                        res.status(200).send(user)
+                }).catch((err) => {console.log(err)})
+        })
+
 
 
 

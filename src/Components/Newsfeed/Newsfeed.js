@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import './Newsfeed.css'
-import {getPosts, getCurrentUser} from '../../ducks/reducer';
+import {getPosts, getCurrentUser, getFollowing} from '../../ducks/reducer';
 
 class Newsfeed extends Component {
     constructor(props){
@@ -11,7 +11,9 @@ class Newsfeed extends Component {
         this.state = {
             posts: this.props.posts,
             currentUserId: this.props.currentUserId
+            
         }
+        this.getFollowing = this.getFollowing.bind(this)
     }
 
     componentDidMount(){
@@ -21,12 +23,35 @@ class Newsfeed extends Component {
         //     })
         // })
 
+        
+
         this.props.getPosts()
         this.props.getCurrentUser()
     }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            currentUserId: nextProps.currentUserId
+        })
+    }
+
+    getFollowing(){
+        console.log(this.state.currentUserId)
+        this.props.getFollowing(this.state.currentUserId)
+    }
+
+    
     render() {
         console.log('props', this.props)
         console.log(this.state)
+let following = this.props.currentUserFollowing.map((user) => {
+    return(
+        <div>
+            {user.username}
+        </div>
+    )
+})
+
         let posts = this.props.posts.map((post, i) => {
             return(
                 <div key={i}>
@@ -40,6 +65,8 @@ class Newsfeed extends Component {
         return (
             <div>
                 The Newsfeed Component
+                <button onClick={this.getFollowing}>GET FOLLOWING INFO</button>
+                {following}
                 {posts}
             </div>
         );
@@ -47,12 +74,13 @@ class Newsfeed extends Component {
 }
 
 function mapStateToProps( state ) {
-    const { posts, currentUserId } = state;
+    const { posts, currentUserId, currentUserFollowing } = state;
   
     return {
       posts,
       currentUserId,
+      currentUserFollowing,
     };
   }
   
-  export default connect( mapStateToProps, {getPosts, getCurrentUser})( Newsfeed ); 
+  export default connect( mapStateToProps, {getPosts, getCurrentUser, getFollowing})( Newsfeed ); 
