@@ -90,6 +90,7 @@ app.get('/auth/callback', passport.authenticate('auth0',{
 // User Endpoints
 // =============================================================================
 app.get('/api/user', ctrl.getUser)
+app.get('/api/singleuser/:id', ctrl.getSingleUser)
 // =============================================================================
 // Post Endpoints 
 // =============================================================================
