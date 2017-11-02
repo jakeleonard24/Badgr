@@ -42,7 +42,7 @@ componentDidMount(){
             posts: response.data
         })
     })
-    this.props.getPosts()
+     this.props.getPosts()
     this.props.getCurrentUser()
 }
 componentWillReceiveProps(nextProps){
@@ -59,9 +59,8 @@ addLikes(i){
         badgeId: this.state.posts[i].id,
         likes: this.state.posts[i].likes
     }).then((response)=>{
-    this.setState({
-        posts: response.data
-    })
+    this.props.getPosts()
+    console.log('this is the response',response)
     })
 }
 addCommentButton(i, id){
@@ -93,10 +92,14 @@ render() {
 // console.log("STATE", this.state)
 let posts = this.state.posts.map((post, i) => {
     return(
-        <div className='postBorder'>
-            <img className='imageSize' src={post.logo}/> title: {post.title}  Description: {post.description} <img className='imageSize' src={post.content}/>
-            <button onClick={()=>{this.addLikes(i)}}>Like</button> {this.state.posts[i].likes}
-            <button onClick={()=>{this.addCommentButton(i, post.id)}}>Add Comment</button>
+        <div key={i}>
+            <div className='postBorder'>
+                <img className='imageSize' src={post.logo}/> title: {post.title}  Description: {post.description} <img className='imageSize' src={post.content}/>
+                <div><button onClick={()=>{this.addLikes(i)}}>Like</button> {this.state.posts[i].likes}</div>
+                <button onClick={()=>{this.addCommentButton(i, post.id)}}>Add Comment</button>
+            </div>
+            
+
         </div>
     )
 })
