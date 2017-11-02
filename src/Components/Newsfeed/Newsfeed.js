@@ -47,18 +47,21 @@ componentDidMount(){
 }
 componentWillReceiveProps(nextProps){
     this.setState({
-        currentUserId: nextProps.currentUserId
+        currentUserId: nextProps.currentUserId,
+        
     })
 }
 addLikes(i){
-    this.props.posts[i].likes=this.props.posts[i].likes + 1
+    this.state.posts[i].likes=this.state.posts[i].likes + 1
     
-    console.log(this.props.posts[i].id, this.props.posts[i].likes)
+    // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
-        badgeId: this.props.posts[i].id,
-        likes: this.props.posts[i].likes
+        badgeId: this.state.posts[i].id,
+        likes: this.state.posts[i].likes
     }).then((response)=>{
-    this.props.getPosts()
+    this.setState({
+        posts: response.data
+    })
     })
 }
 addCommentButton(i, id){
@@ -90,12 +93,10 @@ render() {
 // console.log("STATE", this.state)
 let posts = this.state.posts.map((post, i) => {
     return(
-        <div key={i}>
-            <div onClick={()=>{this.addCommentButton(i, post.id)}} className='postBorder'>
+        <div className='postBorder'>
             <img className='imageSize' src={post.logo}/> title: {post.title}  Description: {post.description} <img className='imageSize' src={post.content}/>
             <button onClick={()=>{this.addLikes(i)}}>Like</button> {this.state.posts[i].likes}
             <button onClick={()=>{this.addCommentButton(i, post.id)}}>Add Comment</button>
-            </div>
         </div>
     )
 })
