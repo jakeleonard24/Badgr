@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {getCurrentUser, getFollowing, followUser} from './../../ducks/reducer';
+import {getCurrentUser, getFollowing, followUser,getSingleUser} from './../../ducks/reducer';
 import axios from 'axios';
 import {connect} from 'react-redux';
+
 
 class Profile extends Component {
 constructor(props){
@@ -16,8 +17,6 @@ super(props);
 
 componentDidMount(){
     axios.get('/api/user').then((response)=>{
-        console.log('your user info is: ',response.data); // ex.: { user: 'Your User'}
-        console.log(response.status); // ex.: 200
         this.setState({
             currentUser:response.data
     })
@@ -28,14 +27,28 @@ getFollowing(){
     this.props.getFollowing(this.state.currentUser.id)
 }
 
+getUser(id){
+    this.props.getSingleUser(id)
+    this.setState({
+        currentUser: this.props.singleUser
+    })
+}
+
+
 render() {
+    console.log('DUDE',this.props);
+    console.log('LOL',this.state);
 let following = this.props.currentUserFollowing.map((user, i) => {
     return(
-    <div  key={i}>
-        {user.username}
+    <div key={i}>
+        
+        <div><p>{user.username}</p></div>
+        <button
+        onClick={ () => {this.getUser(user.id)}}
+        >Profile</button>
         <div>
-        <button className='add-cart-button' onClick={ () => {this.props.followUser(this.state.currentUser.id, user.id)}}
-        > FOLLOW</button>  
+        <button className='follow' onClick={ () => {this.props.followUser(this.state.currentUser.id, user.id)}}
+        > follow</button>  
         </div>
     </div>
         )
@@ -64,12 +77,14 @@ let following = this.props.currentUserFollowing.map((user, i) => {
 }
 
 function mapStateToProps( state ) {
-    const { currentUser, currentUserFollowing } = state;
+    const { currentUser, currentUserFollowing, singleUser } = state;
 
     return {
       currentUser,
       currentUserFollowing,
+      singleUser,
+
     };
   }
 
-export default connect( mapStateToProps, {getCurrentUser, getFollowing, followUser})(Profile);
+export default connect( mapStateToProps, {getCurrentUser, getFollowing, followUser, getSingleUser})(Profile);

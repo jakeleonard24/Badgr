@@ -5,6 +5,15 @@ module.exports = {
 getUser:  (req, res)=> {
   res.send(req.user)
 },
+getSingleUser: ( req, res, next ) => {
+  const db = req.app.get('db');
+  const { id } = req.params; 
+  db.get_single_user([ id ])
+    .then( users => res.status(200).json( users[0] ) )
+    .catch( (err) => {
+        res.status(500).send(err)
+    } );
+},
 // =============================================================================
 // Posts 
 // =============================================================================
