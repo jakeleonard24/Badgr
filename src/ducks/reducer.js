@@ -3,7 +3,8 @@ import axios from 'axios';
 const initialState = {
     posts: [],
     currentUserId: 0,
-    currentUserFollowing: []
+    currentUserFollowing: [],
+    currentUserFollowers: []
 }
 
 
@@ -12,6 +13,7 @@ console.log('redux posts', this.posts)
 const GET_POSTS = "GET_POSTS";
 const GET_CURRENT_USER = "GET_CURRENT_USER";
 const GET_FOLLOWING = "GET_FOLLOWING";
+const GET_FOLLOWERS = "GET_FOLLOWERS";
 
 export function getPosts(){
     
@@ -53,6 +55,20 @@ export function getFollowing(id){
     
 }
 
+export function getFollowers(id){
+    
+    const followers = axios.get('/api/followers/' + id).then(response => {
+        console.log('get following ran', response)
+        return response.data
+    })
+
+    return{
+        type: GET_FOLLOWERS,
+        payload: followers
+    }
+    
+}
+
 
 
 
@@ -68,6 +84,9 @@ export default function reducer(state = initialState, action){
 
         case GET_FOLLOWING + "_FULFILLED":
             return Object.assign({}, state, {currentUserFollowing: action.payload})
+
+        case GET_FOLLOWERS + "_FULFILLED":
+            return Object.assign({}, state, {currentUserFollowers: action.payload})
             
             default:
                 return state;
