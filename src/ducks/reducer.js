@@ -4,11 +4,8 @@ const initialState = {
     posts: [],
     currentUserId: 0,
     currentUserFollowing: [],
-<<<<<<< HEAD
-    followUser: []
-=======
+    followUser: [],
     currentUserFollowers: []
->>>>>>> 8df2c4e4b0aa44ad9661f1835298cc3859169800
 }
 
 
@@ -17,11 +14,8 @@ console.log('redux posts', this.posts)
 const GET_POSTS = "GET_POSTS";
 const GET_CURRENT_USER = "GET_CURRENT_USER";
 const GET_FOLLOWING = "GET_FOLLOWING";
-<<<<<<< HEAD
 const FOLLOW_USER = "FOLLOW_USER";
-=======
 const GET_FOLLOWERS = "GET_FOLLOWERS";
->>>>>>> 8df2c4e4b0aa44ad9661f1835298cc3859169800
 
 export function getPosts(){
     
