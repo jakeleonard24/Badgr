@@ -7,3 +7,72 @@
     border: 1px solid black;
     margin-bottom: 10px;
 }
+
+.badge-logo{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.badge-header{
+    height: 60px;
+    width: 500px;
+    background: #FFFFFF;
+    border: 1px solid #C6C6C6;
+    border-radius: 2px;
+}
+.post-image{
+    height: 500px;
+    width: 500px;
+}
+.like-button {
+    margin-right: 5px;
+    width: 224px;
+    height: 50px;
+    background: #0FACAC;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    outline: none;
+    border: none;
+}
+
+.comment-button {
+    margin-right: 50px;
+    width: 224px;
+    height: 50px;
+    background: #828282;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    outline: none;
+    border: none;
+}
+
+.content-header{
+    display: flex;
+    background: #FFFFFF;
+    border: 1px solid #C6C6C6;
+    border-radius: 2px;
+    width: 500px;
+    height: 100%;
+}
+
+.temp{
+    padding: 10px;
+}
+
+.badge-wrapper {
+    padding: 50px;
+}
+
+.like{
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+}

@@ -8,7 +8,6 @@ class Home extends Component {
             <div>
 
             <div>
-                This is the Home Page
             </div>
                 <Link to='/login'>
                 <button>bob</button>
