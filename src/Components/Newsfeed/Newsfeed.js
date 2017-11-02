@@ -35,6 +35,8 @@ constructor(props){
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.postComment = this.postComment.bind(this);
     this.addLikes=this.addLikes.bind(this);
+    this.addCommentButton = this.addCommentButton.bind(this);
+    this.getComments = this.getComments.bind(this);
 }
 componentDidMount(){
     axios.get('http://localhost:3333/api/allposts').then(response => {
@@ -70,6 +72,15 @@ addCommentButton(i, id){
         selectedPostId: id
     })
 }
+getComments(id){
+    console.log('this ran', id)
+    axios.get('/api/getcomments/' + id).then((response) => {
+        this.setState({
+            comments: response.data
+        })
+    })
+}
+
 afterOpenModal() {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#5BC3EB';
@@ -89,14 +100,25 @@ postComment(){
 
 render() {
 // console.log('props', this.props)
-// console.log("STATE", this.state)
+console.log("STATE", this.state)
+let comments = this.state.comments.map((comment, i) => {
+    return(
+        <div key={i}>
+            <div className='postBorder'>
+                <img className='imageSize' src={comment.picture} />
+                <p>{comment.username} : </p>
+                <p>{comment.comments}</p>
+            </div>
+        </div>
+    )
+})
 let posts = this.state.posts.map((post, i) => {
     return(
         <div key={i}>
             <div className='postBorder'>
                 <img className='imageSize' src={post.logo}/> title: {post.title}  Description: {post.description} <img className='imageSize' src={post.content}/>
                 <div><button onClick={()=>{this.addLikes(i)}}>Like</button> {this.state.posts[i].likes}</div>
-                <button onClick={()=>{this.addCommentButton(i, post.id)}}>Add Comment</button>
+                <button onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
             </div>
             
 
@@ -107,8 +129,7 @@ let posts = this.state.posts.map((post, i) => {
         return (
         <div>
             The Newsfeed Component
-            <button onClick={this.getFollowing}>GET FOLLOWING INFO</button>
-            <button onClick={this.getFollowers}>GET FOLLOWERS</button>
+            
             {posts}
             <Modal isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
@@ -119,8 +140,9 @@ let posts = this.state.posts.map((post, i) => {
             <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].title : 'loading'}</p>
             <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].description : 'loading'}</p>
             <img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'} />
+            {comments}
             <textarea onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
-            <button onClick={this.postComment}>Add Comment</button>
+            <button onClick={() => {this.postComment(); this.getComments(this.state.selectedPostId)}}>Add Comment</button>
             </Modal>
         </div>
         );

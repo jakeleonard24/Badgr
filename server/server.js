@@ -109,6 +109,16 @@ app.post('/api/addcomment', (req, res) => {
         })
 })
 
+// =============================================================================
+// Comments Endpoints
+// =============================================================================
+app.get('/api/getcomments/:id', (req, res) => {
+    let {id} = req.params;
+    req.app.get('db').get_comments([id]).then(comments => {
+        res.status(200).send(comments)
+    }).catch((err) => {console.log(err)})
+})
+
 const port = 3333;
 
 app.listen(port, () => console.log(`listening on port ${port}`));
