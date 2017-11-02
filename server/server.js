@@ -100,6 +100,12 @@ app.get('/api/allposts', ctrl.getAllPosts);
 app.get(`/api/following/:id`, ctrl.getFollowing);
 app.post(`/api/followuser`, ctrl.followUser);
 app.get(`/api/followers/:id`, ctrl.getFollowing);
+app.post('/api/addcomment', (req, res) => {
+        let {comment, userId, badgeId} = req.body;
+        req.app.get('db').add_comment([comment, userId, badgeId]).then(comments => {
+                res.status(200).json(req.body)
+        })
+})
 
 const port = 3333;
 
