@@ -5,7 +5,8 @@ const initialState = {
     currentUserId: 0,
     currentUserFollowing: [],
     followUser: [],
-    currentUserFollowers: []
+    currentUserFollowers: [],
+    singleUser: []
 }
 // =============================================================================
 // Action Creators 
@@ -15,6 +16,7 @@ const GET_CURRENT_USER = "GET_CURRENT_USER";
 const GET_FOLLOWING = "GET_FOLLOWING";
 const FOLLOW_USER = "FOLLOW_USER";
 const GET_FOLLOWERS = "GET_FOLLOWERS";
+const GET_SINGLE_USER = "GET_SINGLE_USER";
 // =============================================================================
 // Post Functions 
 // =============================================================================
@@ -39,6 +41,15 @@ export function getCurrentUser(){
     return{
         type: GET_CURRENT_USER,
         payload: currentUser
+    }
+}
+export function getSingleUser(id){
+    const singleUser = axios.get(`/api/singleuser/${id}`).then(response => {
+        return response.data
+    })
+    return{
+        type: GET_SINGLE_USER,
+        payload: singleUser
     }
 }
 // =============================================================================
@@ -89,6 +100,8 @@ switch (action.type) {
 // =============================================================================
     case GET_CURRENT_USER + "_FULFILLED":
         return Object.assign({}, state, {currentUserId: action.payload})
+    case GET_SINGLE_USER + "_FULFILLED":
+        return Object.assign({}, state, {singleUser: action.payload})
 // =============================================================================
 // Follow/Following Reducers 
 // =============================================================================
