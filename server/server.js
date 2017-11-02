@@ -1,12 +1,13 @@
 require('dotenv').config();
 const express = require('express')
-, bodyParser = require('body-parser')
-, session = require('express-session')
-, massive = require('massive')
-, passport = require('passport')
-, Auth0Strategy = require('passport-auth0')
-, cors = require('cors')
-, axios = require('axios')
+    , bodyParser = require('body-parser')
+    , session = require('express-session')
+    , massive = require('massive')
+    , passport = require('passport')
+    , Auth0Strategy = require('passport-auth0')
+    , cors = require('cors')
+    , axios = require('axios')
+    , ctrl = require('./controller')
 
 const app = express();
 
@@ -27,100 +28,78 @@ massive(process.env.CONNECTION_STRING)
 })
 
 passport.use( new Auth0Strategy({
-        domain: process.env.AUTH_DOMAIN,
-        clientID: process.env.AUTH_CLIENT_ID,
-        clientSecret: process.env.AUTH_CLIENT_SECRET,
-        callbackURL: process.env.AUTH_CALLBACK
-      }, function(accessToken, refreshToken, extraParams, profile, done) {
-        const db = app.get('db');
-
-        db.get_user([profile.identities[0].user_id]).then( user => {
-                if (user[0]) {
-                    done(null, user[0])
-                } else {
-                    if(profile.nickname){
-                    db.create_user([
-                        profile.emails[0].value,
-                        profile.nickname,
-                        profile.picture,
-                        profile.identities[0].user_id
-                        ])
-                        .then( user => {
-                            done(null, user[0])
-                        })}
-                        else {
-                            db.create_user([
-                                profile.emails[0].value,
-                                profile.emails[0].value,
-                                profile.password,
-                                profile.identities[0].user_id])
-                                .then( user => {
-                                    done(null, user[0])
-                                })
-                        }
-                }})
-          }))
-
-          passport.serializeUser(function(user, done) {
-                
-                done(null, user);
+    domain: process.env.AUTH_DOMAIN,
+    clientID: process.env.AUTH_CLIENT_ID,
+    clientSecret: process.env.AUTH_CLIENT_SECRET,
+    callbackURL: process.env.AUTH_CALLBACK
+    }, function(accessToken, refreshToken, extraParams, profile, done) {
+    const db = app.get('db');
+// =============================================================================
+// Retrieving User Info 
+// =============================================================================
+db.get_user([profile.identities[0].user_id]).then( user => {
+if (user[0]) {
+    done(null, user[0])
+} else {
+if(profile.nickname){
+db.create_user([
+    profile.emails[0].value,
+    profile.nickname,
+    profile.picture,
+    profile.identities[0].user_id
+    ])
+    .then( user => {
+        done(null, user[0])
+    })}
+    else {
+        db.create_user([
+            profile.emails[0].value,
+            profile.emails[0].value,
+            profile.password,
+            profile.identities[0].user_id])
+            .then( user => {
+                done(null, user[0])
             })
-              passport.deserializeUser(( userId, done) => {
-                
-                app.get('db').current_user([userId.id]).then(user => {
-                    
-                        done(null, user[0])
-                })
-            })
-
-            app.get('/auth', passport.authenticate('auth0'));
-            app.get('/auth/callback', passport.authenticate('auth0',{
-                successRedirect: 'http://localhost:3000/#/profile',
-                failureRedirect: '/auth'
-              }))
-              app.get('/auth/logout', (req,res) => {
-                req.logOut();
-                res.redirect(302, 'http://localhost:3000/#/blog')
-            })
-
-            app.get('/api/user', (req, res)=> {
-                
-                res.send(req.user)
-            })
-
-            app.get('/api/allposts', (req, res) => {
-                req.app.get('db').get_posts().then(posts =>{
-                        res.status(200).send(posts);
-                }).catch((err) => {console.log(err)})
-        })
-
-        app.get(`/api/following/:id`, ( req, res ) => {
-                console.log('this ran', req.params)
-                let {id} = req.params;
-                req.app.get('db').get_following([id]).then( user => {
-                        res.status(200).send(user)
-                }).catch((err) => {console.log(err)})
-        })
-
-        app.post(`/api/followuser`, ( req, res ) => {
-            const db = req.app.get('db');
-            const { currentUserId, followerUser } = req.body;
-          console.log(currentUserId, followerUser);
-            req.app.get('db').follow_user([ currentUserId, followerUser ]).then(
-            //IF ELSE STATEMENT FOR DUPLICATES SHOULD GO HERE
-            ).catch((err) => {console.log(err)})
-          })
-          
-        app.get(`/api/followers/:id`, ( req, res ) => {
-                console.log('this ran', req.params)
-                let {id} = req.params;
-                req.app.get('db').get_following([id]).then( user => {
-                        res.status(200).send(user)
-                }).catch((err) => {console.log(err)})
-        })
-
-
-
+        }
+    }})
+}))
+// =============================================================================
+// Passport 
+// =============================================================================
+passport.serializeUser(function(user, done) {
+    done(null, user);
+})
+passport.deserializeUser(( userId, done) => {
+    app.get('db').current_user([userId.id]).then(user => {
+    done(null, user[0])
+    })
+})
+// =============================================================================
+// Auth0 Endpoints 
+// =============================================================================
+app.get('/auth', passport.authenticate('auth0'));
+app.get('/auth/callback', passport.authenticate('auth0',{
+    successRedirect: 'http://localhost:3000/#/profile',
+    failureRedirect: '/auth'
+    }))
+    app.get('/auth/logout', (req,res) => {
+    req.logOut();
+    res.redirect(302, 'http://localhost:3000/#/blog')
+})
+// =============================================================================
+// User Endpoints
+// =============================================================================
+app.get('/api/user', ctrl.getUser)
+// =============================================================================
+// Post Endpoints 
+// =============================================================================
+app.get('/api/allposts', ctrl.getAllPosts);
+// =============================================================================
+// Follow/Following Endpoints 
+// =============================================================================
+app.get(`/api/following/:id`, ctrl.getFollowing);
+app.post(`/api/followuser`, ctrl.followUser);
+app.get(`/api/followers/:id`, ctrl.getFollowing);
 
 const port = 3333;
 
