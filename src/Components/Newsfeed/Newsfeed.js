@@ -28,7 +28,7 @@ constructor(props){
         selectedPostIndex: 0,
         selectedPostId: 0,
         comment: '',
-        comments: []
+        comments: [],
         likes:this.props.likes
     }
     this.getFollowing = this.getFollowing.bind(this);
