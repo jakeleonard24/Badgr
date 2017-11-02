@@ -13,6 +13,12 @@ getAllPosts: (req, res) => {
           res.status(200).send(posts);
   }).catch((err) => {console.log(err)})
 },
+addLikes: (req, res) =>{
+  let {badgeId, likes} = req.body
+  req.app.get('db').update_likes([badgeId, likes]).then(post=>{
+    res.status(200).send(post);
+  }).catch((err)=>{console.log(err)})
+},
 // =============================================================================
 // Follower/Following 
 // =============================================================================

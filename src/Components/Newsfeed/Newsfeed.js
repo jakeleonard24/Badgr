@@ -10,15 +10,18 @@ constructor(props){
 
     this.state = {
         posts: this.props.posts,
-        currentUserId: this.props.currentUserId
+        currentUserId: this.props.currentUserId,
+        likes:this.props.likes
     }
     this.getFollowing = this.getFollowing.bind(this);
-    this.getFollowers = this.getFollowers.bind(this)
+    this.getFollowers = this.getFollowers.bind(this);
+    this.addLikes=this.addLikes.bind(this);
 }
 
 componentDidMount(){
     this.props.getPosts()
     this.props.getCurrentUser()
+    
 }
 componentWillReceiveProps(nextProps){
     this.setState({
@@ -31,6 +34,18 @@ getFollowing(){
 }
 getFollowers(){
     this.props.getFollowers(this.state.currentUserId)
+}
+addLikes(i){
+    this.props.posts[i].likes=this.props.posts[i].likes + 1
+    
+    console.log(this.props.posts[i].id, this.props.posts[i].likes)
+    axios.post('/api/addlike', {
+        badgeId: this.props.posts[i].id,
+        likes: this.props.posts[i].likes
+    }).then((response)=>{
+    this.props.getPosts()
+    })
+    
 }
 
 render() {
@@ -56,6 +71,7 @@ let posts = this.props.posts.map((post, i) => {
         <div key={i}>
             <div className='postBorder'>
                 <img className='imageSize' src={post.logo}/> title: {post.title}  Description: {post.description} <img className='imageSize' src={post.content}/>
+                <button onClick={()=>{this.addLikes(i)}}>Like</button> {this.props.posts[i].likes}
             </div>
 
         </div>
