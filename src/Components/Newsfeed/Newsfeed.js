@@ -104,8 +104,7 @@ let posts = this.state.posts.map((post, i) => {
         return (
         <div>
             The Newsfeed Component
-            <button onClick={this.getFollowing}>GET FOLLOWING INFO</button>
-            <button onClick={this.getFollowers}>GET FOLLOWERS</button>
+
             {posts}
             <Modal isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
