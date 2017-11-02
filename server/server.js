@@ -102,6 +102,14 @@ passport.use( new Auth0Strategy({
                 }).catch((err) => {console.log(err)})
         })
 
+        app.post(`/api/followuser`, ( req, res ) => {
+            const db = req.app.get('db');
+            const { currentUserId, followerUser } = req.body;
+          console.log(currentUserId, followerUser);
+            req.app.get('db').follow_user([ currentUserId, followerUser ]).then(
+            //IF ELSE STATEMENT FOR DUPLICATES SHOULD GO HERE
+            ).catch((err) => {console.log(err)})
+          })
 
 
 

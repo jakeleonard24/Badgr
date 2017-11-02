@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {getCurrentUser, getFollowing} from './../../ducks/reducer';
+import {getCurrentUser, getFollowing, followUser} from './../../ducks/reducer';
 import axios from 'axios';
 import {connect} from 'react-redux';
 
@@ -32,6 +32,10 @@ class Profile extends Component {
             return(
                 <div>
                     {user.username}
+                    <div>
+                    <button className='add-cart-button' onClick={ () => {this.props.followUser(this.state.currentUser.id, user.id)}}
+                    > FOLLOW</button>  
+                    </div>
                 </div>
             )
         })
@@ -70,4 +74,4 @@ function mapStateToProps( state ) {
     };
   }
 
-  export default connect( mapStateToProps, {getCurrentUser, getFollowing})(Profile);
+  export default connect( mapStateToProps, {getCurrentUser, getFollowing, followUser})(Profile);
