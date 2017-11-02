@@ -89,14 +89,14 @@ closeModal() {
     this.setState({modalIsOpen: false});
 }
 postComment(){
-     if(this.state.comment.length > 0){
-         axios.post('/api/addcomment', {
-             comment: this.state.comment,
-             userId: this.props.currentUserId,
-             badgeId: this.state.selectedPostId
-         })
-     }
-  }
+    if(this.state.comment.length > 0){
+        axios.post('/api/addcomment', {
+            comment: this.state.comment,
+            userId: this.props.currentUserId,
+            badgeId: this.state.selectedPostId
+        })
+    }
+}
 
 render() {
 // console.log('props', this.props)
@@ -112,23 +112,39 @@ let comments = this.state.comments.map((comment, i) => {
         </div>
     )
 })
+
+// =============================================================================
+// Functions and stuff.
+// =============================================================================
 let posts = this.state.posts.map((post, i) => {
     return(
         <div key={i}>
-            <div className='postBorder'>
-                <img className='imageSize' src={post.logo}/> title: {post.title}  Description: {post.description} <img className='imageSize' src={post.content}/>
-                <div><button onClick={()=>{this.addLikes(i)}}>Like</button> {this.state.posts[i].likes}</div>
-                <button onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
+            <div className='badge-wrapper'>
+            <div className='badge-header'>
             </div>
-            
-
+            <div className='badge-content'>
+                <img className='post-image' src={post.content}/>
+            </div>
+            <div className='content-header'>
+                <img className='badge-logo' src={post.logo}/>
+                <div className='temp'>{post.title}</div>
+                <div className='temp'>{post.description}</div>
+            </div>
+                <div className='like-comment'>
+                <button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button> 
+                <div className="like">{this.state.posts[i].likes}</div>
+                <button className="comment-button" onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
+                </div>
+                </div>
         </div>
     )
 })
-
+// =============================================================================
+// Body
+// =============================================================================
         return (
         <div>
-            The Newsfeed Component
+        
             
             {posts}
             <Modal isOpen={this.state.modalIsOpen}
