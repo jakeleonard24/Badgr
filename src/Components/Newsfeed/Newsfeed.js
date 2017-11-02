@@ -95,7 +95,16 @@ postComment(){
             userId: this.props.currentUserId,
             badgeId: this.state.selectedPostId
         })
-    }
+
+        this.setState({
+            comment: ''
+        })
+    } else {
+
+    this.setState({
+        comment: ''
+    })
+}
 }
 
 render() {
@@ -157,7 +166,7 @@ let posts = this.state.posts.map((post, i) => {
             <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].description : 'loading'}</p>
             <img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'} />
             {comments}
-            <textarea onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
+            <textarea value={this.state.comment} onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
             <button onClick={() => {this.postComment(); this.getComments(this.state.selectedPostId)}}>Add Comment</button>
             </Modal>
         </div>
