@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import './Newsfeed.css';
 import Modal from 'react-modal'
-import {getPosts, getCurrentUser, getFollowing, getFollowers} from '../../ducks/reducer';
+import {getPosts, getCurrentUser} from '../../ducks/reducer';
 
 const customStyles = {
     content : {
@@ -15,7 +15,6 @@ const customStyles = {
       transform             : 'translate(-50%, -50%)'
     }
   };
-
 
 class Newsfeed extends Component {
 constructor(props){
@@ -31,70 +30,64 @@ constructor(props){
         comments: [],
         likes:this.props.likes
     }
-    this.getFollowing = this.getFollowing.bind(this);
-    this.getFollowers = this.getFollowers.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.addCommentButton = this.addCommentButton.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.postComment = this.postComment.bind(this);
     this.addLikes=this.addLikes.bind(this);
-    }
-
+}
 componentDidMount(){
     axios.get('http://localhost:3333/api/allposts').then(response => {
         this.setState({
             posts: response.data
         })
     })
+<<<<<<< HEAD
      this.props.getPosts()
+=======
+    this.props.getPosts()
+>>>>>>> 9b4352ed45ba8f665a429c99abe0a8fd18e2a4b4
     this.props.getCurrentUser()
-    
 }
 componentWillReceiveProps(nextProps){
     this.setState({
-        currentUserId: nextProps.currentUserId
+        currentUserId: nextProps.currentUserId,
+        
     })
-}
-getFollowing(){
-    console.log(this.state.currentUserId)
-    this.props.getFollowing(this.state.currentUserId)
-}
-getFollowers(){
-    this.props.getFollowers(this.state.currentUserId)
 }
 addLikes(i){
-    this.props.posts[i].likes=this.props.posts[i].likes + 1
+    this.state.posts[i].likes=this.state.posts[i].likes + 1
     
-    console.log(this.props.posts[i].id, this.props.posts[i].likes)
+    // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
-        badgeId: this.props.posts[i].id,
-        likes: this.props.posts[i].likes
+        badgeId: this.state.posts[i].id,
+        likes: this.state.posts[i].likes
     }).then((response)=>{
+<<<<<<< HEAD
     this.props.getPosts()
     console.log('this is the response',response)
+=======
+    this.setState({
+        posts: response.data
     })
-    
+>>>>>>> 9b4352ed45ba8f665a429c99abe0a8fd18e2a4b4
+    })
 }
-
 addCommentButton(i, id){
     this.setState({
         modalIsOpen: true,
         selectedPostIndex: i,
         selectedPostId: id
     })
-          
 }
-
 afterOpenModal() {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#5BC3EB';
-  }
-
-  closeModal() {
+}
+closeModal() {
     this.setState({modalIsOpen: false});
-  }
-
-  postComment(){
+}
+postComment(){
      if(this.state.comment.length > 0){
          axios.post('/api/addcomment', {
              comment: this.state.comment,
@@ -105,23 +98,8 @@ afterOpenModal() {
   }
 
 render() {
-
-console.log('props', this.props)
-console.log("STATE", this.state)
-let followers = this.props.currentUserFollowers.map((user, i) => {
-    return(
-        <div key={i}>
-            {user.username} & <img src={user.picture} />
-        </div>
-    )
-})
-let following = this.props.currentUserFollowing.map((user, i) => {
-    return(
-        <div key={i}>
-            {user.username}
-        </div>
-    )
-})
+// console.log('props', this.props)
+// console.log("STATE", this.state)
 let posts = this.state.posts.map((post, i) => {
     return(
         <div key={i}>
@@ -137,29 +115,24 @@ let posts = this.state.posts.map((post, i) => {
 })
 
         return (
-            <div>
-                The Newsfeed Component
-                <button onClick={this.getFollowing}>GET FOLLOWING INFO</button>
-                <button onClick={this.getFollowers}>GET FOLLOWERS</button>
-                {followers}
-                {following}
-                {posts}
-
-                <Modal isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal">
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Specific Post View</h2>
-                    <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].title : 'loading'}</p>
-                    <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].description : 'loading'}</p>
-                    <img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'} />
-                    <textarea onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
-                    <button onClick={this.postComment}>Add Comment</button>
-
-
-                </Modal>
-            </div>
+        <div>
+            The Newsfeed Component
+            <button onClick={this.getFollowing}>GET FOLLOWING INFO</button>
+            <button onClick={this.getFollowers}>GET FOLLOWERS</button>
+            {posts}
+            <Modal isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="Example Modal">
+            <h2 ref={subtitle => this.subtitle = subtitle}>Specific Post View</h2>
+            <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].title : 'loading'}</p>
+            <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].description : 'loading'}</p>
+            <img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'} />
+            <textarea onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
+            <button onClick={this.postComment}>Add Comment</button>
+            </Modal>
+        </div>
         );
     }
 }
@@ -175,4 +148,4 @@ function mapStateToProps( state ) {
     };
   }
   
-  export default connect( mapStateToProps, {getPosts, getCurrentUser, getFollowing, getFollowers})( Newsfeed ); 
+  export default connect( mapStateToProps, {getPosts, getCurrentUser})( Newsfeed ); 

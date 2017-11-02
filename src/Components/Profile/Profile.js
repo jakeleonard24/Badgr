@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {getCurrentUser, getFollowing, followUser,getSingleUser} from './../../ducks/reducer';
+import {getCurrentUser, getFollowing, getFollowers, followUser, getSingleUser} from './../../ducks/reducer';
 import axios from 'axios';
 import {connect} from 'react-redux';
 
@@ -12,7 +12,8 @@ super(props);
     value:'',
     currentUser:[]
 }
-    this.getFollowing = this.getFollowing.bind(this)
+this.getFollowing = this.getFollowing.bind(this);
+this.getFollowers = this.getFollowers.bind(this);
 }
 
 componentDidMount(){
@@ -26,6 +27,9 @@ componentDidMount(){
 getFollowing(){
     this.props.getFollowing(this.state.currentUser.id)
 }
+getFollowers(){
+    this.props.getFollowers(this.state.currentUser.id)
+}
 
 getUser(id){
     this.props.getSingleUser(id)
@@ -38,6 +42,14 @@ getUser(id){
 render() {
     console.log('DUDE',this.props);
     console.log('LOL',this.state);
+let followers = this.props.currentUserFollowers.map((user, i) => {
+        return(
+            <div key={i}>
+                {user.username}
+            </div>
+        )
+    })
+
 let following = this.props.currentUserFollowing.map((user, i) => {
     return(
     <div key={i}>
@@ -68,8 +80,10 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             <img src={this.state.currentUser.picture}/>
         </div>
         <div>
-            <div className='profileFollowingButton'> <button onClick={this.getFollowing}>Following</button>
-        {following}</div>
+             <button onClick={this.getFollowing}>Following</button>
+            {following}
+            <button onClick={this.getFollowers}>Followers</button>
+            {followers}
         </div>
     </div>
     );
@@ -77,14 +91,15 @@ let following = this.props.currentUserFollowing.map((user, i) => {
 }
 
 function mapStateToProps( state ) {
-    const { currentUser, currentUserFollowing, singleUser } = state;
+    const { currentUser, currentUserFollowing, currentUserFollowers, singleUser } = state;
 
     return {
       currentUser,
-      currentUserFollowing,
       singleUser,
+      currentUserFollowers,
+      currentUserFollowing,
 
     };
   }
 
-export default connect( mapStateToProps, {getCurrentUser, getFollowing, followUser, getSingleUser})(Profile);
+export default connect( mapStateToProps, {getCurrentUser, getFollowing, getFollowers, followUser, getSingleUser,})(Profile);
