@@ -42,11 +42,7 @@ componentDidMount(){
             posts: response.data
         })
     })
-<<<<<<< HEAD
      this.props.getPosts()
-=======
-    this.props.getPosts()
->>>>>>> 9b4352ed45ba8f665a429c99abe0a8fd18e2a4b4
     this.props.getCurrentUser()
 }
 componentWillReceiveProps(nextProps){
@@ -63,14 +59,8 @@ addLikes(i){
         badgeId: this.state.posts[i].id,
         likes: this.state.posts[i].likes
     }).then((response)=>{
-<<<<<<< HEAD
     this.props.getPosts()
     console.log('this is the response',response)
-=======
-    this.setState({
-        posts: response.data
-    })
->>>>>>> 9b4352ed45ba8f665a429c99abe0a8fd18e2a4b4
     })
 }
 addCommentButton(i, id){
