@@ -110,6 +110,15 @@ passport.use( new Auth0Strategy({
             //IF ELSE STATEMENT FOR DUPLICATES SHOULD GO HERE
             ).catch((err) => {console.log(err)})
           })
+          
+        app.get(`/api/followers/:id`, ( req, res ) => {
+                console.log('this ran', req.params)
+                let {id} = req.params;
+                req.app.get('db').get_following([id]).then( user => {
+                        res.status(200).send(user)
+                }).catch((err) => {console.log(err)})
+        })
+
 
 
 
