@@ -46,7 +46,7 @@ componentDidMount(){
             posts: response.data
         })
     })
-    // this.props.getPosts()
+     this.props.getPosts()
     this.props.getCurrentUser()
     
 }
@@ -71,6 +71,7 @@ addLikes(i){
         likes: this.props.posts[i].likes
     }).then((response)=>{
     this.props.getPosts()
+    console.log('this is the response',response)
     })
     
 }
@@ -124,9 +125,9 @@ let following = this.props.currentUserFollowing.map((user, i) => {
 let posts = this.state.posts.map((post, i) => {
     return(
         <div key={i}>
-            <div onClick={()=>{this.addCommentButton(i, post.id)}} className='postBorder'>
+            <div className='postBorder'>
                 <img className='imageSize' src={post.logo}/> title: {post.title}  Description: {post.description} <img className='imageSize' src={post.content}/>
-                <button onClick={()=>{this.addLikes(i)}}>Like</button> {this.props.posts[i].likes}
+                <div><button onClick={()=>{this.addLikes(i)}}>Like</button> {this.state.posts[i].likes}</div>
                 <button onClick={()=>{this.addCommentButton(i, post.id)}}>Add Comment</button>
             </div>
             
