@@ -187,7 +187,7 @@ let posts = this.props.followingFeed.map((post, i) => {
                 {/* {likeButtonType} 
                 {/* <button className="like-button" onClick={()=>{this.addLikes(i)}}>Unlike</button> 
                 <button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button>  */}
-                {/* <div className="like">{this.state.posts[i].likes}</div> */} */}
+                {/* <div className="like">{this.state.posts[i].likes}</div> */} 
                 <button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button> 
                 <div className="like">{this.props.followingFeed[i].likes}</div>
                 <button className="comment-button" onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
