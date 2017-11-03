@@ -5,7 +5,7 @@ import Profile from './Components/Profile/Profile';
 import CreateBadge from './Components/CreateBadge/CreateBadge';
 import PostPage from './Components/PostPage/PostPage';
 import NotificationsView from './Components/NotificationsView/NotificationsView';
-import Navbar from './Components/Navbar/Navbar';
+// import Navbar from './Components/Navbar/Navbar';
 import Home from './Components/Home/Home'
 import BadgeGroup from './Components/BadgeGroup/BadgeGroup'
 

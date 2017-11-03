@@ -99,7 +99,6 @@ const storage = multer.diskStorage({
 });
 
 
-
 // =============================================================================
 // Auth0 Endpoints 
 // =============================================================================
@@ -122,6 +121,7 @@ app.get('/api/singleuser/:id', ctrl.getSingleUser)
 // =============================================================================
 app.get('/api/allposts', ctrl.getAllPosts);
 app.post('/api/addlike', ctrl.addLikes);
+app.get('/api/getfollowingfeed/:id', ctrl.getFollowingFeed);
 // =============================================================================
 // Follow/Following Endpoints 
 // =============================================================================
