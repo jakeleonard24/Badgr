@@ -40,8 +40,6 @@ getUser(id){
 
 
 render() {
-    console.log('DUDE',this.props);
-    console.log('LOL',this.state);
 let followers = this.props.currentUserFollowers.map((user, i) => {
         return(
             <div key={i}>
@@ -77,7 +75,7 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             Welcome, {this.state.currentUser.username}!
         </div>
         <div>
-            <img src={this.state.currentUser.picture}/>
+            <img src={this.state.currentUser.picture} alt='hi'/>
         </div>
         <div>
              <button onClick={this.getFollowing}>Following</button>

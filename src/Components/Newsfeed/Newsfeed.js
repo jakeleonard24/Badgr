@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import './Newsfeed.css';
 import Modal from 'react-modal'
-import {getPosts, getCurrentUser} from '../../ducks/reducer';
+import {getPosts, getCurrentUser, getFollowingFeed} from '../../ducks/reducer';
 
 const customStyles = {
     content : {
@@ -28,7 +28,8 @@ constructor(props){
         selectedPostId: 0,
         comment: '',
         comments: [],
-        likes:this.props.likes
+        likes:this.props.likes,
+        followingFeed: this.props.followingFeed
     }
     this.closeModal = this.closeModal.bind(this);
     this.addCommentButton = this.addCommentButton.bind(this);
@@ -39,17 +40,15 @@ constructor(props){
     this.getComments = this.getComments.bind(this);
 }
 componentDidMount(){
-    axios.get('http://localhost:3333/api/allposts').then(response => {
-        this.setState({
-            posts: response.data
-        })
+this.props.getCurrentUser().then( () => {
+this.props.getFollowingFeed(this.props.currentUserId)
     })
-     this.props.getPosts()
-    this.props.getCurrentUser()
+    console.log("USERID:", this.props.currentUserId);
 }
 componentWillReceiveProps(nextProps){
     this.setState({
         currentUserId: nextProps.currentUserId,
+        posts: nextProps.followingFeed,
         
     })
 }
@@ -62,7 +61,6 @@ addLikes(i){
         likes: this.state.posts[i].likes
     }).then((response)=>{
     this.props.getPosts()
-    console.log('this is the response',response)
     })
 }
 addCommentButton(i, id){
@@ -114,34 +112,36 @@ let comments = this.state.comments.map((comment, i) => {
     return(
         <div key={i}>
             <div className='postBorder'>
-                <img className='imageSize' src={comment.picture} />
+                <img className='imageSize' src={comment.picture} alt='hi' />
                 <p>{comment.username} : </p>
                 <p>{comment.comments}</p>
             </div>
         </div>
     )
 })
-
+console.log('BUGGATI',this.props);
+console.log("OBJ1", this.props.followingFeed);
+console.log("OBJ2", this.state.followingFeed);
 // =============================================================================
 // Functions and stuff.
 // =============================================================================
-let posts = this.state.posts.map((post, i) => {
+let posts = this.props.followingFeed.map((post, i) => {
     return(
         <div key={i}>
             <div className='badge-wrapper'>
             <div className='badge-header'>
             </div>
             <div className='badge-content'>
-                <img className='post-image' src={post.content}/>
+                <img className='post-image' src={post.content} alt='hi'/>
             </div>
             <div className='content-header'>
-                <img className='badge-logo' src={post.logo}/>
+                <img className='badge-logo' src={post.logo} alt='hi'/>
                 <div className='temp'>{post.title}</div>
                 <div className='temp'>{post.description}</div>
             </div>
                 <div className='like-comment'>
                 <button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button> 
-                <div className="like">{this.state.posts[i].likes}</div>
+                <div className="like">{this.props.followingFeed[i].likes}</div>
                 <button className="comment-button" onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
                 </div>
                 </div>
@@ -164,7 +164,7 @@ let posts = this.state.posts.map((post, i) => {
             <h2 ref={subtitle => this.subtitle = subtitle}>Specific Post View</h2>
             <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].title : 'loading'}</p>
             <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].description : 'loading'}</p>
-            <img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'} />
+            <img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'}alt='hi' />
             {comments}
             <textarea value={this.state.comment} onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
             <button onClick={() => {this.postComment(); this.getComments(this.state.selectedPostId)}}>Add Comment</button>
@@ -175,14 +175,15 @@ let posts = this.state.posts.map((post, i) => {
 }
 
 function mapStateToProps( state ) {
-    const { posts, currentUserId, currentUserFollowing, currentUserFollowers } = state;
+    const { posts, currentUserId, currentUserFollowing, currentUserFollowers, followingFeed } = state;
   
     return {
       posts,
       currentUserId,
       currentUserFollowing,
       currentUserFollowers,
+      followingFeed,
     };
   }
   
-  export default connect( mapStateToProps, {getPosts, getCurrentUser})( Newsfeed ); 
+  export default connect( mapStateToProps, {getPosts, getCurrentUser, getFollowingFeed})( Newsfeed ); 

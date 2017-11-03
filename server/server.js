@@ -89,7 +89,7 @@ const storage = multer.diskStorage({
 
      var type = upload.single('file')
 
-     pp.post('/profile', type, (req, res, next) => {
+     app.post('/profile', type, (req, res, next) => {
         console.log(req.body, 'Body')
         console.log(req.file.originalname)
         res.json(req.file)
@@ -97,9 +97,9 @@ const storage = multer.diskStorage({
         
 });
 
-app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, '/../build/index.html'));
-  })
+// app.get('*', (req, res)=>{
+//     res.sendFile(path.join(__dirname, '/../build/index.html'));
+//   })
 
 // =============================================================================
 // Auth0 Endpoints 
@@ -123,6 +123,7 @@ app.get('/api/singleuser/:id', ctrl.getSingleUser)
 // =============================================================================
 app.get('/api/allposts', ctrl.getAllPosts);
 app.post('/api/addlike', ctrl.addLikes);
+app.get('/api/getfollowingfeed/:id', ctrl.getFollowingFeed);
 // =============================================================================
 // Follow/Following Endpoints 
 // =============================================================================
