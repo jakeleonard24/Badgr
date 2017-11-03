@@ -8,6 +8,8 @@ const express = require('express')
     , cors = require('cors')
     , axios = require('axios')
     , ctrl = require('./controller')
+    , multer = require('multer')
+    , upload = multer({dest: './public/uploads'})
 
 const app = express();
 
@@ -21,6 +23,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
+app.use(express.static(`${__dirname}/../build`))
 
 massive(process.env.CONNECTION_STRING)
 .then( db => {
@@ -74,6 +77,30 @@ passport.deserializeUser(( userId, done) => {
     done(null, user[0])
     })
 })
+
+const storage = multer.diskStorage({
+    
+     filename: function (req, file, cb) {
+         let extArray = file.mimetype.split("/");
+         let extension = extArray[extArray.length - 1];
+         cb(null, file.fieldname + '-' + Date.now()+ '.' +extension)
+       }
+     })
+
+     var type = upload.single('file')
+
+     pp.post('/profile', type, (req, res, next) => {
+        console.log(req.body, 'Body')
+        console.log(req.file.originalname)
+        res.json(req.file)
+        
+        
+});
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '/../build/index.html'));
+  })
+
 // =============================================================================
 // Auth0 Endpoints 
 // =============================================================================
