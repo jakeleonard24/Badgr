@@ -37,6 +37,7 @@ constructor(props){
     this.addLikes=this.addLikes.bind(this);
     this.addCommentButton = this.addCommentButton.bind(this);
     this.getComments = this.getComments.bind(this);
+    
 }
 componentDidMount(){
     axios.get('http://localhost:3333/api/allposts').then(response => {

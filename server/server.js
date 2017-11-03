@@ -10,6 +10,7 @@ const express = require('express')
     , ctrl = require('./controller')
     , multer = require('multer')
     , upload = multer({dest: './public/uploads'})
+    
 
 const app = express();
 
@@ -23,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
-app.use(express.static(`${__dirname}/../build`))
+
 
 massive(process.env.CONNECTION_STRING)
 .then( db => {
@@ -89,7 +90,7 @@ const storage = multer.diskStorage({
 
      var type = upload.single('file')
 
-     pp.post('/profile', type, (req, res, next) => {
+     app.post('/profile', type, (req, res, next) => {
         console.log(req.body, 'Body')
         console.log(req.file.originalname)
         res.json(req.file)
@@ -97,9 +98,7 @@ const storage = multer.diskStorage({
         
 });
 
-app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, '/../build/index.html'));
-  })
+
 
 // =============================================================================
 // Auth0 Endpoints 
