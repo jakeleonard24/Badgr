@@ -37,6 +37,7 @@
     display: inline-block;
     outline: none;
     border: none;
+    /* display: none; */
 }
 
 .comment-button {

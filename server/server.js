@@ -96,6 +96,8 @@ app.get('/api/singleuser/:id', ctrl.getSingleUser)
 // =============================================================================
 app.get('/api/allposts', ctrl.getAllPosts);
 app.post('/api/addlike', ctrl.addLikes);
+app.post('/api/tracklikes', ctrl.addLiked);
+app.get('/api/tracklikes', ctrl.getTrackedLikes)
 // =============================================================================
 // Follow/Following Endpoints 
 // =============================================================================

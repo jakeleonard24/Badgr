@@ -28,6 +28,17 @@ addLikes: (req, res) =>{
     res.status(200).send(post);
   }).catch((err)=>{console.log(err)})
 },
+addLiked: (req, res) =>{
+  let {badgeId, userId} = req.body
+  req.app.get('db').track_likes([badgeId, userId]).then(post=>{
+    res.status(200).send(post);
+  }).catch((err)=>{console.log(err)})
+},
+getTrackedLikes: (req, res) => {
+  req.app.get('db').find_if_liked(userId).then(posts =>{
+          res.status(200).send(posts);
+  }).catch((err) => {console.log(err)})
+},
 // =============================================================================
 // Follower/Following 
 // =============================================================================
