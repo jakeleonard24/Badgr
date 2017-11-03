@@ -39,6 +39,12 @@ getTrackedLikes: (req, res) => {
           res.status(200).send(posts);
   }).catch((err) => {console.log(err)})
 },
+getFollowingFeed: (req, res) => {
+  let {id} = req.params;
+  req.app.get('db').get_feed([id]).then(feed =>{
+          res.status(200).send(feed);
+  }).catch((err)=>{console.log(err)})
+},
 // =============================================================================
 // Follower/Following 
 // =============================================================================

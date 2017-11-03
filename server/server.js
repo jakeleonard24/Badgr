@@ -8,6 +8,9 @@ const express = require('express')
     , cors = require('cors')
     , axios = require('axios')
     , ctrl = require('./controller')
+    , multer = require('multer')
+    , upload = multer({dest: './public/uploads'})
+    
 
 const app = express();
 
@@ -21,6 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
+
 
 massive(process.env.CONNECTION_STRING)
 .then( db => {
@@ -74,6 +78,27 @@ passport.deserializeUser(( userId, done) => {
     done(null, user[0])
     })
 })
+
+const storage = multer.diskStorage({
+    
+     filename: function (req, file, cb) {
+         let extArray = file.mimetype.split("/");
+         let extension = extArray[extArray.length - 1];
+         cb(null, file.fieldname + '-' + Date.now()+ '.' +extension)
+       }
+     })
+
+     var type = upload.single('file')
+
+     app.post('/profile', type, (req, res, next) => {
+        console.log(req.body, 'Body')
+        console.log(req.file.originalname)
+        res.json(req.file)
+        
+        
+});
+
+
 // =============================================================================
 // Auth0 Endpoints 
 // =============================================================================
@@ -98,6 +123,7 @@ app.get('/api/allposts', ctrl.getAllPosts);
 app.post('/api/addlike', ctrl.addLikes);
 app.post('/api/tracklikes', ctrl.addLiked);
 app.get('/api/tracklikes', ctrl.getTrackedLikes)
+app.get('/api/getfollowingfeed/:id', ctrl.getFollowingFeed);
 // =============================================================================
 // Follow/Following Endpoints 
 // =============================================================================

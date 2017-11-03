@@ -4,6 +4,20 @@ FROM follows;
 SELECT *
 FROM users
 
+CREATE TABLE badgegroups
+(
+id SERIAL PRIMARY KEY,
+user_id INT,       
+badge_id INT,
+badgecreator_id INT,
+FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (badge_id) REFERENCES badges(id),
+FOREIGN KEY (badgecreator_id) REFERENCES badges(creatorid),
+content TEXT,
+title TEXT,
+description TEXT,
+comments TEXT
+)
 
 DROP TABLE follows
 
@@ -68,6 +82,16 @@ ADD likes integer;
 INSERT INTO badges ( likes ) 
 VALUES ( 1 );
 
+CREATE TABLE badgegroups
+(
+id SERIAL PRIMARY KEY,
+user_id INT REFERENCES users(id),
+badge_id INT REFERENCES badges(id),
+content TEXT,
+title TEXT,
+description TEXT,
+comments TEXT
+)
 
 create table users(
 id SERIAL PRIMARY KEY,

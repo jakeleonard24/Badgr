@@ -6,7 +6,8 @@ const initialState = {
     currentUserFollowing: [],
     followUser: [],
     currentUserFollowers: [],
-    singleUser: []
+    singleUser: [],
+    followingFeed: []
 }
 // =============================================================================
 // Action Creators 
@@ -17,12 +18,12 @@ const GET_FOLLOWING = "GET_FOLLOWING";
 const FOLLOW_USER = "FOLLOW_USER";
 const GET_FOLLOWERS = "GET_FOLLOWERS";
 const GET_SINGLE_USER = "GET_SINGLE_USER";
+const GET_FOLLOWING_FEED = "GET_FOLLOWING_FEED";
 // =============================================================================
 // Post Functions 
 // =============================================================================
 export function getPosts(){
     const allPosts = axios.get('http://localhost:3333/api/allposts').then(response => {
-        console.log('redux function res', response)
         return response.data
     })
     return {
@@ -30,17 +31,26 @@ export function getPosts(){
         payload: allPosts
     }
 }
-// =============================================================================
-// User Functions
-// =============================================================================
 export function getCurrentUser(){
     const currentUser = axios.get('/api/user').then(response => {
-        console.log('this ran', response)
         return response.data.id
     })
     return{
         type: GET_CURRENT_USER,
         payload: currentUser
+    }
+}
+// =============================================================================
+// User Functions
+// =============================================================================
+export function getFollowingFeed(id){
+    const getFeed = axios.get(`/api/getfollowingfeed/${id}`).then(response => {
+        console.log('HI DUDE', response.data);
+        return response.data
+    })
+    return{
+        type: GET_FOLLOWING_FEED,
+        payload: getFeed
     }
 }
 export function getSingleUser(id){
@@ -57,7 +67,6 @@ export function getSingleUser(id){
 // =============================================================================
 export function getFollowing(id){
     const following = axios.get('/api/following/' + id).then(response => {
-        console.log('get following ran', response)
         return response.data
     })
     return{
@@ -75,7 +84,6 @@ export function followUser(id, followId){
   }
 export function getFollowers(id){
     const followers = axios.get('/api/followers/' + id).then(response => {
-        console.log('get following ran', response)
         return response.data
     })
     return{
@@ -95,6 +103,9 @@ switch (action.type) {
 // =============================================================================
     case GET_POSTS + "_FULFILLED":
         return Object.assign({}, state, {posts: action.payload}) 
+    case GET_FOLLOWING_FEED + "_FULFILLED":
+        console.log('PAYLOAD:',action.payload);
+            return Object.assign({}, state, {followingFeed: action.payload}) 
 // =============================================================================
 // User Reducers
 // =============================================================================
