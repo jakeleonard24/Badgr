@@ -14,6 +14,16 @@ getSingleUser: ( req, res, next ) => {
         res.status(500).send(err)
     } );
 },
+
+searchuser: ( req, res, next ) => {
+  const db = req.app.get('db');
+   
+  db.search_user(req.query.monkey)
+    .then( users => res.status(200).json( users ) )
+    .catch( (err) => {
+        res.status(500).send(err)
+    } );
+},
 // =============================================================================
 // Posts 
 // =============================================================================
