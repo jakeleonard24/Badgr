@@ -15,6 +15,7 @@ const customStyles = {
       transform             : 'translate(-50%, -50%)'
     }
   };
+  
 
 class Newsfeed extends Component {
 constructor(props){
@@ -28,9 +29,11 @@ constructor(props){
         selectedPostId: 0,
         comment: '',
         comments: [],
-        likes:this.props.likes,
+        like:this.props.like,
+        likes:[],
         followingFeed: this.props.followingFeed
     }
+    
     this.closeModal = this.closeModal.bind(this);
     this.addCommentButton = this.addCommentButton.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -38,6 +41,8 @@ constructor(props){
     this.addLikes=this.addLikes.bind(this);
     this.addCommentButton = this.addCommentButton.bind(this);
     this.getComments = this.getComments.bind(this);
+    
+    
 }
 componentDidMount(){
 this.props.getCurrentUser().then( () => {
@@ -52,8 +57,8 @@ componentWillReceiveProps(nextProps){
     })
 }
 addLikes(i){
-    this.state.posts[i].likes=this.state.posts[i].likes + 1
-    
+    this.state.posts[i].likes=this.state.posts[i].likes + 1;
+
     // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
         badgeId: this.state.posts[i].id,
@@ -61,7 +66,13 @@ addLikes(i){
     }).then((response)=>{
     this.props.getPosts()
     })
+    axios.post('api/tracklikes',{
+        badgeId: this.state.posts[i].id,
+        userId:this.state.currentUserId
+    })
 }
+
+ 
 addCommentButton(i, id){
     this.setState({
         modalIsOpen: true,
@@ -104,7 +115,22 @@ postComment(){
 }
 }
 
+findOutIfLiked(){
+    console.log('running')
+    axios.get('/api/tracklikes/').then((response) => {
+        console.log(response.data)
+        this.setState({
+            likes: response.data
+        })
+    })
+
+}
+
+
+
+
 render() {
+    
 // console.log('props', this.props)
 console.log("STATE", this.state)
 let comments = this.state.comments.map((comment, i) => {
@@ -118,11 +144,35 @@ let comments = this.state.comments.map((comment, i) => {
         </div>
     )
 })
+<<<<<<< HEAD
+=======
+
+
+// =============================================================================
+// Functions and stuff.
+// =============================================================================
+
+   
+    
+console.log('BUGGATI',this.props);
+console.log("OBJ1", this.props.followingFeed);
+console.log("OBJ2", this.state.followingFeed);
+>>>>>>> 7679b05c4d7d3dc16f911102cbdebfb1f1bfac40
 // =============================================================================
 // Functions and stuff.
 // =============================================================================
 let posts = this.props.followingFeed.map((post, i) => {
+    var likeButtonType=null
+    if(this.state.likes.userid==this.props.currentUserId){
+      likeButtonType= <button className="like-button" onClick={()=>{this.addLikes(i)}}>Unlike</button>
+      console.log("unlike",this.state.likes.userid, this.props.currentUserId)
+    } else {
+        likeButtonType=< button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button>
+      console.log("like",this.state.likes.userid, this.props.currentUserId)
+      
+    }
     return(
+        
         <div key={i}>
             <div className='badge-wrapper'>
             <div className='badge-header'>
@@ -136,6 +186,10 @@ let posts = this.props.followingFeed.map((post, i) => {
                 <div className='temp'>{post.description}</div>
             </div>
                 <div className='like-comment'>
+                {/* {likeButtonType} 
+                {/* <button className="like-button" onClick={()=>{this.addLikes(i)}}>Unlike</button> 
+                <button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button>  */}
+                {/* <div className="like">{this.state.posts[i].likes}</div> */} 
                 <button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button> 
                 <div className="like">{this.props.followingFeed[i].likes}</div>
                 <button className="comment-button" onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
