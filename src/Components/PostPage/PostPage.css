@@ -7,6 +7,8 @@
     display: none;
 }
 
+.createBadge{}
+
 .iconList{
     width: 365px;
     display: flex;
@@ -20,9 +22,25 @@
 
 .individualIcon{
     margin: 5px;
+    border: 1px solid lightblue;
 }
 
 .individualIcon:hover{
     cursor: pointer;
     box-shadow: 1px 1px 1px 1px;
+}
+
+.userImage{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}
+
+.followerRow{
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
 }

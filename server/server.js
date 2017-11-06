@@ -111,6 +111,18 @@ app.get('/auth/callback', passport.authenticate('auth0',{
     req.logOut();
     res.redirect(302, 'http://localhost:3000/#/blog')
 })
+
+// =============================================================================
+// Logo endpoints
+// =============================================================================
+
+app.get('/api/logos', (req, res) => {
+    req.app.get('db').get_logos().then(logos => {
+        res.status(200).send(logos)
+    }).catch((err) => {console.log(err)})
+})
+
+
 // =============================================================================
 // User Endpoints
 // =============================================================================
@@ -133,6 +145,21 @@ app.post('/api/addcomment', (req, res) => {
         req.app.get('db').add_comment([comment, userId, badgeId]).then(comments => {
                 res.status(200).json(req.body)
         })
+})
+
+app.post('/api/newBadge', (req, res) => {
+    let {creatorId, title, description, content, logo, type} = req.body;
+    req.app.get('db').create_badge([type, creatorId, logo, title, description, content]).then(badges => {
+        res.status(200).send(badges)
+    })
+})
+
+app.post('/api/invites', (req, res) => {
+    console.log(req.body)
+    let {userId, badgeId} = req.body;
+    req.app.get('db').add_invites([userId, badgeId]).then(invites => {
+        res.status(200).send(invites)
+    })
 })
 
 // =============================================================================
