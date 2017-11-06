@@ -14,6 +14,16 @@ getSingleUser: ( req, res, next ) => {
         res.status(500).send(err)
     } );
 },
+
+searchuser: ( req, res, next ) => {
+  const db = req.app.get('db');
+   
+  db.search_user(req.query.monkey)
+    .then( users => res.status(200).json( users ) )
+    .catch( (err) => {
+        res.status(500).send(err)
+    } );
+},
 // =============================================================================
 // Posts 
 // =============================================================================
@@ -28,11 +38,46 @@ addLikes: (req, res) =>{
     res.status(200).send(post);
   }).catch((err)=>{console.log(err)})
 },
+addLiked: (req, res) =>{
+  let {badgeId, userId} = req.body
+  req.app.get('db').track_likes([badgeId, userId]).then(post=>{
+    res.status(200).send(post);
+  }).catch((err)=>{console.log(err)})
+},
+getTrackedLikes: (req, res) => {
+  req.app.get('db').find_if_liked(userId).then(posts =>{
+          res.status(200).send(posts);
+  }).catch((err) => {console.log(err)})
+},
 getFollowingFeed: (req, res) => {
   let {id} = req.params;
   req.app.get('db').get_feed([id]).then(feed =>{
           res.status(200).send(feed);
   }).catch((err)=>{console.log(err)})
+},
+getAllUserBadgeGroups: (req, res) => {
+  let {id} = req.params;
+  req.app.get('db').all_badges_user([id]).then(badges =>{
+          res.status(200).send(badges);
+  }).catch((err)=>{console.log(err)})
+},
+getBadgeGroup: ( req, res, next ) => {
+  const db = req.app.get('db');
+  const { id } = req.params; 
+  db.get_badgegroup([ id ])
+    .then( users => res.status(200).json( users[0] ) )
+    .catch( (err) => {
+        res.status(500).send(err)
+    } );
+},
+getBadgePosts: ( req, res, next ) => {
+  const db = req.app.get('db');
+  const { id } = req.params; 
+  db.get_badgegroup([ id ])
+    .then( users => res.status(200).json( users[0] ) )
+    .catch( (err) => {
+        res.status(500).send(err)
+    } );
 },
 // =============================================================================
 // Follower/Following 

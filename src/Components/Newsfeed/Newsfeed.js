@@ -15,6 +15,7 @@ const customStyles = {
       transform             : 'translate(-50%, -50%)'
     }
   };
+  
 
 class Newsfeed extends Component {
 constructor(props){
@@ -28,9 +29,11 @@ constructor(props){
         selectedPostId: 0,
         comment: '',
         comments: [],
-        likes:this.props.likes,
+        like:this.props.like,
+        likes:[],
         followingFeed: this.props.followingFeed
     }
+    
     this.closeModal = this.closeModal.bind(this);
     this.addCommentButton = this.addCommentButton.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -39,12 +42,12 @@ constructor(props){
     this.addCommentButton = this.addCommentButton.bind(this);
     this.getComments = this.getComments.bind(this);
     
+    
 }
 componentDidMount(){
 this.props.getCurrentUser().then( () => {
 this.props.getFollowingFeed(this.props.currentUserId)
     })
-    console.log("USERID:", this.props.currentUserId);
 }
 componentWillReceiveProps(nextProps){
     this.setState({
@@ -54,8 +57,8 @@ componentWillReceiveProps(nextProps){
     })
 }
 addLikes(i){
-    this.state.posts[i].likes=this.state.posts[i].likes + 1
-    
+    this.state.posts[i].likes=this.state.posts[i].likes + 1;
+
     // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
         badgeId: this.state.posts[i].id,
@@ -63,7 +66,13 @@ addLikes(i){
     }).then((response)=>{
     this.props.getPosts()
     })
+    axios.post('api/tracklikes',{
+        badgeId: this.state.posts[i].id,
+        userId:this.state.currentUserId
+    })
 }
+
+ 
 addCommentButton(i, id){
     this.setState({
         modalIsOpen: true,
@@ -106,7 +115,22 @@ postComment(){
 }
 }
 
+findOutIfLiked(){
+    console.log('running')
+    axios.get('/api/tracklikes/').then((response) => {
+        console.log(response.data)
+        this.setState({
+            likes: response.data
+        })
+    })
+
+}
+
+
+
+
 render() {
+    
 // console.log('props', this.props)
 console.log("STATE", this.state)
 let comments = this.state.comments.map((comment, i) => {
@@ -120,33 +144,115 @@ let comments = this.state.comments.map((comment, i) => {
         </div>
     )
 })
-console.log('BUGGATI',this.props);
-console.log("OBJ1", this.props.followingFeed);
-console.log("OBJ2", this.state.followingFeed);
+<<<<<<< HEAD
+
+
 // =============================================================================
 // Functions and stuff.
 // =============================================================================
+=======
+>>>>>>> 7fa53565616faf81064f466b38cf50f40ae455a9
+// =============================================================================
+// Functions and stuff.
+// =============================================================================
+console.log(this.props.followingFeed);
 let posts = this.props.followingFeed.map((post, i) => {
+    var likeButtonType=null
+    if(this.state.likes.userid==this.props.currentUserId){
+      likeButtonType= <button className="like-button" onClick={()=>{this.addLikes(i)}}>Unlike</button>
+      console.log("unlike",this.state.likes.userid, this.props.currentUserId)
+    } else {
+        likeButtonType=< button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button>
+      console.log("like",this.state.likes.userid, this.props.currentUserId)
+      
+    }
     return(
-        <div key={i}>
-            <div className='badge-wrapper'>
-            <div className='badge-header'>
+
+            <div key={i} className='badge-post-wrapper'>
+            <div className='badge-group-header'>
+                <div className='left-header'>
+                  <div className='badge-icon'>
+                  <img className='badge-icon-image' src={post.logo} alt='content' />
+                 </div>  
+                  <div className='badge-name'>
+                  {post.title}
+                </div>  
+                </div>
+                <div className='right-header'>
+            
+                </div>
             </div>
+
+
             <div className='badge-content'>
-                <img className='post-image' src={post.content} alt='hi'/>
+                <img className='badge-image' src={post.content} alt='content' />
             </div>
-            <div className='content-header'>
-                <img className='badge-logo' src={post.logo} alt='hi'/>
-                <div className='temp'>{post.title}</div>
-                <div className='temp'>{post.description}</div>
+
+            <div className='badge-footer-wrapper'>
+            <div className='badge-post-interaction'>
+            <div className='left-header'>
+                  <div className='badge-icon'>
+                  <img className='badge-icon-image' src={post.logo} alt='content' />
+                 </div>  
+                  <div className='badge-name'>
+                  {post.username}
+                </div>  
+                </div>
             </div>
-                <div className='like-comment'>
-                <button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button> 
-                <div className="like">{this.props.followingFeed[i].likes}</div>
-                <button className="comment-button" onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
+            <div className='badge-caption'>
+                <div className='caption'>
+                {post.description}
                 </div>
+            </div>
+            {/* <hr className='divider'/> */}
+            <div className='like-comment'>
+                <div className='like-comment-wrapper'>
+            <img 
+            className='like' 
+            src='https://s1.postimg.org/5s41055u5r/like.png' 
+            alt='content' 
+            onClick={()=>{this.addLikes(i)}}
+            />
+            <div className="like-number">{this.props.followingFeed[i].likes}</div>
+            <img 
+            className='like' 
+            src='https://s1.postimg.org/9l0au19msf/comment.png' 
+            alt='content'
+            onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
+             />
                 </div>
-        </div>
+            </div>
+
+            </div>
+            </div>
+
+
+
+        
+/* <div key={i}>
+<div className='badge-wrapper'>
+<div className='badge-header'>
+</div>
+<div className='badge-content'>
+<img className='post-image' src={post.content} alt='hi'/>
+</div>
+<div className='content-header'>
+<img className='badge-logo' src={post.logo} alt='hi'/>
+<div className='temp'>{post.title}</div>
+<div className='temp'>{post.description}</div>
+</div>
+<div className='like-comment'>
+{likeButtonType} 
+<button className="like-button" onClick={()=>{this.addLikes(i)}}>Unlike</button> 
+<button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button>  
+<div className="like">{this.state.posts[i].likes}</div> 
+<button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button> 
+<div className="like">{this.props.followingFeed[i].likes}</div>
+<button className="comment-button" onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
+</div>
+</div>
+</div> */
+
     )
 })
 // =============================================================================
