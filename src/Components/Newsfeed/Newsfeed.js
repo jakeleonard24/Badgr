@@ -144,20 +144,6 @@ let comments = this.state.comments.map((comment, i) => {
         </div>
     )
 })
-<<<<<<< HEAD
-=======
-
-
-// =============================================================================
-// Functions and stuff.
-// =============================================================================
-
-   
-    
-console.log('BUGGATI',this.props);
-console.log("OBJ1", this.props.followingFeed);
-console.log("OBJ2", this.state.followingFeed);
->>>>>>> 7679b05c4d7d3dc16f911102cbdebfb1f1bfac40
 // =============================================================================
 // Functions and stuff.
 // =============================================================================
