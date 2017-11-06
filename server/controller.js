@@ -34,6 +34,30 @@ getFollowingFeed: (req, res) => {
           res.status(200).send(feed);
   }).catch((err)=>{console.log(err)})
 },
+getAllUserBadgeGroups: (req, res) => {
+  let {id} = req.params;
+  req.app.get('db').all_badges_user([id]).then(badges =>{
+          res.status(200).send(badges);
+  }).catch((err)=>{console.log(err)})
+},
+getBadgeGroup: ( req, res, next ) => {
+  const db = req.app.get('db');
+  const { id } = req.params; 
+  db.get_badgegroup([ id ])
+    .then( users => res.status(200).json( users[0] ) )
+    .catch( (err) => {
+        res.status(500).send(err)
+    } );
+},
+getBadgePosts: ( req, res, next ) => {
+  const db = req.app.get('db');
+  const { id } = req.params; 
+  db.get_badgegroup([ id ])
+    .then( users => res.status(200).json( users[0] ) )
+    .catch( (err) => {
+        res.status(500).send(err)
+    } );
+},
 // =============================================================================
 // Follower/Following 
 // =============================================================================

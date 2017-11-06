@@ -7,7 +7,8 @@ const initialState = {
     followUser: [],
     currentUserFollowers: [],
     singleUser: [],
-    followingFeed: []
+    followingFeed: [],
+    allBadgeGroups: []
 }
 // =============================================================================
 // Action Creators 
@@ -19,6 +20,7 @@ const FOLLOW_USER = "FOLLOW_USER";
 const GET_FOLLOWERS = "GET_FOLLOWERS";
 const GET_SINGLE_USER = "GET_SINGLE_USER";
 const GET_FOLLOWING_FEED = "GET_FOLLOWING_FEED";
+const GET_ALL_BADGES_USER = "GET_ALL_BADGES_USER";
 // =============================================================================
 // Post Functions 
 // =============================================================================
@@ -92,12 +94,31 @@ export function getFollowers(id){
     }
 }
 // =============================================================================
+// Badge Groups Reducers 
+// =============================================================================
+export function getAllBadgeGroups(id){
+    const allUserBadges = axios.get(`/api/alluserbadges/${id}`).then(response => {
+        console.log('HI DUDE', response.data);
+        return response.data
+    })
+    return{
+        type: GET_ALL_BADGES_USER,
+        payload: allUserBadges
+    }
+}
+//=============================================================================
 // Reducer 
 // =============================================================================
 export default function reducer(state = initialState, action){
 console.log('state', state)
 console.log('action', action)
 switch (action.type) {
+// =============================================================================
+// Badge Groups Reducers 
+// =============================================================================
+case GET_ALL_BADGES_USER + "_FULFILLED":
+console.log('ALL BADGE GROUPS:',action.payload);
+    return Object.assign({}, state, {allBadgeGroups: action.payload}) 
 // =============================================================================
 // Post Reducers 
 // =============================================================================

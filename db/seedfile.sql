@@ -19,6 +19,12 @@ description TEXT,
 comments TEXT
 )
 
+SELECT *
+FROM badgegroups
+JOIN users on badgegroups.user_id = users.id
+JOIN badges on badgegroups.badge_id = badges.id
+WHERE badge_id = 12;
+
 DROP TABLE follows
 
 CREATE TABLE follows
@@ -157,3 +163,138 @@ userid integer REFERENCES users(id),
 badgeId integer REFERENCES badges(id)
 )
 select * from comments
+
+
+-- SELECT *
+-- FROM badgegroups
+-- JOIN users on badgegroups.user_id = users.id
+-- JOIN badges on badgegroups.badge_id = badges.id
+-- WHERE user_id = 30;
+
+-- SELECT * 
+-- FROM badges, 
+-- JOIN users on badges.userid = users.id
+-- WHERE userid = 30;
+
+-- SELECT * 
+-- FROM badges, badgegroups
+-- JOIN users on badges.userid = users.id
+-- JOIN badges on badgegroups.badge_id = badges.id
+-- WHERE userid = 30;
+
+-- SELECT *
+-- FROM badgegroups, 
+-- JOIN users on badgegroups.user_id = users.id
+-- JOIN badges on badgegroups.badge_id = badges.id
+-- WHERE user_id = 30;
+
+-- SELECT *
+-- FROM badgegroups;
+
+-- INSERT INTO badgegroups
+-- (user_id, badge_id, content, title, description, comments)
+-- VALUES
+-- (27, 12, 'http://icons.iconarchive.com/icons/seanau/fresh-web/512/Badge-icon.png', 'Badge Group Endpoint', 'Try to bring badge group endpoint from backend to front end', 'Lol you suck'),
+-- (29, 12, 'http://icons.iconarchive.com/icons/seanau/fresh-web/512/Badge-icon.png', 'Badge Group Endpoint', 'Try to bring badge group endpoint from backend to front end', 'Lol you suck')
+
+-- SELECT *
+-- FROM follows;
+
+-- SELECT *
+-- FROM users
+
+-- SELECT *
+-- FROM follows  
+
+
+-- SELECT *
+-- FROM badges  
+
+
+-- SELECT *
+-- FROM comments  
+   
+
+-- DROP TABLE follows
+
+-- CREATE TABLE badgegroups
+-- (
+-- id SERIAL PRIMARY KEY,
+-- user_id INT REFERENCES users(id),
+-- badge_id INT REFERENCES badges(id),
+-- content TEXT,
+-- title TEXT,
+-- description TEXT,
+-- comments TEXT
+-- )
+
+-- CREATE TABLE follows
+-- (
+-- id SERIAL PRIMARY KEY,
+-- user_id INT,
+-- follower_id INT,
+-- FOREIGN KEY (user_id) REFERENCES users(id),
+-- FOREIGN KEY (follower_id) REFERENCES users(id)
+-- )
+
+-- INSERT INTO follows
+-- (user_id, follower_id)
+-- VALUES
+-- (30, 29),
+-- (30, 28),
+-- (30, 1),
+-- (30, 1),
+-- (30, 27),
+-- (30, 2)
+
+-- SELECT id,user_id, ( SELECT COUNT(*) 
+-- FROM follows
+-- WHERE follows.user_id = users.user_id
+-- AND follows.followerid = '1') AS follower_id FROM users;
+
+-- SELECT user_id FROM follows GROUP BY user_id HAVING (COUNT()=1)
+
+-- SELECT *
+-- FROM follows
+-- JOIN users on follows.follower_id = users.id
+-- WHERE follower_id = 28;
+
+-- SELECT *
+-- FROM follows
+-- JOIN users on follows.follower_id = users.id
+-- WHERE user_id = 28;
+
+-- INSERT INTO follows
+-- (user_id)
+-- VALUES
+-- ($1)
+
+-- SELECT *
+-- FROM follows
+-- WHERE user_id = 27;
+
+-- SELECT *
+-- FROM users
+-- WHERE id =  $1;
+
+-- SELECT *
+-- FROM follows WHERE user_id = 1 AND follower_id = 1;
+
+-- insert into badges(type, userid, creatorid, logo, title, description, content)
+-- values
+-- ('create', 30, 1, 'https://i1.wp.com/photos.thetrek.co/wp-content/uploads/2017/02/custom-gravatar.png?ssl=1', 'Hike Naked', 'Hiked naked for awhile', 'http://www.prophotocommunity.com/wp-content/uploads/2013/07/The-Aesthetic-Value-of-Nature-Photography.jpg'),
+-- ('create', 30, 1, 'https://i.pinimg.com/originals/f8/c1/c8/f8c1c83f5eb8d9e0dec15bc7804c03d0.png', 'Not die on a hike', 'I didnt die, lmao', 'https://i.pinimg.com/736x/19/b7/c5/19b7c52cbf39ffd262154cd300a3a3ee.jpg'),
+-- ('create', 30, 1, 'http://www.tutorprint.co.uk/img/photography_icon.jpg', 'Try to look fab as fuck', 'Dog is fab', 'http://78.media.tumblr.com/8b603d2ee48e9cc2fa7bad99387afb9c/tumblr_of4fw6Wfaa1vr8l3yo1_500.jpg'),
+-- ('create', 30, 1, 'https://www.identificationsystemsgroup.com/images/BadgePassIcons-IDENTITY.png', 'Try to look fab as fuck', 'Dog is fab', 'http://78.media.tumblr.com/8b603d2ee48e9cc2fa7bad99387afb9c/tumblr_of4fw6Wfaa1vr8l3yo1_500.jpg'),
+-- ('create', 30, 1, 'https://nexusipe-resource-exchange.s3.amazonaws.com/pictures/commentator_l1_large.png', 'Have a convo', 'Had a convo', 'http://www.cafemaroon.com/wp-content/uploads/2013/08/The-Lumineers.png')
+
+
+-- SELECT *
+-- FROM follows
+-- JOIN badges on follows.follower_id = badges.userid
+-- WHERE user_id = 27;
+
+-- SELECT *
+-- FROM follows
+-- JOIN badges on badges.userid = follows.follower_id
+-- WHERE user_id = 27;

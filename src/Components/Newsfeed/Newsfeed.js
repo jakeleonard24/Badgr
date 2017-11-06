@@ -43,7 +43,6 @@ componentDidMount(){
 this.props.getCurrentUser().then( () => {
 this.props.getFollowingFeed(this.props.currentUserId)
     })
-    console.log("USERID:", this.props.currentUserId);
 }
 componentWillReceiveProps(nextProps){
     this.setState({
@@ -119,9 +118,6 @@ let comments = this.state.comments.map((comment, i) => {
         </div>
     )
 })
-console.log('BUGGATI',this.props);
-console.log("OBJ1", this.props.followingFeed);
-console.log("OBJ2", this.state.followingFeed);
 // =============================================================================
 // Functions and stuff.
 // =============================================================================

@@ -125,6 +125,11 @@ app.get('/api/allposts', ctrl.getAllPosts);
 app.post('/api/addlike', ctrl.addLikes);
 app.get('/api/getfollowingfeed/:id', ctrl.getFollowingFeed);
 // =============================================================================
+// Badge Endpoints 
+// =============================================================================
+app.get('/api/alluserbadges/:id', ctrl.getAllUserBadgeGroups);
+app.get('/api/badgegroup/:id', ctrl.getBadgeGroup); 
+// =============================================================================
 // Follow/Following Endpoints 
 // =============================================================================
 app.get(`/api/following/:id`, ctrl.getFollowing);
