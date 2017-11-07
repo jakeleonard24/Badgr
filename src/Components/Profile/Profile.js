@@ -25,7 +25,9 @@ componentDidMount(){
     this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
     }); 
     this.getFollowers() 
+    this.getFollowing()
     console.log('look at this',this.props.currentUserFollowers.length)
+    console.log('user flollowing', this.props.currentUserFollowing.length)
 }
 // getAllBadgeGroups() {
 //     this.props.getAllBadgeGroups(30)
@@ -97,11 +99,13 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             <img src={this.state.currentUser.picture} alt='hi'/>
         </div>
         <div>
-        Followers {this.props.currentUserFollowers.length}
+        
         {/* /* {console.log('this is the followers ',this.state.followerAmount)} */ }
-        {console.log('this is the followers ',this.props.currentUserFollowers.length)}
+        {/* {console.log('this is the followers ',this.props.currentUserFollowers.length)} */}
+        Following {this.props.currentUserFollowing.length}
              <button onClick={this.getFollowing}>Following</button>
             {following}
+            Followers {this.props.currentUserFollowers.length}
             <button onClick={this.getFollowers}>Followers</button>
             {followers}
         </div>
