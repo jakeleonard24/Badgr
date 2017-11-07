@@ -180,7 +180,12 @@ let posts = this.props.followingFeed.map((post, i) => {
 </div>
 
 <div className='badge-content'>
-<img className='badge-image' src={post.content} alt='content' />
+<img 
+className='badge-image' 
+src={post.content} 
+alt='content' 
+onClick={()=>{this.addLikes(i)}}
+/>
 </div>
 
 <div className='badge-footer-wrapper'>
@@ -188,7 +193,11 @@ let posts = this.props.followingFeed.map((post, i) => {
 <div className='post-padding-wrapper'>
 <div className='left-header'>
 <div className='badge-icon'>
-<img className='badge-icon-image' src={post.picture} alt='content' />
+<img 
+className='badge-icon-image' 
+src={post.picture} 
+alt='content' 
+/>
 </div>  
 <div className='badge-name'>
 {post.username}
