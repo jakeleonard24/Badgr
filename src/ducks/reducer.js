@@ -8,7 +8,8 @@ const initialState = {
     currentUserFollowers: [],
     singleUser: [],
     followingFeed: [],
-    allBadgeGroups: []
+    allBadgeGroups: [],
+    userInvites: []
 }
 // =============================================================================
 // Action Creators 
@@ -21,6 +22,7 @@ const GET_FOLLOWERS = "GET_FOLLOWERS";
 const GET_SINGLE_USER = "GET_SINGLE_USER";
 const GET_FOLLOWING_FEED = "GET_FOLLOWING_FEED";
 const GET_ALL_BADGES_USER = "GET_ALL_BADGES_USER";
+const GET_USER_INVITES = "GET_USER_INVITES"
 // =============================================================================
 // Post Functions 
 // =============================================================================
@@ -106,6 +108,21 @@ export function getAllBadgeGroups(id){
         payload: allUserBadges
     }
 }
+
+// =============================================================================
+// invites
+// ============================================================================
+export function getUserInvites(id){
+    let invites = axios.get(`/api/getinvites/${id}`).then(response => {
+        return response.data
+    })
+    return{
+        type:GET_USER_INVITES,
+        payload: invites
+    }
+}
+
+
 //=============================================================================
 // Reducer 
 // =============================================================================
@@ -134,6 +151,9 @@ console.log('ALL BADGE GROUPS:',action.payload);
         return Object.assign({}, state, {currentUserId: action.payload})
     case GET_SINGLE_USER + "_FULFILLED":
         return Object.assign({}, state, {singleUser: action.payload})
+
+    case GET_USER_INVITES + "_FULFILLED":
+        return Object.assign({}, state, {userInvites: action.payload})
 // =============================================================================
 // Follow/Following Reducers 
 // =============================================================================

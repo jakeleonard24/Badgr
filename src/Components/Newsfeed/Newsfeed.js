@@ -131,7 +131,7 @@ findOutIfLiked(){
 
 render() {
     
-// console.log('props', this.props)
+console.log('props', this.props)
 console.log("STATE", this.state)
 let comments = this.state.comments.map((comment, i) => {
     return(

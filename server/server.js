@@ -180,6 +180,27 @@ app.get('/api/getcomments/:id', (req, res) => {
     }).catch((err) => {console.log(err)})
 })
 
+app.get('/api/getinvites/:id', (req, res) => {
+    let {id} = req.params;
+    req.app.get('db').get_invites([id]).then(invites => {
+        res.status(200).send(invites)
+    }).catch((err) => {console.log(err)})
+})
+
+app.post('/api/response', (req, res) => {
+    let {userId, badgeId} = req.body;
+    req.app.get('db').delete_invite([userId, badgeId]).then(invites => {
+        res.status(200).send(invites)
+    }).catch((err) => {console.log(err)})
+})
+
+app.post('/api/group', (req, res) => {
+    let {userId, badgeId} = req.body;
+    req.app.get('db').add_to_group([userId, badgeId]).then(group => {
+        res.status(200).send(group)
+    }).catch((err) => {console.log(err)})
+})
+
 const port = 3333;
 
 app.listen(port, () => console.log(`listening on port ${port}`));
