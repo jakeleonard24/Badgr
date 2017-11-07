@@ -18,14 +18,17 @@ this.getFollowers = this.getFollowers.bind(this);
 }
 
 componentDidMount(){
+    
     axios.get('/api/user').then((response)=>{
         this.setState({
             currentUser:response.data
+            
     })
     this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
-    }); 
-    this.getFollowers() 
-    this.getFollowing()
+   this.getFollowers()
+   this.getFollowing() }); 
+    
+    
     console.log('look at this',this.props.currentUserFollowers.length)
     console.log('user flollowing', this.props.currentUserFollowing.length)
 }
@@ -102,10 +105,11 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         
         {/* /* {console.log('this is the followers ',this.state.followerAmount)} */ }
         {/* {console.log('this is the followers ',this.props.currentUserFollowers.length)} */}
-        Following {this.props.currentUserFollowing.length}
+        Following {this.props.currentUserFollowing.length}<br/>
+        Followers {this.props.currentUserFollowers.length}<br/>
              <button onClick={this.getFollowing}>Following</button>
             {following}
-            Followers {this.props.currentUserFollowers.length}
+            
             <button onClick={this.getFollowers}>Followers</button>
             {followers}
         </div>
