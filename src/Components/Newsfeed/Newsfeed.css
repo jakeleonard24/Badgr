@@ -13,15 +13,22 @@ grid-gap: 1em;
     color: #505050;
     /* padding-right: 10px;
     padding-left: 10px; */
-    width: 375px;
-    height: 50px;
+    width: 600px;
+    height: 60px;
     display: flex;
 	flex-direction: row;
     background-color: #FFFFFF;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .post-padding-wrapper {
+    display: flex;
+    flex-direction: row;
     padding-left: 10px;
-    padding-left: 10px;
+    padding-right: 10px;
+}
+.like-comment-wrapper{
+  
 }
 .left-header {
     display: flex;
@@ -37,13 +44,14 @@ grid-gap: 1em;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    padding: 5px;
+    padding: 10px;
 }
 
 .badge-name {
+    font-size: 12px;
     font-weight: 10px;
-    line-height: 45px;
-    padding-left: 15px;
+    line-height: 60px;
+    padding-left: 20px;
 }
 
 .badge-image {
@@ -77,7 +85,9 @@ grid-gap: 1em;
 
 .badge-caption {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 600px;
     height: 100%;
     color: #505050;
@@ -109,19 +119,32 @@ grid-gap: 1em;
 } */
 .like-comment {
     width: 600px;
-    height: 40px;
+    height: 60px;
     background-color: #FFFFFF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* box-shadow: 0 1px 3px #505050; */
 }
 
 .like {
-    width: 20px;
-    height: 20px;
-    padding: 10px;
+    width: 25px;
+    height: 25px;
+    padding: 15px;
 }
-.like-number {
+.comment {
+    width: 25px;
+    height: 25px;
+    padding: 15px;
+}
+div.like-number {
+    margin-top: 18px;
+    /* width: 25px;
+    height: 100%;
+    border: 1px solid black; */
     display: inline-block;
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 600;
     color: #00b5b7;
 }
 
@@ -129,14 +152,49 @@ grid-gap: 1em;
 /* Media Query */
 /* ========================================================================== */
 @media (max-width: 750px) {
+    div.like-number {
+        margin-top: 10px;
+        /* width: 25px;
+        height: 100%;
+        border: 1px solid black; */
+        display: inline-block;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #00b5b7;
+    }
+    
+    .comment {
+        width: 20px;
+        height: 20px;
+        padding: 10px;
+    }
+    .like {
+        width: 20px;
+        height: 20px;
+        padding: 10px;
+    }
+    .badge-group-header {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        color: #505050;
+        /* padding-right: 10px;
+        padding-left: 10px; */
+        width: 375px;
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        background-color: #FFFFFF;
+    }
     .badge-content {
         max-width: 375px;
         height: 375px;
     }
     .badge-name {
         font-weight: 10px;
-        line-height: 45px;
-        padding-left: 15px;
+        line-height: 60px;
+        padding-left: 20px;
     }
     
     .badge-image {
@@ -195,11 +253,6 @@ grid-gap: 1em;
         background-color: #FFFFFF;
     }
     
-    .like {
-        width: 20px;
-        height: 20px;
-        padding: 10px;
-    }
     .like-number {
         display: inline-block;
         font-family: 'Open Sans', sans-serif;
