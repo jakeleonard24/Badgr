@@ -1,8 +1,10 @@
+.mobile-nav {
+  display: none;
+}
 .main-nav {
-  background: #328c97;
-  border-bottom: 0.5px solid #B4B4B4;
+  background: #00B5B7;
   width: 100%;
-  height: 70px;
+  height: 75px;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,6 +16,11 @@
   letter-spacing: 2px;
   text-decoration: none;
   display: inline-block;
+  overflow: hidden;
+  /* background-color: #333; */
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
   
 }
 
@@ -33,8 +40,8 @@ padding-left: 150px;
 }
 
 .title-nav{
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 ul {
@@ -50,9 +57,46 @@ a:link {
 }
 
 .alpha-logo{
-  width: 90px;
-  height: 44%;
+  padding-top: 20px;
+  width: 120px;
+  height: 47%;
   display: inline-block;
-  padding-top: 17px;
 }
 
+.profile-icon {
+  padding-top: 25px;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  color: #000;
+  text-decoration: none;
+}
+.notifications-icon {
+  padding-top: 27px;
+  width: 32px;
+  height: 25px;
+}
+
+
+@media (max-width: 750px) {
+
+  .alpha-logo{
+    opacity: 0;
+  }
+  .left-nav-align{
+    display: none;
+    padding-left: 10px;
+    }
+  .right-nav-align{
+    display: none;
+    padding-right: 10px;
+  }
+  .mobile-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+  }
+}
