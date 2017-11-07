@@ -1,0 +1,29 @@
+.home-content-wrapper{
+  display: grid; 
+  grid-template-columns: repeat(8, 1fr);
+}
+
+/* .home-header{
+  grid-row: 1/6;
+  grid-column: 1/4;
+  background-color: #F20404;
+} */
+
+.home-left-margin {
+  grid-row: 1/6;
+  grid-column: 1/4;
+  /* background-color: #D4ACAC; */
+}
+
+.home-right-margin {
+  grid-row: 1/6;
+  grid-column: 6/10;
+  /* background-color: #D4ACAC; */
+}
+
+.home-news-feed {
+  justify-items: center;
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr) */
+}
+
