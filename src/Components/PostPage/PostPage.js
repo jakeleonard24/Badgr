@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import {getCurrentUser} from '../../ducks/reducer';
+import {getCurrentUser, getFollowers} from '../../ducks/reducer';
 import {connect} from 'react-redux';
 import './PostPage.css'
 
@@ -13,14 +13,39 @@ class PostPage extends Component {
             image:'',
             description:'',
             logo: '',
-            logoView: false
+            logos: [],
+            logoView: false,
+            followerArray: [],
+            challengeArray: [],
+            badgeCreated: false,
+            badgeId: ''
         }
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.updateImage = this.updateImage.bind(this);
         this.uploadSuccess = this.uploadSuccess.bind(this);
+        this.createBadge = this.createBadge.bind(this);
+        this.addToChallenged = this.addToChallenged.bind(this);
+        this.removeFromChallenged = this.removeFromChallenged.bind(this);
+        this.sendInvites = this.sendInvites.bind(this);
 
 
     }
+
+     componentDidMount(){
+         axios.get('/api/logos').then(response => {
+            this.setState({
+                logos: response.data
+            })
+         })
+
+         this.props.getFollowers(this.props.currentUserId)
+     }
+
+     componentWillReceiveProps(nextProps){
+         this.setState({
+             followerArray: nextProps.currentUserFollowers
+         })
+     }
     handleFileUpload(event){
         
          console.log(event.target.files)
@@ -29,6 +54,27 @@ class PostPage extends Component {
          console.log('file', file)
          
          this.updateImage({file})
+     }
+
+     addToChallenged(user, i){
+         
+         let arr = this.state.followerArray
+         arr.splice(i, 1)
+         this.setState({
+             challengeArray: [...this.state.challengeArray, user],
+             followerArray: arr
+            
+
+         })
+     }
+
+     removeFromChallenged(user, i){
+         let arr = this.state.challengeArray
+         arr.splice(i, 1)
+         this.setState({
+             challengeArray: arr,
+             followerArray: [...this.state.followerArray, user]
+         })
      }
 
      updateImage({file}){
@@ -52,6 +98,7 @@ class PostPage extends Component {
     }
 
     createBadge(){
+        if(this.props.currentUserId){
         axios.post('/api/newbadge', {
             creatorId: this.props.currentUserId,
             title: this.state.title,
@@ -61,22 +108,68 @@ class PostPage extends Component {
             type: 'create'
 
 
+        }).then(response => {
+            console.log(response)
+             this.setState({badgeId: response.data[0].id})
         })
+    } else {
+        alert("Please log in")
     }
+
+    this.setState({badgeCreated: true})
+    }
+
+    sendInvites(){
+        this.state.challengeArray.forEach((user, i) => {
+            axios.post('/api/invites', {
+                userId: user.id,
+                badgeId: this.state.badgeId
+            })
+        })
+        
+    }
+
 
     render() {
         console.log('state', this.state)
         console.log('props', this.props)
+
+        let challenged = this.state.challengeArray.map((follower, i) => {
+            return(
+
+            <div key={i} onClick={() => {this.removeFromChallenged(follower, i)}}>
+                <img className='userImage' src={follower.picture} />
+                <p>{follower.username}</p>
+            </div>
+            )
+        })
+
+        let logos = this.state.logos.map((logo, i) => {
+            return(
+                <div key={i} className='individualIcon' onClick={() => {this.setState({logo: logo.url, logoView: !this.state.logoView})}}>
+                    <img className='iconSize' src={logo.url} />
+                </div>
+            )
+        })
+        
+    let followers = this.state.followerArray.map((follower, i) => {
+            return(
+                <div key={i} onClick={() => {this.addToChallenged(follower, i)}}>
+                    <img className='userImage' src={follower.picture} />
+                    <p>{follower.username}</p>
+                </div>
+            )
+        })
         return (
             <div>
                 <div>
                 PostPage
-                <Link to='/home'>
+                <Link to='/'>
                 <button>Home</button>
                 </Link>
                 </div>
 
-                <div>
+                <div className={this.state.badgeCreated ? 'noShow' : 'createBadge'}>
                     <h1>Create A Badge</h1>
                     Title: <input onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} placeholder='Name your challenge' />
 
@@ -90,37 +183,30 @@ class PostPage extends Component {
 
                     <div>
                        <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
+                       <button onClick={this.createBadge}>Create Badge </button>
                        <div className={this.state.logoView ? 'iconList' : 'noShow'}>
+                       
                            
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-                               
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
-                               
-                               <div className='individualIcon'><img className='iconSize' src='https://static1.squarespace.com/static/5683fc75df40f34a36a136db/56ec2e8a45bf2139a4b998b5/56ec2e8a859fd0e27286ceb1/1458318990599/JandJIcons3.png'/></div>
+                               {logos}
                            
                        </div>
+                       
                     </div>
                 </div>
 
                 </div>
+                <div className={this.state.badgeCreated ? 'createBadge' : 'noShow'}>
+                    <div className='followerRow'>
+                        <h1>Challenged</h1>
+                            {challenged}
+                    </div>
+<br/><br/>
+                    <div className='followerRow'>
+                        <h1>Followers</h1>
+                        {followers}
+                    </div>
+                    <button onClick={this.sendInvites}>Send Challenges</button>
+                </div>  
             </div>
         );
     }
@@ -137,4 +223,4 @@ function mapStateToProps( state ) {
     };
   }
   
-  export default connect( mapStateToProps, { getCurrentUser})( PostPage ); 
+  export default connect( mapStateToProps, { getCurrentUser, getFollowers})( PostPage ); 
