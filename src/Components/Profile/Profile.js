@@ -10,7 +10,8 @@ constructor(props){
 super(props);
     this.state={
     value:'',
-    currentUser:[]
+    currentUser:[],
+    followerAmount:this.props.currentUserFollowers.length
 }
 this.getFollowing = this.getFollowing.bind(this);
 this.getFollowers = this.getFollowers.bind(this);
@@ -22,7 +23,9 @@ componentDidMount(){
             currentUser:response.data
     })
     this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
-    });   
+    }); 
+    this.getFollowers() 
+    console.log('look at this',this.props.currentUserFollowers.length)
 }
 // getAllBadgeGroups() {
 //     this.props.getAllBadgeGroups(30)
@@ -53,9 +56,13 @@ let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
 
 })
 let followers = this.props.currentUserFollowers.map((user, i) => {
+   
         return(
+            <div>
             <div key={i}>
                 {user.username}
+                 
+            </div>
             </div>
         )
     })
@@ -90,6 +97,9 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             <img src={this.state.currentUser.picture} alt='hi'/>
         </div>
         <div>
+        Followers {this.props.currentUserFollowers.length}
+        {/* /* {console.log('this is the followers ',this.state.followerAmount)} */ }
+        {console.log('this is the followers ',this.props.currentUserFollowers.length)}
              <button onClick={this.getFollowing}>Following</button>
             {following}
             <button onClick={this.getFollowers}>Followers</button>
