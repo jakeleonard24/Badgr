@@ -12,7 +12,8 @@ const customStyles = {
       right                 : 'auto',
       bottom                : 'auto',
       marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
+      transform             : 'translate(-50%, -50%)',
+      width                 :  '375px',
     }
   };
   
@@ -137,9 +138,11 @@ let comments = this.state.comments.map((comment, i) => {
     return(
         <div key={i}>
             <div className='postBorder'>
-                <img className='imageSize' src={comment.picture} alt='hi' />
-                <p>{comment.username} : </p>
-                <p>{comment.comments}</p>
+                <div className='comment-author-wrapper'>
+                <img className='profile-pic' src={comment.picture} alt='hi' />
+                <div className='username-comments'>{comment.username} </div>
+                {/* <p>{comment.comments}</p> */}
+                </div>
             </div>
         </div>
     )
@@ -156,67 +159,72 @@ let posts = this.props.followingFeed.map((post, i) => {
     } else {
         likeButtonType=< button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button>
       console.log("like",this.state.likes.userid, this.props.currentUserId)
-      
     }
     return(
 
-            <div key={i} className='badge-post-wrapper'>
-            <div className='badge-group-header'>
-                <div className='left-header'>
-                  <div className='badge-icon'>
-                  <img className='badge-icon-image' src={post.logo} alt='content' />
-                 </div>  
-                  <div className='badge-name'>
-                  {post.title}
-                </div>  
-                </div>
-                <div className='right-header'>
-            
-                </div>
-            </div>
+<div key={i} className='badge-post-wrapper'>
+<div className='badge-group-header'>
+<div className='post-padding-wrapper'>
+<div className='left-header'>
+<div className='badge-icon'>
+<img className='badge-icon-image' src={post.logo} alt='content' />
+</div>  
+<div className='badge-name'>
+{post.title}
+</div>  
+</div>
+<div className='right-header'>
 
+</div>
+</div>
+</div>
 
-            <div className='badge-content'>
-                <img className='badge-image' src={post.content} alt='content' />
-            </div>
+<div className='badge-content'>
+<img className='badge-image' src={post.content} alt='content' />
+</div>
 
-            <div className='badge-footer-wrapper'>
-            <div className='badge-post-interaction'>
-            <div className='left-header'>
-                  <div className='badge-icon'>
-                  <img className='badge-icon-image' src={post.logo} alt='content' />
-                 </div>  
-                  <div className='badge-name'>
-                  {post.username}
-                </div>  
-                </div>
-            </div>
-            <div className='badge-caption'>
-                <div className='caption'>
-                {post.description}
-                </div>
-            </div>
-            {/* <hr className='divider'/> */}
-            <div className='like-comment'>
-                <div className='like-comment-wrapper'>
-            <img 
-            className='like' 
-            src='https://s1.postimg.org/5s41055u5r/like.png' 
-            alt='content' 
-            onClick={()=>{this.addLikes(i)}}
-            />
-            <div className="like-number">{this.props.followingFeed[i].likes}</div>
-            <img 
-            className='like' 
-            src='https://s1.postimg.org/9l0au19msf/comment.png' 
-            alt='content'
-            onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
-             />
-                </div>
-            </div>
-
-            </div>
-            </div>
+<div className='badge-footer-wrapper'>
+<div className='badge-post-interaction'>
+<div className='post-padding-wrapper'>
+<div className='left-header'>
+<div className='badge-icon'>
+<img className='badge-icon-image' src={post.picture} alt='content' />
+</div>  
+<div className='badge-name'>
+{post.username}
+</div>  
+</div>
+</div>
+</div>
+<div className='badge-caption'>
+<div className='post-padding-wrapper'>
+<div className='caption'>
+{post.description}
+</div>
+</div>
+</div>
+<div className='divider'></div>
+<div className='like-comment'>
+<div className='like-comment-wrapper'>
+<div className='post-padding-wrapper'>
+<img 
+className='like' 
+src='https://s1.postimg.org/5s41055u5r/like.png' 
+alt='content' 
+onClick={()=>{this.addLikes(i)}}
+/>
+<div className="like-number">{this.props.followingFeed[i].likes}</div>
+<img 
+className='like' 
+src='https://s1.postimg.org/9l0au19msf/comment.png' 
+alt='content'
+onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
+/>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 
@@ -251,24 +259,44 @@ let posts = this.props.followingFeed.map((post, i) => {
 // Body
 // =============================================================================
         return (
-        <div>
-        
-            
-            {posts}
-            <Modal isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            contentLabel="Example Modal">
-            <h2 ref={subtitle => this.subtitle = subtitle}>Specific Post View</h2>
-            <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].title : 'loading'}</p>
-            <p>{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].description : 'loading'}</p>
-            <img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'}alt='hi' />
-            {comments}
-            <textarea value={this.state.comment} onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
-            <button onClick={() => {this.postComment(); this.getComments(this.state.selectedPostId)}}>Add Comment</button>
-            </Modal>
-        </div>
+<div className='news-feed-wrapper'>
+
+
+{posts}
+<Modal isOpen={this.state.modalIsOpen}
+onAfterOpen={this.afterOpenModal}
+onRequestClose={this.closeModal}
+style={customStyles}
+contentLabel="Example Modal">
+<img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'}alt='OH HEY MAN' />
+<h2 ref={subtitle => this.subtitle = subtitle}></h2>
+
+<div className='badge-footer-wrapper'>
+<div className='badge-post-interaction'>
+<div className='post-padding-wrapper'>
+<div className='left-header'>
+<div className='badge-icon'>
+<img className='badge-icon-image' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].picture : 'loading'} alt='content' />
+</div>  
+<div className='badge-name'>
+{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].username : 'loading'}
+</div>  
+</div>
+</div>
+</div>
+<div className='badge-caption'>
+<div className='caption'>
+{this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].description : 'loading'}
+</div>
+</div>
+</div>
+{comments}
+<div className='comment-wrapper'>
+<input className='comment-input' value={this.state.comment} onChange={(e) => {this.setState({comment: e.target.value})}}></input>
+<div className='comment-button' onClick={() => {this.postComment(); this.getComments(this.state.selectedPostId)}}>Comment</div>
+</div>
+</Modal>
+</div>
         );
     }
 }
