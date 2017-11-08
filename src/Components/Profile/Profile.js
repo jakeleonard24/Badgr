@@ -91,52 +91,35 @@ let following = this.props.currentUserFollowing.map((user, i) => {
     })
     return (
 <div className='profile-wrapper'>
-<div className='sort-by'>
-    <img className='profile-pic' src={this.state.currentUser.picture} alt='' />
-</div>
-<div className='sort-by'>
-    <div className='sort-bar'>
-
-    <div>
-        <div>
-        Profile Page
-        <Link to='/'>
-        <button>Home</button>
-        </Link>
-        </div>    
-        <div>
-            Welcome, {this.state.currentUser.username}!
-        </div>
-        <div>
-            <img src={this.state.currentUser.picture} alt='hi'/>
-            <Link to='/create'>
-  <button>Complete</button>
-  </Link>
-        </div>
-        <div>
-        
-        {/* /* {console.log('this is the followers ',this.state.followerAmount)} */ }
-        {/* {console.log('this is the followers ',this.props.currentUserFollowers.length)} */}
-        Following {this.props.currentUserFollowing.length}<br/>
-        Followers {this.props.currentUserFollowers.length}<br/>
-             <button onClick={this.getFollowing}>Following</button>
-            {following}
-            
-            <button onClick={this.getFollowers}>Followers</button>
-            {followers}
-        </div>
-        { allGroups }
+    <div className='profile-header'></div>
+    <div className='profile-left'></div>
+    <div className='profile-right'></div>
+    <div className='profile-info'>
+        <div className='follow-header'>FOLLOWING</div>
+    <img className='main-profile-icon' src='http://data.whicdn.com/images/163667435/large.jpg' alt='icon' />
+        <div className='follow-header'>FOLLOWERS</div>
     </div>
+    <div className='profile-showcase'><div className='showcase-text'>SHOWCASE</div>
+    <div className='showcase-flex'>
+        <img className='showcase-badge-icon' src='http://icons.iconarchive.com/icons/seanau/fresh-web/512/Badge-icon.png' alt='icon' />
+        <img className='showcase-badge-icon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Circle-icons-trophy.svg/1024px-Circle-icons-trophy.svg.png' alt='icon' />
+        <img className='showcase-badge-icon' src='https://d3dzkvk4v33mce.cloudfront.net/assets/badge-list-icon-7bcb4445fa28a0231b1f64c3b177be4a9ce216ac11d570ceeadb292f61ef4688.png' />
+        <img className='showcase-badge-icon' src='https://nexusipe-resource-exchange.s3.amazonaws.com/pictures/commentator_l1_large.png' />
+        <img className='showcase-badge-icon' src='https://i.pinimg.com/736x/7a/89/9a/7a899a3a256febe4154f0658f968d4e6--friend-birthday-th-birthday.jpg' alt='icon' />
+    </div>
+    </div>
+    <div className='profile-filter'>
+        <div className='filter-flex'>
+        <img className='filter-badge-icon' src='https://s1.postimg.org/401n421t9r/badges_Asset_3_3x.png' alt='icon' />
+        <img className='filter-badge-icon' src='https://s1.postimg.org/3hyu1b2acf/photo_grid_Asset_1.png' />
+        <img className='filter-badge-icon' src='https://s1.postimg.org/7qe1b508wv/newsfeed_Asset_2_3x.png' />
+        <img className='filter-badge-icon' src='https://s1.postimg.org/56kycnp04v/groups_Asset_4_3x.png' alt='icon' />
+        </div>
+    </div>
+    <div className='profile-content'>{allGroups}</div>
+    <div className='profile-footer'></div>
 </div>
-<div className='margin-left'></div>
-<div className='profile-content'>
-{allGroups}
-</div>
-<div className='margin-right'></div>
-<div className='box5'></div>
-</div>
-</div>
-    );
+);
 }
 }
 

@@ -3,41 +3,59 @@
   grid-template-columns: repeat( 8, 1fr )
 }
 
-.sort-by {
+.profile-header {
   /* background-color: rgb(106, 19, 19); */
-  grid-column: 2/8;
+  grid-column: 3/7
 }
 
-.margin-left{
+.profile-left {
   /* background-color: rgb(220, 83, 83); */
-  grid-row: 1/4;
+  grid-column: 1/3;
+  grid-row: 1/9;
 }
 
-.profile-content {
+.profile-right {
   /* background-color: rgb(15, 37, 94); */
-  grid-column: 2/8;
+  grid-column: 7/9;
+  grid-row: 1/9;
 }
 
-.margin-right {
+.profile-info {
   /* background-color: rgb(57, 143, 140); */
-  grid-column: 8/9;
-  grid-row: 1/4;
-}
-
-.box5 {
-  background-color: rgb(106, 19, 38);
-  grid-column: 2/8;
+  grid-column: 3/7;
 }
 
 .profile-content {
+  /* background-color: rgb(106, 19, 38); */
+  grid-column: 3/7;
+}
+
+.profile-filter {
+  /* background-color: rgb(234, 120, 145); */
+  grid-column: 3/7;
+}
+
+.profile-showcase {
+  /* background-color: rgb(15, 177, 112); */
+  grid-column: 3/7;
+
+}
+
+.profile-footer {
+  /* background-color: rgb(216, 24, 193); */
+  grid-column: 3/7;
+}
+
+
+/* .profile-content {
   display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: center;
 	align-content: center;
-  /* grid-template-columns: repeat(3, 1fr); */
-}
+  /* grid-template-columns: repeat(3, 1fr); 
+} */
 
 .badges-content-image {
   padding: 10px;
@@ -45,32 +63,167 @@
   height: 300px;
 }
 
-.sort-bar {
-  max-width: 100%;
-  height: 45px;
-  background-color: #FFFFFF;
-}
-
-.profile-pic {
+/* .profile-pic {
   height: 500px;
   width: 500px;
   border-radius: 50%;
 
-}
+} */
 
 @media (max-width: 750px) {
-  .sort-by {
-    /* background-color: rgb(106, 19, 19); */
-    grid-column: 1/9;
-  }  
-  .box5 {
-    /* background-color: rgb(106, 19, 38); */
-    grid-column: 1/9;
+  .profile-left {
+    display: none;
   }
+  
+  .profile-right {
+    display: none;
+  }
+
+  .profile-header {
+    display: none;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #E4E4E4;
+    grid-column: 1/9;
+    height: 225px;
+  }
+  
+  .profile-content {
+    /* background-color: rgb(106, 19, 38); */
+    border-bottom: 1px solid #E4E4E4;
+    grid-column: 1/9;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+  }
+  
+  .profile-filter {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #E4E4E4;
+    grid-column: 1/9;
+    height: 50px;
+  }
+  
+  .profile-showcase {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #E4E4E4;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;  
+    text-align: center;
+    grid-column: 1/9;
+    height: 90px;
+  }
+  
+  .profile-footer {
+   display: none;
+  }
+
   .badges-content-image {
     padding: 10px;
     width: 100px;
     height: 100px;
   }
-  
+  .showcase-text {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #E4E4E4;
+    /* padding-bottom: 7px; */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #D0D0D0;  
+    margin: 5px;
+  }
+
+.showcase-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3px;
 }
+
+  .showcase-badge-icon {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 2px;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .filter-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3px;
+  }
+
+  .filter-badge-icon {
+    height: 18px;
+    width: 18px;
+    padding: 2px;
+    padding: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  .main-profile-icon {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    object-fit: scale-down;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  .follow-header {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #D0D0D0;  
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+}
+
+/* <div>
+    <div>
+    Profile Page
+    <Link to='/'>
+    <button>Home</button>
+    </Link>
+    </div>    
+    <div>
+        Welcome, {this.state.currentUser.username}!
+    </div>
+    <div>
+        <img src={this.state.currentUser.picture} alt='hi'/>
+    </div>
+    <div>
+    
+   {console.log('this is the followers ',this.state.followerAmount)} }
+  {console.log('this is the followers ',this.props.currentUserFollowers.length)} 
+    Following {this.props.currentUserFollowing.length}<br/>
+    Followers {this.props.currentUserFollowers.length}<br/>
+          <button onClick={this.getFollowing}>Following</button>
+        {following}
+        
+        <button onClick={this.getFollowers}>Followers</button>
+        {followers}
+    </div>
+    { allGroups }
+</div> */
