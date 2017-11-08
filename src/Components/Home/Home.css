@@ -1,0 +1,183 @@
+.home-content-wrapper{
+  display: grid; 
+  grid-template-columns: repeat(8, 1fr);
+}
+
+/* .home-header{
+  grid-row: 1/6;
+  grid-column: 1/4;
+  background-color: #F20404;
+} */
+
+.home-left-margin {
+  grid-row: 1/6;
+  grid-column: 1/4;
+  /* background-color: #D4ACAC; */
+}
+
+.home-right-margin {
+  grid-row: 1/6;
+  grid-column: 6/10;
+  /* background-color: #D4ACAC; */
+}
+
+.home-news-feed {
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr)
+}
+
+
+@media (max-width: 750px) {
+  div.like-number {
+      margin-top: 10px;
+      /* width: 25px;
+      height: 100%;
+      border: 1px solid black; */
+      display: inline-block;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #00b5b7;
+  }
+  
+  .comment {
+      width: 20px;
+      height: 20px;
+      padding: 10px;
+  }
+  .like {
+      width: 20px;
+      height: 20px;
+      padding: 10px;
+  }
+  .badge-group-header {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #505050;
+      /* padding-right: 10px;
+      padding-left: 10px; */
+      width: 375px;
+      height: 60px;
+      display: flex;
+      flex-direction: row;
+      background-color: #FFFFFF;
+  }
+  .badge-content {
+      max-width: 375px;
+      height: 375px;
+  }
+  .badge-name {
+      font-weight: 10px;
+      line-height: 60px;
+      padding-left: 20px;
+  }
+  
+  .badge-image {
+      max-width: 375px;
+      height: 375px;
+  }
+  .badge-post-interaction {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #505050;
+      /* padding-right: 10px;
+      padding-left: 10px; */
+      width: 375px;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      background-color: #FFFFFF;
+  }
+  
+  .badge-caption {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      width: 375px;
+      height: 100%;
+      color: #505050;
+      background-color: #FFFFFF;
+  }
+  .caption {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .divider {
+      width: 375px;
+      margin: auto;
+      position: absolute;
+      /* left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%); */
+      height: 1px;
+      background-color: #EDEDED;
+      display: inline-block;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+  }
+  /* .like-comment-wrapper {
+      padding-left: 10px;
+      padding-right: 10px;
+  } */
+  .like-comment {
+      width: 375px;
+      height: 40px;
+      background-color: #FFFFFF;
+  }
+  
+  .like-number {
+      display: inline-block;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      color: #00b5b7;
+  }
+}
+/* ========================================================================== */
+/* Modal */
+/* ========================================================================== */
+
+.imageSize {
+  height: 375px;
+  width: 375px;
+}
+.comment-wrapper {
+  display: flex;
+}
+.comment-input{
+  padding-left: 10px;
+  font-family: 'Open Sans', sans-serif;
+  width: 250px;
+  border: solid 1px #EDEDED;
+  height: 30px;
+  font-size: 14px;
+  outline: none;
+}
+.comment-button{
+  font-family: 'Open Sans', sans-serif;
+  background-color: #00b5b7;
+  height: 33px;
+  width: 100px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+.profile-pic {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+}
+
+.comment-author-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.username-comments{
+padding-left: 10px;
+display: flex;
+}

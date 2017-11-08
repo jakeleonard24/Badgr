@@ -7,6 +7,8 @@ class App extends Component {
   render() {
     return (
       <div>
+      <div className='nav-bar'>
+      </div>
           <Navbar/>
           {router}
       </div>

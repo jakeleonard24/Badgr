@@ -26,3 +26,15 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.nav-bar {
+  height: 75px;
+  width: 100%;
+}
+
+@media (max-width: 750px) {
+  .nav-bar {
+    height: 60px;
+    width: 100%;
+  }
+
+  }

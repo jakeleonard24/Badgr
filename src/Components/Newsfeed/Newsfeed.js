@@ -180,7 +180,12 @@ let posts = this.props.followingFeed.map((post, i) => {
 </div>
 
 <div className='badge-content'>
-<img className='badge-image' src={post.content} alt='content' />
+<img 
+className='badge-image' 
+src={post.content} 
+alt='content' 
+onClick={()=>{this.addLikes(i)}}
+/>
 </div>
 
 <div className='badge-footer-wrapper'>
@@ -188,7 +193,11 @@ let posts = this.props.followingFeed.map((post, i) => {
 <div className='post-padding-wrapper'>
 <div className='left-header'>
 <div className='badge-icon'>
-<img className='badge-icon-image' src={post.picture} alt='content' />
+<img 
+className='badge-icon-image' 
+src={post.picture} 
+alt='content' 
+/>
 </div>  
 <div className='badge-name'>
 {post.username}
@@ -207,21 +216,23 @@ let posts = this.props.followingFeed.map((post, i) => {
 <div className='like-comment'>
 <div className='like-comment-wrapper'>
 <div className='post-padding-wrapper'>
+<div>
 <img 
 className='like' 
-src='https://s1.postimg.org/5s41055u5r/like.png' 
+src='https://s1.postimg.org/7kwqmgofz3/like_Asset_10_3x.png' 
 alt='content' 
 onClick={()=>{this.addLikes(i)}}
 />
+</div>
 <div className="like-number">{this.props.followingFeed[i].likes}</div>
-<img 
-className='like' 
-src='https://s1.postimg.org/9l0au19msf/comment.png' 
+<div><img 
+className='comment' 
+src='https://s1.postimg.org/9cpphd3ijj/comment_Asset_11_3x.png' 
 alt='content'
 onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
-/>
+/></div>
 </div>
-</div>
+</div> 
 </div>
 </div>
 </div>

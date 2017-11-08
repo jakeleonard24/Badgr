@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Newsfeed from '../Newsfeed/Newsfeed'
 import { SearchService } from './search-service';
+import './Home.css'
 
 class Home extends Component {
     constructor() {
@@ -17,7 +18,6 @@ class Home extends Component {
               this.setState({results: res});
             });
       }
-    
       search(event) {
         this.searchService.search({value: event.target.value.trim()});
       }
@@ -30,31 +30,18 @@ class Home extends Component {
         return (
             <div>
 
-            <div>
+
+            <div className='home-content-wrapper'>
+            {/* <div className='home-header'>1</div> */}
+            <div className='home-left-margin'></div>
+            <div className='home-right-margin'></div>
+            <div className='home-news-feed'><Newsfeed></Newsfeed></div>
             </div>
-                <Link to='/login'>
-                <button>bob</button>
-                </Link>
-                <Link to='/create'>
-                <button>Create Badge</button>
-                </Link>
+            <div>
+              
 
-                <Link to='/post'>
-                <button>Post Badge</button>
-                </Link>
 
-                <Link to='/profile'>
-                <button>Profile</button>
-                </Link>
-
-                <Link to='/notifications'>
-                <button>Notifications</button>
-                </Link>
-
-                <br/>
-                <Newsfeed></Newsfeed>
-
-            
+            </div>
                   <div className="form-group">
                   <h4>Search</h4>
                   <input className="form-control" placeholder="Search Term" type="text" onChange={this.search.bind(this)} />
