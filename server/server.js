@@ -208,6 +208,13 @@ app.post('/api/group', (req, res) => {
     }).catch((err) => {console.log(err)})
 })
 
+app.get('/api/onebadge/:id', (req, res) => {
+    let {id} = req.params;
+    req.app.get('db').get_badgegroup([id]).then(badge => {
+        res.status(200).send(badge)
+    }).catch((err) => {console.log(err)})
+})
+
 
 
 const port = 3333;

@@ -9,7 +9,9 @@ const initialState = {
     singleUser: [],
     followingFeed: [],
     allBadgeGroups: [],
-    userInvites: []
+    userInvites: [],
+    singleBadge: {}
+
 }
 // =============================================================================
 // Action Creators 
@@ -22,7 +24,8 @@ const GET_FOLLOWERS = "GET_FOLLOWERS";
 const GET_SINGLE_USER = "GET_SINGLE_USER";
 const GET_FOLLOWING_FEED = "GET_FOLLOWING_FEED";
 const GET_ALL_BADGES_USER = "GET_ALL_BADGES_USER";
-const GET_USER_INVITES = "GET_USER_INVITES"
+const GET_USER_INVITES = "GET_USER_INVITES";
+const GET_SINGLE_BADGE = "GET_SINGLE_BADGE";
 // =============================================================================
 // Post Functions 
 // =============================================================================
@@ -109,6 +112,16 @@ export function getAllBadgeGroups(id){
     }
 }
 
+export function getSingleBadge(id){
+    let singleBadge = axios.get(`/api/onebadge/${id}`).then(response => {
+        return response.data
+    })
+    return{
+        type: GET_SINGLE_BADGE,
+        payload: singleBadge
+    }
+}
+
 // =============================================================================
 // invites
 // ============================================================================
@@ -163,6 +176,10 @@ console.log('ALL BADGE GROUPS:',action.payload);
     //     return Object.assign({}, state, {followUser: action.payload})
     case GET_FOLLOWERS + "_FULFILLED":
         return Object.assign({}, state, {currentUserFollowers: action.payload})
+
+    case GET_SINGLE_BADGE + '_FULFILLED':
+        return Object.assign({}, state, {singleBadge: action.payload})
+        
         default:
         return state;
 }

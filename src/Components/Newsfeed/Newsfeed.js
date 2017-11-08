@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import './Newsfeed.css';
 import Modal from 'react-modal'
+import {Link} from 'react-router-dom'
 import {getPosts, getCurrentUser, getFollowingFeed} from '../../ducks/reducer';
 
 const customStyles = {
@@ -62,13 +63,13 @@ addLikes(i){
 
     // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
-        badgeId: this.state.posts[i].id,
+        badgeId: this.state.posts[i].uniquebadgeid,
         likes: this.state.posts[i].likes
     }).then((response)=>{
     this.props.getPosts()
     })
     axios.post('api/tracklikes',{
-        badgeId: this.state.posts[i].id,
+        badgeId: this.state.posts[i].uniquebadgeid,
         userId:this.state.currentUserId
     })
 }
@@ -166,9 +167,11 @@ let posts = this.props.followingFeed.map((post, i) => {
 <div className='badge-group-header'>
 <div className='post-padding-wrapper'>
 <div className='left-header'>
+<Link to={`/group/${post.id}`} >
 <div className='badge-icon'>
 <img className='badge-icon-image' src={post.logo} alt='content' />
 </div>  
+</Link>
 <div className='badge-name'>
 {post.title}
 </div>  

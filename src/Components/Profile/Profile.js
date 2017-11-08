@@ -125,12 +125,12 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             <button onClick={this.getFollowers}>Followers</button>
             {followers}
         </div>
-        { allGroups }
+        {/* { allGroups } */}
     </div>
 </div>
 <div className='margin-left'></div>
 <div className='profile-content'>
-{allGroups}
+{/* {allGroups} */}
 </div>
 <div className='margin-right'></div>
 <div className='box5'></div>
