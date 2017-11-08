@@ -17,6 +17,7 @@ this.getFollowers = this.getFollowers.bind(this);
 }
 
 componentDidMount(){
+    this.props.getCurrentUser()
     axios.get('/api/user').then((response)=>{
         this.setState({
             currentUser:response.data
@@ -88,6 +89,9 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         </div>
         <div>
             <img src={this.state.currentUser.picture} alt='hi'/>
+            <Link to='/create'>
+  <button>Complete</button>
+  </Link>
         </div>
         <div>
              <button onClick={this.getFollowing}>Following</button>

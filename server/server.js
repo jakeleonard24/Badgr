@@ -162,6 +162,13 @@ app.post('/api/newBadge', (req, res) => {
     })
 })
 
+app.post('/api/complete', (req, res) => {
+    let {creatorId, userId, title, description, content, logo, type} = req.body;
+    req.app.get('db').complete_badge([type, userId, creatorId, logo, title, description, content]).then(badges => {
+        res.status(200).send(badges)
+    })
+})
+
 app.post('/api/invites', (req, res) => {
     console.log(req.body)
     let {userId, badgeId} = req.body;
@@ -200,6 +207,8 @@ app.post('/api/group', (req, res) => {
         res.status(200).send(group)
     }).catch((err) => {console.log(err)})
 })
+
+
 
 const port = 3333;
 

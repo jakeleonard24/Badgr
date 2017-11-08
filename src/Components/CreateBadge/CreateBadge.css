@@ -1,0 +1,19 @@
+.createBadgeBody{
+    margin-top: 200px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.hiddenView{
+    display: none;
+}
+
+.createBadgeLogo{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}

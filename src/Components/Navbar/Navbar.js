@@ -6,6 +6,7 @@ export default class Navbar extends Component {
   render() {
     return (
 <div> 
+  
 <header className='main-nav'>
 <nav>
 <div className='mobile-nav'>
@@ -14,7 +15,7 @@ export default class Navbar extends Component {
 src='https://s1.postimg.org/9n2brz2owf/home_Asset_6_3x.png' alt='ALPHA' />
 </Link>
 </div>
-<Link to='/create' style={{ textDecoration: 'none' }} ><div className="title-nav">
+<Link to='/post' style={{ textDecoration: 'none' }} ><div className="title-nav">
 <img className='profile-icon' src='https://s1.postimg.org/8ozuzr6qof/nav_Asset_2_3x.png' alt='create-badge' />
 </div></Link>
 
@@ -42,7 +43,7 @@ src='https://s1.postimg.org/8hkxcmvqy7/badger_googlefix.png' alt='ALPHA' />
 </div>
 
 <div className="right-nav-align">
-<Link to='/create' style={{ textDecoration: 'none' }} ><div className="title-nav">
+<Link to='/post' style={{ textDecoration: 'none' }} ><div className="title-nav">
 <img className='profile-icon' src='https://s1.postimg.org/8ozuzr6qof/nav_Asset_2_3x.png' alt='create-badge' />
 </div></Link>
 
