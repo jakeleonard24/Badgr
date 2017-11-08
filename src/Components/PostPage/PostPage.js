@@ -27,6 +27,7 @@ class PostPage extends Component {
         this.addToChallenged = this.addToChallenged.bind(this);
         this.removeFromChallenged = this.removeFromChallenged.bind(this);
         this.sendInvites = this.sendInvites.bind(this);
+        
 
 
     }
@@ -97,6 +98,7 @@ class PostPage extends Component {
         })
     }
 
+   
     createBadge(){
         if(this.props.currentUserId){
         axios.post('/api/newbadge', {
@@ -112,6 +114,8 @@ class PostPage extends Component {
             console.log(response)
              this.setState({badgeId: response.data[0].id})
         })
+
+        
     } else {
         alert("Please log in")
     }
@@ -126,6 +130,15 @@ class PostPage extends Component {
                 badgeId: this.state.badgeId
             })
         })
+
+        axios.post('/api/group', {
+            
+             userId: this.props.currentUserId,
+             badgeId: this.state.badgeId
+             
+         })
+
+        
         
     }
 
@@ -183,7 +196,7 @@ class PostPage extends Component {
 
                     <div>
                        <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
-                       <button onClick={this.createBadge}>Create Badge </button>
+                       <button onClick={() => {this.createBadge()}}>Create Badge </button>
                        <div className={this.state.logoView ? 'iconList' : 'noShow'}>
                        
                            

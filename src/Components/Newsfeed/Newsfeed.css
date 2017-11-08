@@ -61,6 +61,7 @@ grid-gap: 1em;
 }
 
 .badge-content {
+    object-fit: scale-down;
     max-width: 600px;
     height: 600px;
 }
@@ -189,6 +190,7 @@ div.like-number {
         background-color: #FFFFFF;
     }
     .badge-content {
+        object-fit: scale-down;
         max-width: 375px;
         height: 375px;
     }

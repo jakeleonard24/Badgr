@@ -16,7 +16,7 @@ export default (
         <Route exact path="/" component={Home} />
         <Route path="/profile" component={Profile} />
         <Route path="/create" component={CreateBadge} />
-        <Route path="/group" component={BadgeGroup} />
+        <Route path="/group/:id" component={BadgeGroup} />
         <Route path="/post" component={PostPage} />
         <Route path="/notifications" component={NotificationsView} />
     </Switch>
