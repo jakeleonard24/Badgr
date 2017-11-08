@@ -58,23 +58,23 @@ a:link {
 
 .alpha-logo{
   padding-top: 20px;
-  width: 120px;
-  height: 47%;
+  width: 100px;
+  height: 43%;
   display: inline-block;
 }
 
 .profile-icon {
   padding-top: 25px;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   position: relative;
   color: #000;
   text-decoration: none;
 }
 .notifications-icon {
   padding-top: 27px;
-  width: 32px;
-  height: 25px;
+  width: 27px;
+  height: 20px;
 }
 
 

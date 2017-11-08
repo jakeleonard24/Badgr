@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {getCurrentUser, getFollowing, getFollowers, followUser, getSingleUser, getAllBadgeGroups} from './../../ducks/reducer';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import './Profile.css'
 
 
 class Profile extends Component {
@@ -22,10 +23,11 @@ componentDidMount(){
         this.setState({
             currentUser:response.data
     })
-    this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
-    }); 
-    this.getFollowers() 
-    this.getFollowing()
+this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
+   this.getFollowers()
+   this.getFollowing() }); 
+    
+    
     console.log('look at this',this.props.currentUserFollowers.length)
     console.log('user flollowing', this.props.currentUserFollowing.length)
 }
@@ -52,7 +54,7 @@ render() {
 let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
         return(
         <div key={i}>
-            <img src={badges.content} alt=''/>
+           <img className='badges-content-image' src={badges.content} alt='' />
         </div>
     )
 
@@ -85,32 +87,22 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         )
     })
     return (
-    <div>
-        <div>
-        Profile Page
-        <Link to='/'>
-        <button>Home</button>
-        </Link>
-        </div>    
-        <div>
-            Welcome, {this.state.currentUser.username}!
-        </div>
-        <div>
-            <img src={this.state.currentUser.picture} alt='hi'/>
-        </div>
-        <div>
-        
-        {/* /* {console.log('this is the followers ',this.state.followerAmount)} */ }
-        {/* {console.log('this is the followers ',this.props.currentUserFollowers.length)} */}
-        Following {this.props.currentUserFollowing.length}
-             <button onClick={this.getFollowing}>Following</button>
-            {following}
-            Followers {this.props.currentUserFollowers.length}
-            <button onClick={this.getFollowers}>Followers</button>
-            {followers}
-        </div>
-        { allGroups }
+<div className='profile-wrapper'>
+<div className='sort-by'>
+    <img className='profile-pic' src={this.state.currentUser.picture} alt='' />
+</div>
+<div className='sort-by'>
+    <div className='sort-bar'>
+
     </div>
+</div>
+<div className='margin-left'></div>
+<div className='profile-content'>
+{allGroups}
+</div>
+<div className='margin-right'></div>
+<div className='box5'></div>
+</div>
     );
 }
 }

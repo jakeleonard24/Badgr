@@ -18,7 +18,6 @@ class Home extends Component {
               this.setState({results: res});
             });
       }
-    
       search(event) {
         this.searchService.search({value: event.target.value.trim()});
       }
