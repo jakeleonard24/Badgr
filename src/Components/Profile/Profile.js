@@ -115,11 +115,12 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         <img className='filter-badge-icon' src='https://s1.postimg.org/7qe1b508wv/newsfeed_Asset_2_3x.png' />
         <img className='filter-badge-icon' src='https://s1.postimg.org/56kycnp04v/groups_Asset_4_3x.png' alt='icon' />
         </div>
+        {/* { allGroups } */}
     </div>
     <div className='profile-content'>{allGroups}</div>
     <div className='profile-footer'></div>
 </div>
-);
+    );
 }
 }
 
