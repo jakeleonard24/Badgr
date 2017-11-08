@@ -19,11 +19,13 @@ this.getFollowers = this.getFollowers.bind(this);
 }
 
 componentDidMount(){
+    
     axios.get('/api/user').then((response)=>{
         this.setState({
             currentUser:response.data
+            
     })
-this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
+    this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
    this.getFollowers()
    this.getFollowing() }); 
     
@@ -87,6 +89,7 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         )
     })
     return (
+<<<<<<< HEAD
 <div className='profile-wrapper'>
 <div className='sort-by'>
     <img className='profile-pic' src={this.state.currentUser.picture} alt='' />
@@ -94,6 +97,34 @@ let following = this.props.currentUserFollowing.map((user, i) => {
 <div className='sort-by'>
     <div className='sort-bar'>
 
+=======
+    <div>
+        <div>
+        Profile Page
+        <Link to='/'>
+        <button>Home</button>
+        </Link>
+        </div>    
+        <div>
+            Welcome, {this.state.currentUser.username}!
+        </div>
+        <div>
+            <img src={this.state.currentUser.picture} alt='hi'/>
+        </div>
+        <div>
+        
+        {/* /* {console.log('this is the followers ',this.state.followerAmount)} */ }
+        {/* {console.log('this is the followers ',this.props.currentUserFollowers.length)} */}
+        Following {this.props.currentUserFollowing.length}<br/>
+        Followers {this.props.currentUserFollowers.length}<br/>
+             <button onClick={this.getFollowing}>Following</button>
+            {following}
+            
+            <button onClick={this.getFollowers}>Followers</button>
+            {followers}
+        </div>
+        { allGroups }
+>>>>>>> 07bff6116899376af874b5644d8f2ef5947a3f25
     </div>
 </div>
 <div className='margin-left'></div>

@@ -15,6 +15,7 @@ grid-gap: 1em;
     padding-left: 10px; */
     width: 600px;
     height: 60px;
+
     display: flex;
 	flex-direction: row;
     background-color: #FFFFFF;
