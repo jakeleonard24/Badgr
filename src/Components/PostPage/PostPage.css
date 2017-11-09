@@ -44,3 +44,150 @@
 	align-items: center;
 	align-content: stretch;
 }
+
+@media (max-width: 750px) {
+.create-badge-wrapper{
+    display: grid;
+    grid-template-columns: repeat( 8, 1fr )
+}
+
+.create-badge-title {
+    grid-column: 1/9;
+}
+
+.upload-picture {
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    /* border-bottom: 1px solid #E4E4E4; */
+    height: 275px;
+
+}
+.title-description {
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8px;
+}
+
+.edit-badge-image {
+    border-radius: 50%;
+    height: 180px;
+    width: 180px;
+    
+}
+
+.create-badge-title {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E4E4E4;
+    padding-left: 15px;
+    padding-right: 15px;  
+    text-align: center;
+    grid-column: 1/9;
+    height: 60px;
+
+}
+
+.create-title {
+    height: 45px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 26px;
+    color: #00b5b7;  
+    padding: 10px; 
+}
+
+input {
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 30px;
+    width: 335px;
+    background-color: #D0D0D0;
+    color: #D0D0D0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.file-input{
+    padding: 10px;
+}
+
+.create-title-wrapper {
+    padding: 10px;
+    color: #D0D0D0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+
+}
+
+.create-description-wrapper {
+    padding: 10px;
+    color: #D0D0D0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.create-title-badge {
+    background-color: white;
+    height: 45px;
+    width: 315px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color: #505050;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 20px;
+    
+}
+
+.create-description-badge {
+    display: block;
+    background-color: white;
+    min-height: 45px;
+    width: 315px;
+    max-height: 250px; 
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color: #505050;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 20px;
+    word-wrap: break-word;
+    white-space: initial;
+    /* padding-left:0;
+    padding-top:0;
+    padding-bottom:0.4em;
+    padding-right: 0.4em;
+    display: inline-block; */
+}
+input::placeholder {
+    color: #D0D0D0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+}

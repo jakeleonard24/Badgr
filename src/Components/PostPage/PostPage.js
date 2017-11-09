@@ -27,48 +27,33 @@ class PostPage extends Component {
         this.addToChallenged = this.addToChallenged.bind(this);
         this.removeFromChallenged = this.removeFromChallenged.bind(this);
         this.sendInvites = this.sendInvites.bind(this);
-        
-
-
     }
-
      componentDidMount(){
          axios.get('/api/logos').then(response => {
             this.setState({
                 logos: response.data
             })
          })
-
          this.props.getFollowers(this.props.currentUserId)
      }
-
      componentWillReceiveProps(nextProps){
          this.setState({
              followerArray: nextProps.currentUserFollowers
          })
      }
     handleFileUpload(event){
-        
-         console.log(event.target.files)
-       
          const file = event.target.files[0]
-         console.log('file', file)
-         
          this.updateImage({file})
      }
 
      addToChallenged(user, i){
-         
          let arr = this.state.followerArray
          arr.splice(i, 1)
          this.setState({
              challengeArray: [...this.state.challengeArray, user],
              followerArray: arr
-            
-
          })
      }
-
      removeFromChallenged(user, i){
          let arr = this.state.challengeArray
          arr.splice(i, 1)
@@ -77,28 +62,21 @@ class PostPage extends Component {
              followerArray: [...this.state.followerArray, user]
          })
      }
-
      updateImage({file}){
         console.log('file', file)
          let data = new FormData();
          data.append('key', 'value')
          data.append('file', file);
-         console.log(data, 'data')
-        
- 
          axios.post('/profile', data)
          .then(response => this.uploadSuccess(response))
          .catch(error => console.log(error))
      }
-
      uploadSuccess({data}){
         console.log('response data' ,data)
         this.setState({
             image: './uploads/' + data.filename
         })
     }
-
-   
     createBadge(){
         if(this.props.currentUserId){
         axios.post('/api/newbadge', {
@@ -114,15 +92,11 @@ class PostPage extends Component {
             console.log(response)
              this.setState({badgeId: response.data[0].id})
         })
-
-        
     } else {
         alert("Please log in")
     }
-
     this.setState({badgeCreated: true})
     }
-
     sendInvites(){
         this.state.challengeArray.forEach((user, i) => {
             axios.post('/api/invites', {
@@ -130,18 +104,12 @@ class PostPage extends Component {
                 badgeId: this.state.badgeId
             })
         })
-
         axios.post('/api/group', {
             
              userId: this.props.currentUserId,
              badgeId: this.state.badgeId
-             
          })
-
-        
-        
     }
-
 
     render() {
         console.log('state', this.state)
@@ -175,51 +143,59 @@ class PostPage extends Component {
         })
         return (
             <div>
-                <div>
-                PostPage
-                <Link to='/'>
-                <button>Home</button>
-                </Link>
+                <div className={this.state.badgeCreated ? 'noShow' : 'create-badge-wrapper'}>
+                {/* <div className='create-badge-title'><div className='create-title'>CREATE BADGE</div></div> */}
+                <div className='upload-picture'>
+                <img className='edit-badge-image' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
+                <div className='file-input'>
+                <input  className='file-choose' type='file' name='user-image' onChange={this.handleFileUpload} />
+                </div>
+                </div>
+                <div className='title-description'>
+                    <div className='create-title-wrapper'>
+                        <input className='create-title-badge' type="text" placeholder='Title'/>
+                    </div>
+                    <div className='create-description-wrapper'>
+                        <input className='create-description-badge' type="text" placeholder='Description' rows='10'/>
+                    </div>
+                </div>
                 </div>
 
-                <div className={this.state.badgeCreated ? 'noShow' : 'createBadge'}>
+
+
+
+
+
+
+                {/* <div className={this.state.badgeCreated ? 'noShow' : 'createBadge'}>
                     <h1>Create A Badge</h1>
                     Title: <input onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} placeholder='Name your challenge' />
-
                     Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>
-
                     <div className='editProfileImageBox'>
                     <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
                     <div className='fileInput'>
                     <input  type='file' name='userImage' onChange={this.handleFileUpload} />
                     </div>
-
                     <div>
                        <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
                        <button onClick={() => {this.createBadge()}}>Create Badge </button>
-                       <div className={this.state.logoView ? 'iconList' : 'noShow'}>
-                       
-                           
-                               {logos}
-                           
+                       <div className={this.state.logoView ? 'iconList' : 'noShow'}>       
+                       {logos}
                        </div>
-                       
                     </div>
                 </div>
-
                 </div>
                 <div className={this.state.badgeCreated ? 'createBadge' : 'noShow'}>
                     <div className='followerRow'>
                         <h1>Challenged</h1>
                             {challenged}
                     </div>
-<br/><br/>
                     <div className='followerRow'>
                         <h1>Followers</h1>
                         {followers}
                     </div>
                     <button onClick={this.sendInvites}>Send Challenges</button>
-                </div>  
+                </div>   */}
             </div>
         );
     }
