@@ -111,7 +111,7 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             <div className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, harum!</div>
         </div>
         <div className='follow-padding'>
-        {/* <div className='follow-button'>FOLLOW</div> */}
+        <div className='follow-button'>FOLLOW</div>
         {/* <div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
         </div> */}
         </div>
