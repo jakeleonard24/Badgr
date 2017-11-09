@@ -210,6 +210,7 @@ app.post('/api/group', (req, res) => {
 
 app.get('/api/onebadge/:id', (req, res) => {
     let {id} = req.params;
+    console.log(id)
     req.app.get('db').get_badgegroup([id]).then(badge => {
         res.status(200).send(badge)
     }).catch((err) => {console.log(err)})
