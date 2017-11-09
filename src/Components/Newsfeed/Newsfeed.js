@@ -5,6 +5,7 @@ import './Newsfeed.css';
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
 import {getPosts, getCurrentUser, getFollowingFeed} from '../../ducks/reducer';
+import addone from '../../utiliy/addone';
 
 const customStyles = {
     content : {
@@ -33,7 +34,8 @@ constructor(props){
         comments: [],
         like:this.props.like,
         likes:[],
-        followingFeed: this.props.followingFeed
+        followingFeed: this.props.followingFeed,
+        display:'true',
     }
     
     this.closeModal = this.closeModal.bind(this);
@@ -59,7 +61,7 @@ componentWillReceiveProps(nextProps){
     })
 }
 addLikes(i){
-    this.state.posts[i].likes=this.state.posts[i].likes + 1;
+    this.state.posts[i].likes=this.state.posts[i].likes + {addone};
 
     // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
@@ -72,6 +74,7 @@ addLikes(i){
         badgeId: this.state.posts[i].uniquebadgeid,
         userId:this.state.currentUserId
     })
+    this.setState({display:'none'})
 }
 
  
@@ -132,7 +135,7 @@ findOutIfLiked(){
 
 
 render() {
-    
+    const buttonDisplay={display:this.state.display};
 console.log('props', this.props)
 console.log("STATE", this.state)
 let comments = this.state.comments.map((comment, i) => {
@@ -155,10 +158,10 @@ console.log(this.props.followingFeed);
 let posts = this.props.followingFeed.map((post, i) => {
     var likeButtonType=null
     if(this.state.likes.userid==this.props.currentUserId){
-      likeButtonType= <button className="like-button" onClick={()=>{this.addLikes(i)}}>Unlike</button>
+      likeButtonType= <button className="like-button"  onClick={()=>{this.addLikes(i)}}>Unlike</button>
       console.log("unlike",this.state.likes.userid, this.props.currentUserId)
     } else {
-        likeButtonType=< button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button>
+        likeButtonType=< button className="like-button" style={buttonDisplay} onClick={()=>{this.addLikes(i)}}>Like</button>
       console.log("like",this.state.likes.userid, this.props.currentUserId)
     }
     return(

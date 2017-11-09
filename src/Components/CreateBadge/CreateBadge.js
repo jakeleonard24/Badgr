@@ -22,21 +22,9 @@ class CreateBadge extends Component {
         this.uploadSuccess = this.uploadSuccess.bind(this);
         this.createBadge = this.createBadge.bind(this);
         this.selectBadge = this.selectBadge.bind(this);
-     
-
     }
-
-     componentDidMount(){
-        
-     }
-
     handleFileUpload(event){
-        
-         console.log(event.target.files)
-       
          const file = event.target.files[0]
-         console.log('file', file)
-         
          this.updateImage({file})
      }
 
@@ -60,7 +48,6 @@ class CreateBadge extends Component {
             image: './uploads/' + data.filename
         })
     }
-
     createBadge(){
         if(this.props.currentUserId){
         axios.post('/api/complete', {
@@ -77,10 +64,7 @@ class CreateBadge extends Component {
     } else {
         alert("Please log in")
     }
-
-  
     }
-
     selectBadge(id, title, logo){
         this.setState({
             selectedCreatorId: id,
@@ -90,10 +74,6 @@ class CreateBadge extends Component {
         })
 
     }
-
-   
-
-
     render() {
         console.log('state', this.state)
         console.log('props', this.props)
@@ -114,14 +94,14 @@ class CreateBadge extends Component {
             <div className={this.state.badgeIsChosen ? 'createBadgeBody' : 'hiddenView'}>
             Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>
 
-                    <div className='editProfileImageBox'>
-                    <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
-                    <div className='fileInput'>
-                    <input  type='file' name='userImage' onChange={this.handleFileUpload} />
-                    <button onClick={this.createBadge}>Post Completed Badge</button>
-                    </div>
-                    </div>
-                    </div>
+            <div className='editProfileImageBox'>
+            <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
+            <div className='fileInput'>
+            <input  type='file' name='userImage' onChange={this.handleFileUpload} />
+            <button onClick={this.createBadge}>Post Completed Badge</button>
+            </div>
+            </div>
+            </div>
 
             </div>
         );
