@@ -60,6 +60,8 @@ class CreateBadge extends Component {
             type: 'complete'
 
 
+        }).then(response => {
+            console.log(response)
         })
     } else {
         alert("Please log in")
