@@ -65,18 +65,13 @@
       background-color: #FFFFFF;
   }
   .badge-content {
-      max-width: 375px;
-      height: 375px;
+      /* max-width: 375px; */
+      /* height: 375px; */
   }
   .badge-name {
       font-weight: 10px;
       line-height: 60px;
       padding-left: 20px;
-  }
-  
-  .badge-image {
-      max-width: 375px;
-      height: 375px;
   }
   .badge-post-interaction {
       font-family: 'Open Sans', sans-serif;
