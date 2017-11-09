@@ -144,19 +144,25 @@ class PostPage extends Component {
         return (
             <div>
                 <div className={this.state.badgeCreated ? 'noShow' : 'create-badge-wrapper'}>
-                {/* <div className='create-badge-title'><div className='create-title'>CREATE BADGE</div></div> */}
-                <div className='upload-picture'>
-                <img className='edit-badge-image' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
-                <div className='file-input'>
-                <input  className='file-choose' type='file' name='user-image' onChange={this.handleFileUpload} />
+                <div className='create-badge-title'><div className='create-title'>CREATE BADGE
+                <div className='caption-title'>Create a badge and challenge your friends!</div>
+                </div>
+                </div>
+                <div className='upload-picture' type='file' name='user-image' >
+                <img  className='edit-badge-image' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
+                <div className='file-input' >
+                <input className='file-choose' type='file' name='user-image' onChange={this.handleFileUpload} />
                 </div>
                 </div>
                 <div className='title-description'>
                     <div className='create-title-wrapper'>
-                        <input className='create-title-badge' type="text" placeholder='Title'/>
+                        <input  value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} className='create-title-badge' type="text" placeholder='Title'/>
                     </div>
                     <div className='create-description-wrapper'>
-                        <input className='create-description-badge' type="text" placeholder='Description' rows='10'/>
+                        <input onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} className='create-description-badge' type="text" placeholder='Description' rows='10'/>
+                    </div>
+                    <div className='create-badge-button-padding'>
+                    <div className='create-badge-button' onClick={() => {this.createBadge()}}>CREATE BADGE </div>
                     </div>
                 </div>
                 </div>
@@ -179,13 +185,15 @@ class PostPage extends Component {
                     <div>
                        <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
                        <button onClick={() => {this.createBadge()}}>Create Badge </button>
+
+
                        <div className={this.state.logoView ? 'iconList' : 'noShow'}>       
                        {logos}
                        </div>
                     </div>
                 </div>
-                </div>
-                <div className={this.state.badgeCreated ? 'createBadge' : 'noShow'}>
+                </div> */}
+                {/* <div className='createBadge'>
                     <div className='followerRow'>
                         <h1>Challenged</h1>
                             {challenged}
@@ -196,6 +204,19 @@ class PostPage extends Component {
                     </div>
                     <button onClick={this.sendInvites}>Send Challenges</button>
                 </div>   */}
+
+                {/* <div className='challenge-followers-wrapper'>
+                    <div className='challenge-friends'>Invite your Friends</div>
+                    <div>
+                    <div className='user-invite-container'>
+                    <div className='user-invite-wrapper'>
+                    <img className='user-image' src='http://37.media.tumblr.com/218d84f98561ce2907102c9706b266c5/tumblr_n8xww4OmDV1rcdaero1_500.jpg' />
+                    <div className='user-invite-username'> <div className='user-name-text'>Elizabeth</div></div>
+                    <div className='user-invite-username'> </div>
+                    </div>
+                    </div>
+                    </div>
+                </div> */}
             </div>
         );
     }
