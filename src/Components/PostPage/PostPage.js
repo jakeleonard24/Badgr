@@ -204,13 +204,13 @@ class PostPage extends Component {
                 </div>
                 </div>
 
-                <div>
+                {/* <div>
                        <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
 
                        <div className={this.state.logoView ? 'iconList' : 'noShow'}>       
                        {logos}
                        </div>
-                    </div>
+                    </div> */}
 
 
 
