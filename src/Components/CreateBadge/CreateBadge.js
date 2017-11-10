@@ -16,6 +16,7 @@ class CreateBadge extends Component {
            description: '',
            image: '',
            badgeIsChosen: false,
+           selectedOrigin: 0
         }
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.updateImage = this.updateImage.bind(this);
@@ -57,19 +58,23 @@ class CreateBadge extends Component {
             description: this.state.description,
             content: this.state.image,
             logo: this.state.selectedLogo,
+            originId: this.state.selectedOrigin,
             type: 'complete'
 
 
+        }).then(response => {
+            console.log(response)
         })
     } else {
         alert("Please log in")
     }
     }
-    selectBadge(id, title, logo){
+    selectBadge(id, title, logo, origin){
         this.setState({
             selectedCreatorId: id,
             selectedTitle: title,
             selectedLogo: logo,
+            selectedOrigin: origin,
             badgeIsChosen: true
         })
 
@@ -80,7 +85,7 @@ class CreateBadge extends Component {
 
        let badges = this.props.allBadgeGroups.map((badge, i) => {
             return(
-                <div onClick={() => {this.selectBadge(badge.creatorid, badge.title, badge.logo)}} key={i}>
+                <div onClick={() => {this.selectBadge(badge.creatorid, badge.title, badge.logo, badge.origin_id)}} key={i}>
                     <img className='createBadgeLogo' src={badge.logo} />
                 </div>
             )

@@ -89,7 +89,7 @@ class PostPage extends Component {
 
 
         }).then(response => {
-            console.log(response)
+            
              this.setState({badgeId: response.data[0].id})
         })
     } else {
@@ -108,6 +108,9 @@ class PostPage extends Component {
             
              userId: this.props.currentUserId,
              badgeId: this.state.badgeId
+         })
+         axios.post('/api/origin', {
+             originId: this.state.badgeId
          })
     }
 
@@ -201,8 +204,13 @@ class PostPage extends Component {
                 </div>
                 </div>
 
+                <div>
+                       <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
 
-
+                       <div className={this.state.logoView ? 'iconList' : 'noShow'}>       
+                       {logos}
+                       </div>
+                    </div>
 
 
 
@@ -227,10 +235,9 @@ class PostPage extends Component {
                     </div>
                 </div>
                 </div> */}
-                <div className={this.state.badgeCreated ? 'createBadge' : 'noShow'}>
-                <div className='invited-container'>
-                <div className='create-badge-title'><div className='create-title'>INVITE FRIENDS</div>
-                </div>
+                <div className='createBadge'>
+                    <div className='followerRow'>
+                        <h1>Challenged</h1>
                             {challenged}
                 </div>
                 <div className='follower-to-invite-container'>
@@ -242,7 +249,25 @@ class PostPage extends Component {
                     <div className='send-invites-padding'>
                     <div onClick={this.sendInvites} className='invite-button'>INVITE</div>
                     </div>
+                    <div className='followerRow'>
+                        <h1>Followers</h1>
+                        {followers}
+                    </div>
+                    <button onClick={this.sendInvites}>Send Challenges</button>
                 </div>  
+
+                {/* <div className='challenge-followers-wrapper'>
+                    <div className='challenge-friends'>Invite your Friends</div>
+                    <div>
+                    <div className='user-invite-container'>
+                    <div className='user-invite-wrapper'>
+                    <img className='user-image' src='http://37.media.tumblr.com/218d84f98561ce2907102c9706b266c5/tumblr_n8xww4OmDV1rcdaero1_500.jpg' />
+                    <div className='user-invite-username'> <div className='user-name-text'>Elizabeth</div></div>
+                    <div className='user-invite-username'> </div>
+                    </div>
+                    </div>
+                    </div>
+                </div> */}
             </div>
         );
     }

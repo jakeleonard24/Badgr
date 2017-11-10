@@ -61,7 +61,7 @@ componentWillReceiveProps(nextProps){
     })
 }
 addLikes(i){
-    this.state.posts[i].likes=this.state.posts[i].likes + {addone};
+    this.state.posts[i].likes=this.state.posts[i].likes + addone();
 
     // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
@@ -167,7 +167,7 @@ let posts = this.props.followingFeed.map((post, i) => {
     return(
 
 <div key={i} className='badge-post-wrapper'>
-<Link to={`/group/${post.uniquebadgeid}`} >
+<Link to={`/group/${post.origin_id}`} >
 <div className='badge-group-header'>
 <div className='post-padding-wrapper'>
 <div className='left-header'>
@@ -197,6 +197,7 @@ onClick={()=>{this.addLikes(i)}}
 </div>
 
 <div className='badge-footer-wrapper'>
+<Link to={`/profile/${post.uniqueuserid}`}>
 <div className='badge-post-interaction'>
 <div className='post-padding-wrapper'>
 <div className='left-header'>
@@ -213,6 +214,7 @@ alt='content'
 </div>
 </div>
 </div>
+</Link>
 <div className='badge-caption'>
 <div className='post-padding-wrapper'>
 <div className='caption'>
