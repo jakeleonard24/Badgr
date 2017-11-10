@@ -84,9 +84,9 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         onClick={ () => {this.getUser(user.id)}}
         >Profile</button>
         <div>
-        <button className='follow' onClick={ () => {this.props.followUser(this.props.currentUserId, post.uniqueuserid)}}
+        <button className='follow' onClick={ () => {this.props.followUser(this.props.currentUserId, user.id)}}
         > follow</button>  
-  
+ 
         </div>
     </div>
         )
