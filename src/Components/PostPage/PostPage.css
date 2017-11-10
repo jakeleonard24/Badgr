@@ -53,6 +53,7 @@
 
 .create-badge-title {
     grid-column: 1/9;
+    border-bottom: 1px solid #D0D0D0;
 }
 
 .upload-picture {
@@ -93,7 +94,7 @@
     padding-right: 15px;  
     text-align: center;
     grid-column: 1/9;
-    height: 90px;
+    height: 50px;
 
 }
 
@@ -104,7 +105,7 @@
     letter-spacing: 1px;
     font-size: 22px;
     color: #00b5b7;  
-    padding-top: 20px; 
+    padding-top: 10px; 
     padding-bottom: 0; 
 }
 
@@ -254,6 +255,8 @@ input::placeholder {
     letter-spacing: 0.5px;
     font-size: 12px;
     color: #505050;
+    border-bottom: 1px solid #D0D0D0;
+    padding-bottom: 15px;
 }
 .challenge-followers-wrapper {
     display: flex;
@@ -262,8 +265,8 @@ input::placeholder {
 }
 .user-image {
     object-fit: cover;
-    height: 50px;
-    width: 50px;
+    height: 75px;
+    width: 75px;
     border-radius: 50%;
     padding: 10px;
     padding-left: 20px;
@@ -306,6 +309,94 @@ input::placeholder {
 }
 .user-name-text {
 }
+.create-badge-group-header {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #505050;
+    /* padding-right: 10px;
+    padding-left: 10px; */
+    width: 600px;
+    height: 80px;
+
+    display: flex;
+	flex-direction: row;
+    background-color: #FFFFFF;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* border-top: 1px solid #D0D0D0; */
+    border-bottom: 1px solid #D0D0D0;
+}
+.create-post-padding-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.create-left-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.create-badge-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.create-badge-icon-image {
+    object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 10px;
+}
+.create-badge-name {
+    font-size: 14px;
+    font-weight: 10px;
+    line-height: 80px;
+    padding-left: 20px;
+}
+.create-right-header {
+    text-align: right;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+}
+.invite-your-friends {
+    text-align: center;
+}
+.invited-container {
+    height: 100%;
+    border-bottom: 1px solid #D0D0D0;
+}
+.follower-to-invite-container {
+    border-top: 1px solid #D0D0D0;
+    height: 100%;
+    border-bottom: 1px solid #D0D0D0;
+}
+/* .send-invites-padding {
+    padding: 20px;
+  } */
+.invite-button{
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+justify-content: center;
+align-items: center;
+text-align: center;
+height: 50px;
+width: 375px;
+background-color: #00b5b7;
+/* border: 1px solid #D0D0D0; */
+color: #FFFFFF;
+font-family: 'Open Sans', sans-serif;
+font-weight: 600;
+font-size: 18px;
+letter-spacing: 1px;
+cursor: pointer;
+}
+
 }
 
 /* <div className={this.state.badgeCreated ? 'createBadge' : 'noShow'}> */

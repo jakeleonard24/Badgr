@@ -122,8 +122,24 @@ class PostPage extends Component {
             return(
 
             <div key={i} onClick={() => {this.removeFromChallenged(follower, i)}}>
-                <img className='userImage' src={follower.picture} />
-                <p>{follower.username}</p>
+                <div className='create-badge-group-header'>
+                <div className='create-post-padding-wrapper'>
+                <div className='create-left-header'>
+                
+                <div className='create-badge-icon'>
+                <img className='create-badge-icon-image' src={follower.picture} alt='content' />
+                </div>  
+                <div className='create-badge-name'>
+                {follower.username}
+                </div>  
+                </div>
+                </div>
+                <div className='create-right-header'>
+                {/* <div className='create-button'>
+                username
+                </div>   */}
+                </div>
+                </div>   
             </div>
             )
         })
@@ -139,8 +155,26 @@ class PostPage extends Component {
     let followers = this.state.followerArray.map((follower, i) => {
             return(
                 <div key={i} onClick={() => {this.addToChallenged(follower, i)}}>
-                    <img className='userImage' src={follower.picture} />
-                    <p>{follower.username}</p>
+                <img className='userImage' src={follower.picture} />
+                <p>{follower.username}</p>
+                <div className='create-badge-group-header'>
+                <div className='create-post-padding-wrapper'>
+                <div className='create-left-header'>
+                
+                <div className='create-badge-icon'>
+                <img className='create-badge-icon-image' src={follower.picture} alt='content' />
+                </div>  
+                <div className='create-badge-name'>
+                {follower.username}
+                </div>  
+                </div>
+                </div>
+                <div className='create-right-header'>
+                {/* <div className='create-button'>
+                username
+                </div>   */}
+                </div>
+                </div>   
                 </div>
             )
         })
@@ -148,7 +182,7 @@ class PostPage extends Component {
             <div>
                 <div className={this.state.badgeCreated ? 'noShow' : 'create-badge-wrapper'}>
                 <div className='create-badge-title'><div className='create-title'>CREATE BADGE
-                <div className='caption-title'>Create a badge and challenge your friends!</div>
+                {/* <div className='caption-title'>Create a badge and challenge your friends!</div> */}
                 </div>
                 </div>
                 <div className='upload-picture' type='file' name='user-image' >
@@ -205,6 +239,15 @@ class PostPage extends Component {
                     <div className='followerRow'>
                         <h1>Challenged</h1>
                             {challenged}
+                </div>
+                <div className='follower-to-invite-container'>
+                <div className='create-badge-title'><div className='create-title'>FOLLOWERS
+                </div>
+                </div>
+                            {followers}
+                </div>
+                    <div className='send-invites-padding'>
+                    <div onClick={this.sendInvites} className='invite-button'>INVITE</div>
                     </div>
                     <div className='followerRow'>
                         <h1>Followers</h1>
