@@ -23,8 +23,9 @@ class Home extends Component {
       }
     render() {
         let results = this.state.results.map(res => {
+          console.log('RESZZZZZZ user id', res.id)
             return <li className="list-group-item" key={res.title}>
-                    <a href={`/profile/id={res.id}`}><img src={res.picture}/>{res.username}</a>
+                    <a href={`/#/profile/${res.id}`}><img src={res.picture}/>{res.username}</a>
                    </li>  
           });
         return (
@@ -44,7 +45,7 @@ class Home extends Component {
             </div>
                   <div className="form-group">
                   <h4>Search</h4>
-                  <input className="form-control" placeholder="Search Term" type="text" onChange={this.search.bind(this)} />
+                  <textarea className="form-control" placeholder="Search Username" type="text" onChange={this.search.bind(this)} />
                   <ul className="list-group">
                     {results}
                   </ul>

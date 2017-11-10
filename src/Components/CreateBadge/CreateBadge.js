@@ -93,8 +93,18 @@ class CreateBadge extends Component {
         
         return (
             <div>
+            <div className='choose-complete-header'>
+                <div className='choose-complete-wrapper'>
+                <Link to='/post' style={{ textDecoration: 'none' }} >
+                <div className='choose-choose-title'>Create Badge</div>
+                </Link> 
+                <div className="title-nav">
+                <div className='choose-complete-title'> Complete Badge</div>
+                </div>
+                </div>
+            </div>
             <div className={this.state.badgeIsChosen ?  'hiddenView' : 'createBadgeBody'}>
-                  Which badge did you complete: {badges}
+                  Which badge did you complete? {badges}
             </div>
             <div className={this.state.badgeIsChosen ? 'createBadgeBody' : 'hiddenView'}>
             Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>

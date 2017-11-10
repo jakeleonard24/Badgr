@@ -147,7 +147,7 @@ app.get('/api/badgegroup/:id', ctrl.getBadgeGroup);
 // =============================================================================
 app.get(`/api/following/:id`, ctrl.getFollowing);
 app.post(`/api/followuser`, ctrl.followUser);
-app.get(`/api/followers/:id`, ctrl.getFollowing);
+app.get(`/api/followers/:id`, ctrl.getFollower);
 app.post('/api/addcomment', (req, res) => {
         let {comment, userId, badgeId} = req.body;
         req.app.get('db').add_comment([comment, userId, badgeId]).then(comments => {

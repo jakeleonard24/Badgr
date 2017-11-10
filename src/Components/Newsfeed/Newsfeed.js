@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Newsfeed.css';
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
-import {getPosts, getCurrentUser, getFollowingFeed} from '../../ducks/reducer';
+import {getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
 import addone from '../../utiliy/addone';
 
 const customStyles = {
@@ -210,7 +210,9 @@ alt='content'
 </div>  
 <div className='badge-name'>
 {post.username}
-</div>  
+</div> 
+<button className='FOLLOW' onClick={ () => {this.props.followUser(this.props.currentUserId, post.uniqueuserid)}}
+        > follow</button>   
 </div>
 </div>
 </div>
@@ -276,6 +278,8 @@ onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
 
     )
 })
+console.log('SOME PROPS!',this.props)
+console.log('SOME STATE!',this.state)
 // =============================================================================
 // Body
 // =============================================================================
@@ -334,4 +338,4 @@ function mapStateToProps( state ) {
     };
   }
   
-  export default connect( mapStateToProps, {getPosts, getCurrentUser, getFollowingFeed})( Newsfeed ); 
+  export default connect( mapStateToProps, {getPosts, getCurrentUser, getFollowingFeed, followUser})( Newsfeed ); 

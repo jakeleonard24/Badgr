@@ -95,9 +95,9 @@ followUser: ( req, res ) => {
   //IF ELSE STATEMENT FOR DUPLICATES SHOULD GO HERE
   ).catch((err) => {console.log(err)})
   },
-getFollowing: ( req, res ) => {
+getFollower: ( req, res ) => {
   let {id} = req.params;
-  req.app.get('db').get_following([id]).then( user => {
+  req.app.get('db').get_followers([id]).then( user => {
           res.status(200).send(user)
   }).catch((err) => {console.log(err)})
 }
