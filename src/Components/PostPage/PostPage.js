@@ -235,7 +235,7 @@ class PostPage extends Component {
                     </div>
                 </div>
                 </div> */}
-                <div className='createBadge'>
+                {/* <div className='createBadge'>
                     <div className='followerRow'>
                         <h1>Challenged</h1>
                             {challenged}
@@ -254,7 +254,7 @@ class PostPage extends Component {
                         {followers}
                     </div>
                     <button onClick={this.sendInvites}>Send Challenges</button>
-                </div>  
+                </div>   */}
 
                 {/* <div className='challenge-followers-wrapper'>
                     <div className='challenge-friends'>Invite your Friends</div>
