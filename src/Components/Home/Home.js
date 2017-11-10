@@ -23,8 +23,9 @@ class Home extends Component {
       }
     render() {
         let results = this.state.results.map(res => {
+          console.log('RESZZZZZZ user id', res.id)
             return <li className="list-group-item" key={res.title}>
-                    <a href={`/profile/id={res.id}`}><img src={res.picture}/>{res.username}</a>
+                    <a href={`/#/profile/${res.id}`}><img src={res.picture}/>{res.username}</a>
                    </li>  
           });
         return (
