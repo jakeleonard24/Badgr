@@ -326,6 +326,10 @@
   }
 }
 
+.cantSeeMe{
+  display: none;
+}
+
 /* <div>
     <div>
     Profile Page

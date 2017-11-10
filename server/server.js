@@ -223,6 +223,13 @@ app.post('/api/origin', (req, res) => {
     }).catch((err) => {console.log(err)})
 })
 
+app.post('/api/updateuser', (req, res) => {
+    let {bio, picture, id} = req.body;
+    req.app.get('db').update_user([bio, picture, id]).then(user => {
+        res.status(200).send(user)
+    }).catch((err) => {console.log(err)})
+})
+
 
 
 const port = 3333;
