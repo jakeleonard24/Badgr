@@ -61,7 +61,7 @@ componentWillReceiveProps(nextProps){
     })
 }
 addLikes(i){
-    this.state.posts[i].likes=this.state.posts[i].likes + {addone};
+    this.state.posts[i].likes=this.state.posts[i].likes + addone();
 
     // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
