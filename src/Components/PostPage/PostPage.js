@@ -89,7 +89,7 @@ class PostPage extends Component {
 
 
         }).then(response => {
-            console.log(response)
+            
              this.setState({badgeId: response.data[0].id})
         })
     } else {
@@ -108,6 +108,9 @@ class PostPage extends Component {
             
              userId: this.props.currentUserId,
              badgeId: this.state.badgeId
+         })
+         axios.post('/api/origin', {
+             originId: this.state.badgeId
          })
     }
 
@@ -167,8 +170,13 @@ class PostPage extends Component {
                 </div>
                 </div>
 
+                <div>
+                       <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
 
-
+                       <div className={this.state.logoView ? 'iconList' : 'noShow'}>       
+                       {logos}
+                       </div>
+                    </div>
 
 
 
@@ -193,7 +201,7 @@ class PostPage extends Component {
                     </div>
                 </div>
                 </div> */}
-                {/* <div className='createBadge'>
+                <div className='createBadge'>
                     <div className='followerRow'>
                         <h1>Challenged</h1>
                             {challenged}
@@ -203,7 +211,7 @@ class PostPage extends Component {
                         {followers}
                     </div>
                     <button onClick={this.sendInvites}>Send Challenges</button>
-                </div>   */}
+                </div>  
 
                 {/* <div className='challenge-followers-wrapper'>
                     <div className='challenge-friends'>Invite your Friends</div>

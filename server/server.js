@@ -163,8 +163,8 @@ app.post('/api/newBadge', (req, res) => {
 })
 
 app.post('/api/complete', (req, res) => {
-    let {creatorId, userId, title, description, content, logo, type} = req.body;
-    req.app.get('db').complete_badge([type, userId, creatorId, logo, title, description, content]).then(badges => {
+    let {creatorId, userId, title, description, content, logo, type, originId} = req.body;
+    req.app.get('db').complete_badge([type, userId, creatorId, logo, title, description, content, originId]).then(badges => {
         res.status(200).send(badges)
     })
 })
@@ -213,6 +213,13 @@ app.get('/api/onebadge/:id', (req, res) => {
     console.log(id)
     req.app.get('db').get_badgegroup([id]).then(badge => {
         res.status(200).send(badge)
+    }).catch((err) => {console.log(err)})
+})
+
+app.post('/api/origin', (req, res) => {
+    let {originId} = req.body;
+    req.app.get('db').update_origin([originId]).then(badges => {
+        res.status(200).send(badges)
     }).catch((err) => {console.log(err)})
 })
 
