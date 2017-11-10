@@ -14,7 +14,7 @@ export default (
     <Switch>
         <Route path="/login" component={Login} />
         <Route exact path="/" component={Home} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile/:id" component={Profile} />
         <Route path="/create" component={CreateBadge} />
         <Route path="/group/:id" component={BadgeGroup} />
         <Route path="/post" component={PostPage} />

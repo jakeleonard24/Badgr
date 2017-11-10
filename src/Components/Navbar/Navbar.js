@@ -1,8 +1,9 @@
 import {Link} from 'react-router-dom';
 import React, { Component } from 'react';
 import './Navbar.css';
+import {connect} from 'react-redux';
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   render() {
     return (
 <div> 
@@ -26,7 +27,7 @@ src='https://s1.postimg.org/9n2brz2owf/home_Asset_6_3x.png' alt='ALPHA' />
 <img className='notifications-icon' src='https://s1.postimg.org/36umzp5ca7/mail_Asset_4_3x.png' alt='Notify Me Baby' />
 </div></Link>
 {/* <Link to='/login' style={{ textDecoration: 'none' }} > <div className="title-nav">Login</div></Link> */}
-<Link to='/profile' style={{ textDecoration: 'none' }} ><div className="title-nav">
+<Link to={`/profile/${this.props.currentUserId}`} style={{ textDecoration: 'none' }} ><div onClick={() => {window.location.reload()}} className="title-nav">
 <img className='profile-icon' src='https://s1.postimg.org/444r03ygwv/Asset_2_3x.png' alt='profile' />
 </div></Link>
 </div>
@@ -64,3 +65,16 @@ src='https://s1.postimg.org/8hkxcmvqy7/badger_googlefix.png' alt='ALPHA' />
     )
   }
 }
+
+function mapStateToProps( state ) {
+  const {currentUserId } = state;
+
+  return {
+    
+    currentUserId,
+    
+    
+  };
+}
+
+export default connect( mapStateToProps)( Navbar ); 
