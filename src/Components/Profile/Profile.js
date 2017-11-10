@@ -95,9 +95,26 @@ let following = this.props.currentUserFollowing.map((user, i) => {
     <div className='profile-left'></div>
     <div className='profile-right'></div>
     <div className='profile-info'>
+        <div className='follow-profile-wrapper'>
+        <div className='follow-wrapper'>
+            <div className='follow-number'>{this.props.currentUserFollowing.length}</div>
         <div className='follow-header'>FOLLOWING</div>
-    <img className='main-profile-icon' src='http://data.whicdn.com/images/163667435/large.jpg' alt='icon' />
+        </div>
+    <img className='main-profile-icon' src={this.state.currentUser.picture} alt='icon' />
+        <div className='follow-wrapper'>
+        <div className='follow-number'>{this.props.currentUserFollowers.length}</div>
         <div className='follow-header'>FOLLOWERS</div>
+        </div>
+        </div>
+        <div className='title-username-profile-wrapper'>
+            <div className='username'>{this.state.currentUser.username}</div>
+            <div className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, harum!</div>
+        </div>
+        <div className='follow-padding'>
+        <div className='follow-button'>FOLLOW</div>
+        {/* <div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
+        </div> */}
+        </div>
     </div>
     <div className='profile-showcase'><div className='showcase-text'>SHOWCASE</div>
     <div className='showcase-flex'>
@@ -115,7 +132,6 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         <img className='filter-badge-icon' src='https://s1.postimg.org/7qe1b508wv/newsfeed_Asset_2_3x.png' />
         <img className='filter-badge-icon' src='https://s1.postimg.org/56kycnp04v/groups_Asset_4_3x.png' alt='icon' />
         </div>
-        {/* { allGroups } */}
     </div>
     <div className='profile-content'>{allGroups}</div>
     <div className='profile-footer'></div>

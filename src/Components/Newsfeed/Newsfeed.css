@@ -56,14 +56,16 @@ grid-gap: 1em;
 }
 
 .badge-image {
+    object-fit: contain;
+    object-position:0 0;
     max-width: 600px;
-    height: 600px;
+    width: 100%;
 }
 
 .badge-content {
     object-fit: scale-down;
     max-width: 600px;
-    height: 600px;
+    /* max-height: 100%; */
 }
 
 .right-header {
@@ -190,9 +192,7 @@ div.like-number {
         background-color: #FFFFFF;
     }
     .badge-content {
-        object-fit: scale-down;
-        max-width: 375px;
-        height: 375px;
+
     }
     .badge-name {
         font-weight: 10px;
@@ -201,8 +201,10 @@ div.like-number {
     }
     
     .badge-image {
-        max-width: 375px;
-        height: 375px;
+        object-fit: contain;
+        object-position:0 0;
+        max-width: 600px;
+        width: 100%;
     }
     .badge-post-interaction {
         font-family: 'Open Sans', sans-serif;
@@ -267,10 +269,10 @@ div.like-number {
 /* Modal */
 /* ========================================================================== */
 
-.imageSize {
+/* .imageSize {
     height: 375px;
     width: 375px;
-}
+} */
 .comment-wrapper {
     display: flex;
 }

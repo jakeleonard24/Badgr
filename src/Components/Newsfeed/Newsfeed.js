@@ -167,23 +167,25 @@ let posts = this.props.followingFeed.map((post, i) => {
     return(
 
 <div key={i} className='badge-post-wrapper'>
+<Link to={`/group/${post.origin_id}`} >
 <div className='badge-group-header'>
 <div className='post-padding-wrapper'>
 <div className='left-header'>
-<Link to={`/group/${post.id}`} >
+
 <div className='badge-icon'>
 <img className='badge-icon-image' src={post.logo} alt='content' />
 </div>  
-</Link>
 <div className='badge-name'>
 {post.title}
 </div>  
+
 </div>
 <div className='right-header'>
 
 </div>
 </div>
 </div>
+</Link>
 
 <div className='badge-content'>
 <img 
