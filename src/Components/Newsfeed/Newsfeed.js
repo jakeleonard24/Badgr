@@ -197,6 +197,7 @@ onClick={()=>{this.addLikes(i)}}
 </div>
 
 <div className='badge-footer-wrapper'>
+<Link to={`/profile/${post.uniqueuserid}`}>
 <div className='badge-post-interaction'>
 <div className='post-padding-wrapper'>
 <div className='left-header'>
@@ -213,6 +214,7 @@ alt='content'
 </div>
 </div>
 </div>
+</Link>
 <div className='badge-caption'>
 <div className='post-padding-wrapper'>
 <div className='caption'>

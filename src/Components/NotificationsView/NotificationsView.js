@@ -51,20 +51,35 @@ class NotificationsView extends Component {
      let invites = this.props.userInvites.map((invite, i)=> {
             return(
                 <div key={i}>
-                    <p>{invite.username} challenged you to complete <img className='notificationImage' src={invite.logo} /> {invite.title}</p>
-                    <button onClick={() => {this.acceptChallenge(this.props.currentUserId, invite.badge_id)}}>Accept</button><button onClick={() => {this.declineChallenge(this.props.currentUserId, invite.badge_id)}}>Decline</button>
+                <div className='notify-badge-group-header'>
+                <div className='notify-post-padding-wrapper'>
+                <div className='notify-left-header'>
+                
+                <div className='notify-badge-icon'>
+                <img className='notify-badge-icon-image' src={invite.logo} alt='content' />
+                </div>  
+                <div className='notify-badge-name'>
+                {invite.title}
+                {/* {invite.username} */}
+                </div>  
+                </div>
+                </div>
+                </div>   
+                <div className='notify-right-header'>
+                <div onClick={() => {this.acceptChallenge(this.props.currentUserId, invite.badge_id)}} className='notify-button-accept'>
+                Accept
+                </div>  
+                <div onClick={() => {this.declineChallenge(this.props.currentUserId, invite.badge_id)}} className='notify-button-decline'>
+                Decline
+                </div>  
+                </div>
+                    {/* <p>{invite.username} challenged you to complete <img className='notificationImage' src={invite.logo} /> {invite.title}</p>
+                    <button onClick={() => {this.acceptChallenge(this.props.currentUserId, invite.badge_id)}}>Accept</button><button onClick={() => {this.declineChallenge(this.props.currentUserId, invite.badge_id)}}>Decline</button> */}
                 </div>
             )
         })
         return (
             <div>
-                Notifications Page hi
-
-                <Link to='/'>
-                <button>Home</button>
-                
-                </Link>
-
                 {invites} 
             </div>
         );

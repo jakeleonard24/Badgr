@@ -21,7 +21,7 @@ this.getFollowers = this.getFollowers.bind(this);
 componentDidMount(){
     this.props.getCurrentUser()
     
-    axios.get('/api/user').then((response)=>{
+    axios.get(`/api/singleuser/${this.props.match.params.id}`).then((response)=>{
         this.setState({
             currentUser:response.data
             
@@ -53,7 +53,8 @@ getUser(id){
 
 
 render() {
-    console.log('HUNGRY AF', this.props.allBadgeGroups);
+    console.log('persons current badge groups', this.props.allBadgeGroups);
+    console.log('current profiles props', this.props)
 let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
         return(
         <div key={i}>

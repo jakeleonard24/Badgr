@@ -23,14 +23,8 @@ class BadgeGroup extends Component {
         return (
             <div>
             <div>
-                Badge Group Page
-
-                <Link to='/home'>
-                <button>Home</button>
-                </Link>
-
-                <div><img src={this.props.singleBadge[0] ? this.props.singleBadge[0].logo : ''} /></div>
-                <div>{this.props.singleBadge[0] ? this.props.singleBadge[0].title : ''}</div>
+                {/* <div><img src={this.props.singleBadge[0] ? this.props.singleBadge[0].logo : ''} /></div>
+                <div>{this.props.singleBadge[0] ? this.props.singleBadge[0].title : ''}</div> */}
                 
             </div>
     <div className='bg-profile-wrapper'>

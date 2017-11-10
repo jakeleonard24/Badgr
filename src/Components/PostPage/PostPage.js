@@ -155,8 +155,8 @@ class PostPage extends Component {
     let followers = this.state.followerArray.map((follower, i) => {
             return(
                 <div key={i} onClick={() => {this.addToChallenged(follower, i)}}>
-                <img className='userImage' src={follower.picture} />
-                <p>{follower.username}</p>
+                {/* <img className='userImage' src={follower.picture} />
+                <p>{follower.username}</p> */}
                 <div className='create-badge-group-header'>
                 <div className='create-post-padding-wrapper'>
                 <div className='create-left-header'>
@@ -235,7 +235,7 @@ class PostPage extends Component {
                     </div>
                 </div>
                 </div> */}
-                <div className='createBadge'>
+                {/* <div className='createBadge'>
                     <div className='followerRow'>
                         <h1>Challenged</h1>
                             {challenged}
@@ -254,7 +254,7 @@ class PostPage extends Component {
                         {followers}
                     </div>
                     <button onClick={this.sendInvites}>Send Challenges</button>
-                </div>  
+                </div>   */}
 
                 {/* <div className='challenge-followers-wrapper'>
                     <div className='challenge-friends'>Invite your Friends</div>
