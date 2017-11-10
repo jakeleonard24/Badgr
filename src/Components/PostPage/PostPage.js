@@ -170,9 +170,6 @@ class PostPage extends Component {
                 </div>
                 </div>
                 <div className='create-right-header'>
-                {/* <div className='create-button'>
-                username
-                </div>   */}
                 </div>
                 </div>   
                 </div>
@@ -190,9 +187,6 @@ class PostPage extends Component {
                         </div>
                     </div>
                 <div className={this.state.badgeCreated ? 'noShow' : 'create-badge-wrapper'}>
-                {/* <div className='create-badge-title'><div className='create-title'>CREATE BADGE
-                </div>
-                </div> */}
                 <div className='upload-picture' type='file' name='user-image' >
                 <img  className='upload-badge-image' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Circle-icons-trophy.svg/1024px-Circle-icons-trophy.svg.png' />
                        <div>
@@ -218,63 +212,25 @@ class PostPage extends Component {
                 </div>
                 </div>
 
-
-
-
-
-                {/* <div className={this.state.badgeCreated ? 'noShow' : 'createBadge'}>
-                    <h1>Create A Badge</h1>
-                    Title: <input onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} placeholder='Name your challenge' />
-                    Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>
-                    <div className='editProfileImageBox'>
-                    <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
-                    <div className='fileInput'>
-                    <input  type='file' name='userImage' onChange={this.handleFileUpload} />
-                    </div>
-                    <div>
-                       <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
-                       <button onClick={() => {this.createBadge()}}>Create Badge </button>
-
-
-                       <div className={this.state.logoView ? 'iconList' : 'noShow'}>       
-                       {logos}
-                       </div>
-                    </div>
-                </div>
-                </div> */}
-                {/* <div className='createBadge'>
+                <div className={this.state.badgeCreated ? 'createBadge' : 'noShow'}>
                     <div className='followerRow'>
-                        <h1>Challenged</h1>
-                            {challenged}
+                        {/* <h1>Challenged</h1>
+                            {challenged} */}
                 </div>
                 <div className='follower-to-invite-container'>
                 <div className='create-badge-title'><div className='create-title'>FOLLOWERS
                 </div>
                 </div>
-                            {followers}
+                 {followers}
+                <div className='create-badge-title'><div className='create-title'>CHALLENGED
                 </div>
-                    <div className='send-invites-padding'>
-                    <div onClick={this.sendInvites} className='invite-button'>INVITE</div>
-                    </div>
-                    <div className='followerRow'>
-                        <h1>Followers</h1>
-                        {followers}
-                    </div>
-                    <button onClick={this.sendInvites}>Send Challenges</button>
-                </div>   */}
-
-                {/* <div className='challenge-followers-wrapper'>
-                    <div className='challenge-friends'>Invite your Friends</div>
-                    <div>
-                    <div className='user-invite-container'>
-                    <div className='user-invite-wrapper'>
-                    <img className='user-image' src='http://37.media.tumblr.com/218d84f98561ce2907102c9706b266c5/tumblr_n8xww4OmDV1rcdaero1_500.jpg' />
-                    <div className='user-invite-username'> <div className='user-name-text'>Elizabeth</div></div>
-                    <div className='user-invite-username'> </div>
-                    </div>
-                    </div>
-                    </div>
-                </div> */}
+                </div>
+                </div>
+      
+              
+                {challenged}
+                        <div onClick={this.sendInvites} className='invite-button-followers'>INVITE</div>
+                </div>  
             </div>
         );
     }

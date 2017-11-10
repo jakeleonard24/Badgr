@@ -202,8 +202,6 @@ onClick={()=>{this.addLikes(i)}}
 <div className='post-padding-wrapper'>
 <div className='left-header'>
 <div className='badge-icon'>
-<button className='follow' onClick={ () => {this.props.followUser(this.props.currentUserId, post.uniqueuserid)}}
-        > follow</button>  
 <img 
 className='badge-icon-image' 
 src={post.picture} 
@@ -212,7 +210,9 @@ alt='content'
 </div>  
 <div className='badge-name'>
 {post.username}
-</div>  
+</div> 
+<button className='FOLLOW' onClick={ () => {this.props.followUser(this.props.currentUserId, post.uniqueuserid)}}
+        > follow</button>   
 </div>
 </div>
 </div>
