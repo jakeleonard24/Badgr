@@ -179,16 +179,30 @@ class PostPage extends Component {
             )
         })
         return (
-            <div>
+                <div>
+                    <div className='create-complete-header'>
+                        <div className='create-complete-wrapper'>
+                        <div className='create-create-title'>Create Badge</div>
+                        <div className="title-nav">
+                        <Link to='/create' style={{ textDecoration: 'none' }} >
+                        <div className='create-complete-title'> Complete Badge</div>
+                        </Link> </div>
+                        </div>
+                    </div>
                 <div className={this.state.badgeCreated ? 'noShow' : 'create-badge-wrapper'}>
-                <div className='create-badge-title'><div className='create-title'>CREATE BADGE
-                {/* <div className='caption-title'>Create a badge and challenge your friends!</div> */}
+                {/* <div className='create-badge-title'><div className='create-title'>CREATE BADGE
                 </div>
-                </div>
+                </div> */}
                 <div className='upload-picture' type='file' name='user-image' >
-                <img  className='edit-badge-image' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
+                <img  className='upload-badge-image' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Circle-icons-trophy.svg/1024px-Circle-icons-trophy.svg.png' />
+                       <div>
+                <div className='upload-logo' onClick={() => {this.setState({logoView: !this.state.logoView})}}><div className='view-logo-text'>VIEW LOGOS</div></div>
+
+                <div className={this.state.logoView ? 'iconList' : 'noShow'}>       
+                {logos}
+                </div>
+                    </div>
                 <div className='file-input' >
-                <input className='file-choose' type='file' name='user-image' onChange={this.handleFileUpload} />
                 </div>
                 </div>
                 <div className='title-description'>
@@ -196,7 +210,7 @@ class PostPage extends Component {
                         <input  value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} className='create-title-badge' type="text" placeholder='Title'/>
                     </div>
                     <div className='create-description-wrapper'>
-                        <input onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} className='create-description-badge' type="text" placeholder='Description' rows='10'/>
+                        <textarea onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} className='create-description-badge' type="text" placeholder='Description' rows='10'/>
                     </div>
                     <div className='create-badge-button-padding'>
                     <div className='create-badge-button' onClick={() => {this.createBadge()}}>CREATE BADGE </div>
@@ -204,13 +218,6 @@ class PostPage extends Component {
                 </div>
                 </div>
 
-                {/* <div>
-                       <button onClick={() => {this.setState({logoView: !this.state.logoView})}}>View Logos</button>
-
-                       <div className={this.state.logoView ? 'iconList' : 'noShow'}>       
-                       {logos}
-                       </div>
-                    </div> */}
 
 
 
