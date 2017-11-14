@@ -45,7 +45,7 @@ class Home extends Component {
             </div>
                   <div className="form-group">
                   <h4>Search</h4>
-                  <textarea className="form-control" placeholder="Search Username" type="text" onChange={this.search.bind(this)} />
+                  <input className="form-control" placeholder="Search Username" type="text" onChange={this.search.bind(this)} />
                   <ul className="list-group">
                     {results}
                   </ul>
