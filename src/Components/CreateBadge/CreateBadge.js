@@ -113,7 +113,9 @@ class CreateBadge extends Component {
             <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
             <div className='fileInput'>
             <input  type='file' name='userImage' onChange={this.handleFileUpload} />
+            <Link to='/'>
             <button onClick={this.createBadge}>Post Completed Badge</button>
+            </Link>
             </div>
             </div>
             </div>

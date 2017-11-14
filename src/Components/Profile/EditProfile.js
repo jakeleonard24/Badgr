@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class EditProfile extends Component {
     constructor(){
@@ -76,8 +77,9 @@ updateUser(){
 
             Change Profile Picture:
             <input  type='file' name='userImage' onChange={this.handleFileUpload} />
-
+            <Link to={`/profile/${this.props.currentUserId}`}>
             <button onClick={() => {this.updateUser()}}>Update User BOI</button>
+            </Link>
             </div>
         );
     }

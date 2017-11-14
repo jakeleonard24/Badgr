@@ -152,21 +152,21 @@ app.post('/api/addcomment', (req, res) => {
         let {comment, userId, badgeId} = req.body;
         req.app.get('db').add_comment([comment, userId, badgeId]).then(comments => {
                 res.status(200).json(req.body)
-        })
+        }).catch((err) => {console.log(err)})
 })
 
 app.post('/api/newBadge', (req, res) => {
     let {creatorId, title, description, content, logo, type} = req.body;
     req.app.get('db').create_badge([type, creatorId, logo, title, description, content]).then(badges => {
         res.status(200).send(badges)
-    })
+    }).catch((err) => {console.log(err)})
 })
 
 app.post('/api/complete', (req, res) => {
     let {creatorId, userId, title, description, content, logo, type, originId} = req.body;
     req.app.get('db').complete_badge([type, userId, creatorId, logo, title, description, content, originId]).then(badges => {
         res.status(200).send(badges)
-    })
+    }).catch((err) => {console.log(err)})
 })
 
 app.post('/api/invites', (req, res) => {
@@ -174,7 +174,7 @@ app.post('/api/invites', (req, res) => {
     let {userId, badgeId} = req.body;
     req.app.get('db').add_invites([userId, badgeId]).then(invites => {
         res.status(200).send(invites)
-    })
+    }).catch((err) => {console.log(err)})
 })
 
 // =============================================================================
