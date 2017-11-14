@@ -119,18 +119,15 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             <div className='description'>{this.state.currentUser.bio}</div>
         </div>
         <div className='follow-padding'>
-<<<<<<< HEAD
         <div className='follow-button'>FOLLOW</div>
         <Link to={`/edit/${this.props.currentUserId}`}>
         <div  className={this.props.currentUserId == this.props.match.params.id ?'edit-button' : 'cantSeeMe'}>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
         </div>
         </Link>
-=======
         <div className='follow-button' onClick={ () => {this.props.followUser(this.props.currentUserId, this.props.match.params.id)}}
        >FOLLOW</div>
         {/* <div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
         </div> */}
->>>>>>> f02fad6eda0ab2feb2f2dff249fff7faba1d55b4
         </div>
     </div>
     <div className='profile-showcase'><div className='showcase-text'>SHOWCASE</div>
