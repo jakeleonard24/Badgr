@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Newsfeed from '../Newsfeed/Newsfeed'
 import {getPosts, getCurrentUser, getFollowingFeed, getSingleBadge} from '../../ducks/reducer';
 import './BadgeGroup.css'
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class BadgeGroup extends Component {
     constructor(){
