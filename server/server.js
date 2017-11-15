@@ -231,6 +231,13 @@ app.post('/api/updateuser', (req, res) => {
     }).catch((err) => {console.log(err)})
 })
 
+app.get('/api/userposts/:id', (req, res) => {
+    let {id} = req.params;
+    req.app.get('db').get_user_posts(id).then(posts => {
+        res.status(200).send(posts)
+    }).catch((err) => {console.log(err)})
+})
+
 
 
 const port = 3333;
