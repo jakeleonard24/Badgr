@@ -136,6 +136,7 @@ app.post('/api/addlike', ctrl.addLikes);
 app.post('/api/tracklikes', ctrl.addLiked);
 app.get('/api/tracklikes', ctrl.getTrackedLikes)
 app.get('/api/getfollowingfeed/:id', ctrl.getFollowingFeed);
+app.get('/api/getnewbadgegroupfeed/:id', ctrl.getNewBadgeGroupFeed);
 app.get('/api/searchuser', ctrl.searchuser);
 // =============================================================================
 // Badge Endpoints 

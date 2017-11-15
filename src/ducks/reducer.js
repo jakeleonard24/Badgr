@@ -10,7 +10,8 @@ const initialState = {
     followingFeed: [],
     allBadgeGroups: [],
     userInvites: [],
-    singleBadge: {}
+    singleBadge: {},
+    badgePost: []
 
 }
 // =============================================================================
@@ -26,6 +27,7 @@ const GET_FOLLOWING_FEED = "GET_FOLLOWING_FEED";
 const GET_ALL_BADGES_USER = "GET_ALL_BADGES_USER";
 const GET_USER_INVITES = "GET_USER_INVITES";
 const GET_SINGLE_BADGE = "GET_SINGLE_BADGE";
+const GET_NEW_BADGE_GROUP_FEED = "GET_NEW_BADGE_GROUP_FEED";
 // =============================================================================
 // Post Functions 
 // =============================================================================
@@ -58,6 +60,16 @@ export function getFollowingFeed(id){
     return{
         type: GET_FOLLOWING_FEED,
         payload: getFeed
+    }
+}
+export function getNewBadgeGroupFeed(id){
+    const badgeGroupFeed = axios.get(`/api/getnewbadgegroupfeed/${id}`).then(response => {
+        console.log('HI DUDE', response.data);
+        return response.data
+    })
+    return{
+        type: GET_NEW_BADGE_GROUP_FEED,
+        payload: badgeGroupFeed
     }
 }
 export function getSingleUser(id){
@@ -174,9 +186,12 @@ console.log('ALL BADGE GROUPS:',action.payload);
         return Object.assign({}, state, {currentUserFollowing: action.payload})
     // case GET_FOLLOWING + "_FULFILLED":
     //     return Object.assign({}, state, {followUser: action.payload})
+    case GET_NEW_BADGE_GROUP_FEED + "_FULFILLED":
+        return Object.assign({}, state, {badgePost: action.payload})
+// case GET_FOLLOWING + "_FULFILLED":
+//     return Object.assign({}, state, {followUser: action.payload})
     case GET_FOLLOWERS + "_FULFILLED":
         return Object.assign({}, state, {currentUserFollowers: action.payload})
-
     case GET_SINGLE_BADGE + '_FULFILLED':
         return Object.assign({}, state, {singleBadge: action.payload})
         

@@ -7,14 +7,16 @@ import PostPage from './Components/PostPage/PostPage';
 import NotificationsView from './Components/NotificationsView/NotificationsView';
 import EditProfile from './Components/Profile/EditProfile'
 // import Navbar from './Components/Navbar/Navbar';
-import Home from './Components/Home/Home'
-import BadgeGroup from './Components/BadgeGroup/BadgeGroup'
+import Home from './Components/Home/Home';
+import BadgeGroup from './Components/BadgeGroup/BadgeGroup';
+import Search from './Components/Search/Search';
 
 
 export default (
     <Switch>
         <Route path="/login" component={Login} />
         <Route exact path="/" component={Home} />
+        <Route exact path="/search" component={Search} />
         <Route path="/profile/:id" component={Profile} />
         <Route path="/create" component={CreateBadge} />
         <Route path="/group/:id" component={BadgeGroup} />
