@@ -55,6 +55,12 @@ getFollowingFeed: (req, res) => {
           res.status(200).send(feed);
   }).catch((err)=>{console.log(err)})
 },
+getNewBadgeGroupFeed: (req, res) => {
+  let {id} = req.params;
+  req.app.get('db').new_badge_group([id]).then(feed =>{
+          res.status(200).send(feed);
+  }).catch((err)=>{console.log(err)})
+},
 getAllUserBadgeGroups: (req, res) => {
   let {id} = req.params;
   req.app.get('db').all_badges_user([id]).then(badges =>{

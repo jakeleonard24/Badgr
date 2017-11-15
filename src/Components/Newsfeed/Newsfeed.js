@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Newsfeed.css';
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
-import {getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
+import { getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
 import addone from '../../utiliy/addone';
 
 const customStyles = {
@@ -36,6 +36,7 @@ constructor(props){
         likes:[],
         followingFeed: this.props.followingFeed,
         display:'true',
+        badgePost: this.props.badgePost,
     }
     
     this.closeModal = this.closeModal.bind(this);
@@ -53,10 +54,14 @@ this.props.getCurrentUser().then( () => {
 this.props.getFollowingFeed(this.props.currentUserId)
     })
 }
+
+
+
 componentWillReceiveProps(nextProps){
     this.setState({
         currentUserId: nextProps.currentUserId,
         posts: nextProps.followingFeed,
+        badgePost: nextProps.badgePost,
         
     })
 }
@@ -154,8 +159,8 @@ let comments = this.state.comments.map((comment, i) => {
 // =============================================================================
 // Functions and stuff.
 // =============================================================================
-console.log(this.props.followingFeed);
 let posts = this.props.followingFeed.map((post, i) => {
+    if(post.type === 'complete') {
     var likeButtonType=null
     if(this.state.likes.userid==this.props.currentUserId){
       likeButtonType= <button className="like-button"  onClick={()=>{this.addLikes(i)}}>Unlike</button>
@@ -248,44 +253,89 @@ onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
 </div>
 </div>
 </div>
-
-
-
-        
-/* <div key={i}>
-<div className='badge-wrapper'>
-<div className='badge-header'>
-</div>
-<div className='badge-content'>
-<img className='post-image' src={post.content} alt='hi'/>
-</div>
-<div className='content-header'>
-<img className='badge-logo' src={post.logo} alt='hi'/>
-<div className='temp'>{post.title}</div>
-<div className='temp'>{post.description}</div>
-</div>
-<div className='like-comment'>
-{likeButtonType} 
-<button className="like-button" onClick={()=>{this.addLikes(i)}}>Unlike</button> 
-<button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button>  
-<div className="like">{this.state.posts[i].likes}</div> 
-<button className="like-button" onClick={()=>{this.addLikes(i)}}>Like</button> 
-<div className="like">{this.props.followingFeed[i].likes}</div>
-<button className="comment-button" onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}>Add Comment</button>
-</div>
-</div>
-</div> */
-
     )
+}  if(post.type === 'create') {
+    return (
+        <div>
+         <div className='badge-group-badge-group-header'>
+                <div className='badge-group-post-padding-wrapper'>
+                <div className='badge-group-left-header'>
+                
+                <div className='badge-group-badge-icon'>
+                <img className='badge-group-badge-icon-image' src={post.logo} alt='content' />
+                </div>  
+                <div className='badge-group-badge-name'>
+                {post.title}
+                {/* {invite.username} */}
+                </div>  
+                </div>
+                </div>
+                </div>   
+                
+                </div>
+                
+        // <div key={i} className='badge-post-wrapper'>
+        // <Link to={`/group/${post.origin_id}`} >
+        // <div className='badge-group-header'>
+        // <div className='post-padding-wrapper'>
+        // <div className='left-header'>
+        
+        // <div className='badge-icon'>
+        // <img className='badge-icon-image' src={post.logo} alt='content' />
+        // </div>  
+        // <div className='badge-name'>
+        // {post.title}
+        // </div>  
+        
+        // </div>
+        // <div className='right-header'>
+        
+        // </div>
+        // </div>
+        // </div>
+        // </Link>
+        
+        // <div className='badge-content'>
+        // </div>
+        
+        // <div className='badge-footer-wrapper'>
+        // {/* <Link to={`/profile/${post.uniqueuserid}`}> */}
+        // <div className='badge-post-interaction'>
+        // <div className='post-padding-wrapper'>
+        // <div className='left-header'>
+        // <div className='badge-icon'>
+        // {/* <img 
+        // className='badge-icon-image' 
+        // src={post.picture} 
+        // alt='content' 
+        // /> */}
+        // </div>   
+        // </div>
+        // </div>
+        // </div>
+        // {/* </Link> */}
+        // <div className='badge-caption'>
+        // <div className='post-padding-wrapper'>
+        // <div className='caption'>
+        // {post.description}
+        // </div>
+        // </div>
+        // </div>
+        // <div className='divider'></div>
+        // </div>
+        // </div>
+
+  
+    )
+}
+
 })
-console.log('SOME PROPS!',this.props)
-console.log('SOME STATE!',this.state)
+
 // =============================================================================
 // Body
 // =============================================================================
         return (
 <div className='news-feed-wrapper'>
-
 
 {posts}
 <Modal isOpen={this.state.modalIsOpen}
@@ -327,7 +377,7 @@ contentLabel="Example Modal">
 }
 
 function mapStateToProps( state ) {
-    const { posts, currentUserId, currentUserFollowing, currentUserFollowers, followingFeed } = state;
+    const { posts, currentUserId, currentUserFollowing, currentUserFollowers, followingFeed, badgePost } = state;
   
     return {
       posts,
@@ -335,7 +385,8 @@ function mapStateToProps( state ) {
       currentUserFollowing,
       currentUserFollowers,
       followingFeed,
+      badgePost,
     };
   }
   
-  export default connect( mapStateToProps, {getPosts, getCurrentUser, getFollowingFeed, followUser})( Newsfeed ); 
+  export default connect( mapStateToProps, { getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser})( Newsfeed ); 

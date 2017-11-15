@@ -194,12 +194,6 @@ input {
     padding-right: 0.4em;
     display: inline-block; */
 }
-input::placeholder {
-    color: #D0D0D0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-}
 textarea::placeholder {
     color: #D0D0D0;
     font-family: 'Open Sans', sans-serif;

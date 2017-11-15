@@ -16,6 +16,9 @@ class Navbar extends Component {
 src='https://s1.postimg.org/9n2brz2owf/home_Asset_6_3x.png' alt='ALPHA' />
 </Link>
 </div>
+<Link to='/search' style={{ textDecoration: 'none' }} ><div className="title-nav">
+<img className='profile-icon' src='https://s17.postimg.org/9wvuqfb5b/Asset_1_3x.png' alt='create-badge' />
+</div></Link>
 <Link to='/post' style={{ textDecoration: 'none' }} ><div className="title-nav">
 <img className='profile-icon' src='https://s1.postimg.org/8ozuzr6qof/nav_Asset_2_3x.png' alt='create-badge' />
 </div></Link>

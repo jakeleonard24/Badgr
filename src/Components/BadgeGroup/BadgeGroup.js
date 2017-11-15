@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getPosts, getCurrentUser, getFollowingFeed, getSingleBadge} from '../../ducks/reducer';
+import { getPosts, getCurrentUser, getFollowingFeed, getSingleBadge} from '../../ducks/reducer';
 
 import './BadgeGroup.css'
 // import {Link} from 'react-router-dom';
@@ -79,4 +79,4 @@ function mapStateToProps( state ) {
     };
   }
   
-  export default connect( mapStateToProps, {getPosts, getCurrentUser, getFollowingFeed, getSingleBadge})( BadgeGroup ); 
+  export default connect( mapStateToProps, { getPosts, getCurrentUser, getFollowingFeed, getSingleBadge})( BadgeGroup ); 
