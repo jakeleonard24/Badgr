@@ -11,7 +11,8 @@ const initialState = {
     allBadgeGroups: [],
     userInvites: [],
     singleBadge: {},
-    badgePost: []
+    badgePost: [],
+    badgeJoin: []
 
 }
 // =============================================================================
@@ -28,6 +29,7 @@ const GET_ALL_BADGES_USER = "GET_ALL_BADGES_USER";
 const GET_USER_INVITES = "GET_USER_INVITES";
 const GET_SINGLE_BADGE = "GET_SINGLE_BADGE";
 const GET_NEW_BADGE_GROUP_FEED = "GET_NEW_BADGE_GROUP_FEED";
+const JOIN_BADGE_GROUP = "JOIN_BADGE_GROUP";
 // =============================================================================
 // Post Functions 
 // =============================================================================
@@ -134,6 +136,16 @@ export function getSingleBadge(id){
     }
 }
 
+export function joinBadgeGroup(currentId, otherId){
+    let join = axios.post('/api/group').then(response => {
+        return response.data
+    })
+    return{
+        type: JOIN_BADGE_GROUP,
+        payload: join
+    }
+}
+
 // =============================================================================
 // invites
 // ============================================================================
@@ -161,6 +173,8 @@ switch (action.type) {
 case GET_ALL_BADGES_USER + "_FULFILLED":
 console.log('ALL BADGE GROUPS:',action.payload);
     return Object.assign({}, state, {allBadgeGroups: action.payload}) 
+case JOIN_BADGE_GROUP + "_FULFILLED":
+        return Object.assign({}, state, {badgeJoin: action.payload}) 
 // =============================================================================
 // Post Reducers 
 // =============================================================================

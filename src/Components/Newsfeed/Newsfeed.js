@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Newsfeed.css';
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
-import { getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
+import { joinBadgeGroup, getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
 import addone from '../../utiliy/addone';
 
 const customStyles = {
@@ -167,7 +167,6 @@ let posts = this.props.followingFeed.map((post, i) => {
       console.log("unlike",this.state.likes.userid, this.props.currentUserId)
     } else {
         likeButtonType=< button className="like-button" style={buttonDisplay} onClick={()=>{this.addLikes(i)}}>Like</button>
-      console.log("like",this.state.likes.userid, this.props.currentUserId)
     }
     return(
 
@@ -203,23 +202,27 @@ onClick={()=>{this.addLikes(i)}}
 
 <div className='badge-footer-wrapper'>
 <Link to={`/profile/${post.uniqueuserid}`}>
-<div className='badge-post-interaction'>
-<div className='post-padding-wrapper'>
-<div className='left-header'>
-<div className='badge-icon'>
-<img 
-className='badge-icon-image' 
-src={post.picture} 
-alt='content' 
-/>
+<div key={post.title}>
+<div className='newsfeed-user-header'>
+<div className='newsfeed-wrapper'>
+<div className='newsfeed-left-header'>
+
+<div className='newsfeed-user-icon'>
+<a href={`/#/profile/${post.id}`}><img className='newsfeed-image' src={post.picture} alt='content' /></a>
 </div>  
-<div className='badge-name'>
+<div className='newsfeed-name'>
 {post.username}
-</div> 
-<button className='FOLLOW' onClick={ () => {this.props.followUser(this.props.currentUserId, post.uniqueuserid)}}
-        > follow</button>   
+</div>  
 </div>
 </div>
+<div className='newsfeed-right-header'>
+<div className='newsfeed-follow-padding'>
+<div onClick={ () => {this.props.followUser(this.props.currentUserId, post.id)}} className='newsfeed-follow-button-head' >
+    Follow
+</div>
+</div>
+</div>
+</div>   
 </div>
 </Link>
 <div className='badge-caption'>
@@ -254,9 +257,16 @@ onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
 </div>
 </div>
     )
-}  if(post.type === 'create') {
+}  
+if(post.type === 'create') {
     return (
         <div>
+                <div className='creator-container'>  
+
+                <div className='creator-container-padding'>
+                {post.username} has created a badge
+                </div>
+                </div>
          <div className='badge-group-badge-group-header'>
                 <div className='badge-group-post-padding-wrapper'>
                 <div className='badge-group-left-header'>
@@ -270,62 +280,21 @@ onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
                 </div>  
                 </div>
                 </div>
-                </div>   
-                
+                <div className='group-right-header'>
+                <div className='group-join-padding'>
+                <div onClick={ () => {this.props.joinBadgeGroup(this.props.currentUserId, post.uniquebadgeid)}} className='group-join-button-head' >
+                Join
                 </div>
-                
-        // <div key={i} className='badge-post-wrapper'>
-        // <Link to={`/group/${post.origin_id}`} >
-        // <div className='badge-group-header'>
-        // <div className='post-padding-wrapper'>
-        // <div className='left-header'>
-        
-        // <div className='badge-icon'>
-        // <img className='badge-icon-image' src={post.logo} alt='content' />
-        // </div>  
-        // <div className='badge-name'>
-        // {post.title}
-        // </div>  
-        
-        // </div>
-        // <div className='right-header'>
-        
-        // </div>
-        // </div>
-        // </div>
-        // </Link>
-        
-        // <div className='badge-content'>
-        // </div>
-        
-        // <div className='badge-footer-wrapper'>
-        // {/* <Link to={`/profile/${post.uniqueuserid}`}> */}
-        // <div className='badge-post-interaction'>
-        // <div className='post-padding-wrapper'>
-        // <div className='left-header'>
-        // <div className='badge-icon'>
-        // {/* <img 
-        // className='badge-icon-image' 
-        // src={post.picture} 
-        // alt='content' 
-        // /> */}
-        // </div>   
-        // </div>
-        // </div>
-        // </div>
-        // {/* </Link> */}
-        // <div className='badge-caption'>
-        // <div className='post-padding-wrapper'>
-        // <div className='caption'>
-        // {post.description}
-        // </div>
-        // </div>
-        // </div>
-        // <div className='divider'></div>
-        // </div>
-        // </div>
+                </div>
+                </div>
+                </div>         
+                <div className='badge-newsfeed-description'>  
 
-  
+                <div className='badge-newsfeed-description-padding'>
+                {post.description}
+                </div>
+                </div>
+                </div>
     )
 }
 
@@ -377,7 +346,7 @@ contentLabel="Example Modal">
 }
 
 function mapStateToProps( state ) {
-    const { posts, currentUserId, currentUserFollowing, currentUserFollowers, followingFeed, badgePost } = state;
+    const { badgeJoin, posts, currentUserId, currentUserFollowing, currentUserFollowers, followingFeed, badgePost } = state;
   
     return {
       posts,
@@ -386,7 +355,8 @@ function mapStateToProps( state ) {
       currentUserFollowers,
       followingFeed,
       badgePost,
+      badgeJoin
     };
   }
   
-  export default connect( mapStateToProps, { getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser})( Newsfeed ); 
+  export default connect( mapStateToProps, { joinBadgeGroup, getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser})( Newsfeed ); 
