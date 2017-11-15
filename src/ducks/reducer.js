@@ -137,7 +137,8 @@ export function getSingleBadge(id){
 }
 
 export function joinBadgeGroup(currentId, otherId){
-    let join = axios.post('/api/group').then(response => {
+
+    let join = axios.post('/api/group', {userId: currentId, badgeId: otherId}).then(response => {
         return response.data
     })
     return{
