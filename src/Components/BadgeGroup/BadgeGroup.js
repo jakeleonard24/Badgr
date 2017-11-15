@@ -20,7 +20,25 @@ class BadgeGroup extends Component {
         this.props.getSingleBadge(this.props.match.params.id)
       }
     render() {
+        
         console.log(this.props)
+
+       let members = 'no members'
+       if(this.props.singleBadge[0]) {
+      members = this.props.singleBadge.map((user, i) => {
+            return(
+                <Link to={`/profile/${user.uniqueuserid}`}>
+                <div className='jakesBorderClassLOL' key={i}>
+                    <div>
+                        <img className='bg-main-profile-icon' src={user.picture} />
+                        <p>{user.username}</p>
+                    </div>
+                </div>
+                </Link>
+            )
+        })
+    }
+    
         return (
             <div>
             <div>
@@ -61,7 +79,7 @@ class BadgeGroup extends Component {
     </div>
     <div className='bg-profile-content'></div>
     <div className={this.state.view === 'newsfeed' ? 'bg-profile-content' : 'noShow'}><Newsfeed></Newsfeed></div>
-    <div className={this.state.view === 'members' ? 'bg-profile-content' : 'noShow'}>members</div>
+    <div className={this.state.view === 'members' ? 'bg-profile-content' : 'noShow'}>{members}</div>
     <div className={this.state.view === 'chat' ? 'bg-profile-content' : 'noShow'}>chat</div>
     <div className='bg-profile-footer'></div>
 </div>

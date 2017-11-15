@@ -14,7 +14,8 @@ super(props);
     value:'',
     currentUser:[],
     followerAmount:this.props.currentUserFollowers.length,
-    view: 'groups'
+    view: 'groups',
+    userPosts:[]
 }
 this.getFollowing = this.getFollowing.bind(this);
 this.getFollowers = this.getFollowers.bind(this);
@@ -27,6 +28,10 @@ componentDidMount(){
         this.setState({
             currentUser:response.data
             
+    })
+
+    axios.get(`/api/userposts/${this.props.match.params.id}`).then((response) => {
+       this.setState({userPosts: response.data}) 
     })
     this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
    this.getFollowers()
@@ -57,8 +62,29 @@ getUser(id){
 render() {
     console.log('persons current badge groups', this.props.allBadgeGroups);
     console.log('current profiles props', this.props)
+
+let manageView = this.props.allBadgeGroups.map((badges, i) => {
+    return(
+        <Link to={`/group/${badges.origin_id}`}>
+        <div className = 'jakesBorderClassLOL' key={i}>
+            <div><img className='showcase-badge-icon' src={badges.logo} /></div>
+            <div>{badges.title} : </div>
+            <div>{badges.description}</div>
+            <Link to='/create'>
+            <button>Complete</button>
+            </Link>
+        </div>
+        </Link>
+    )
+})
      
-    
+let photoGrid = this.state.userPosts.map((post, i) => {
+    return(
+        <div key={i}>
+            <img src={post.content} />
+        </div>
+    )
+})
 let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
         return(
         <div key={i}>
@@ -68,6 +94,7 @@ let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
 
 })
 console.log('ME',this.props.currentUserId)
+console.log('state', this.state)
     console.log('V',this.props.match.params.id)
 let followers = this.props.currentUserFollowers.map((user, i) => {
    
@@ -119,7 +146,7 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             <div className='description'>{this.state.currentUser.bio}</div>
         </div>
         <div className='follow-padding'>
-        <div className='follow-button'>FOLLOW</div>
+        
         <Link to={`/edit/${this.props.currentUserId}`}>
         <div  className={this.props.currentUserId == this.props.match.params.id ?'edit-button' : 'cantSeeMe'}>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
         </div>
@@ -148,9 +175,9 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         </div>
     </div>
     <div className={this.state.view === 'groups' ? 'profile-content' : 'noShow'}>{allGroups}</div>
-    <div className={this.state.view === 'grid' ? 'profile-content' : 'noShow'}>Grid</div>
+    <div className={this.state.view === 'grid' ? 'profile-content' : 'noShow'}>{photoGrid}</div>
     <div className={this.state.view === 'newsfeed' ? 'profile-content' : 'noShow'}><Newsfeed></Newsfeed></div>
-    <div className={this.state.view === 'notifications' ? 'profile-content' : 'noShow'}>Notifications</div>
+    <div className={this.state.view === 'notifications' ? 'profile-content' : 'noShow'}>{manageView}</div>
     <div className='profile-footer'></div>
 </div>
     );
