@@ -367,7 +367,7 @@ contentLabel="Example Modal">
 </div>
 {comments}
 <div className='comment-wrapper'>
-<input className='comment-input' value={this.state.comment} onChange={(e) => {this.setState({comment: e.target.value})}}></input>
+<textarea className='comment-input' value={this.state.comment} onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
 <div className='comment-button' onClick={() => {this.postComment(); this.getComments(this.state.selectedPostId)}}>Comment</div>
 </div>
 </Modal>

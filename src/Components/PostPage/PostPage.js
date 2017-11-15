@@ -188,7 +188,7 @@ class PostPage extends Component {
                     </div>
                 <div className={this.state.badgeCreated ? 'noShow' : 'create-badge-wrapper'}>
                 <div className='upload-picture' type='file' name='user-image' >
-                <img  className='upload-badge-image' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Circle-icons-trophy.svg/1024px-Circle-icons-trophy.svg.png' />
+                <img  className='upload-badge-image' src={this.state.logo ? this.state.logo : 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Circle-icons-trophy.svg/1024px-Circle-icons-trophy.svg.png'} />
                        <div>
                 <div className='upload-logo' onClick={() => {this.setState({logoView: !this.state.logoView})}}><div className='view-logo-text'>VIEW LOGOS</div></div>
 
@@ -229,7 +229,9 @@ class PostPage extends Component {
       
               
                 {challenged}
+                        <Link to='/'>
                         <div onClick={this.sendInvites} className='invite-button-followers'>INVITE</div>
+                        </Link>
                 </div>  
             </div>
         );

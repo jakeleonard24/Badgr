@@ -293,6 +293,8 @@
   height: 30px;
   font-size: 14px;
   outline: none;
+  background-color: white;
+  color: black;
 }
 .comment-button{
   font-family: 'Open Sans', sans-serif;

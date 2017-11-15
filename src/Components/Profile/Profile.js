@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {getCurrentUser, getFollowing, getFollowers, followUser, getSingleUser, getAllBadgeGroups} from './../../ducks/reducer';
 import axios from 'axios';
+import Newsfeed from '../Newsfeed/Newsfeed';
 import {connect} from 'react-redux';
 import './Profile.css'
 
@@ -12,7 +13,8 @@ super(props);
     this.state={
     value:'',
     currentUser:[],
-    followerAmount:this.props.currentUserFollowers.length
+    followerAmount:this.props.currentUserFollowers.length,
+    view: 'groups'
 }
 this.getFollowing = this.getFollowing.bind(this);
 this.getFollowers = this.getFollowers.bind(this);
@@ -55,14 +57,18 @@ getUser(id){
 render() {
     console.log('persons current badge groups', this.props.allBadgeGroups);
     console.log('current profiles props', this.props)
+     
+    
 let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
         return(
         <div key={i}>
-           <img className='badges-content-image' src={badges.content} alt='' />
+           <Link to={`/group/${badges.badge_id}`}><img className='badges-content-image' src={badges.logo} alt='' /></Link>
         </div>
     )
 
 })
+console.log('ME',this.props.currentUserId)
+    console.log('V',this.props.match.params.id)
 let followers = this.props.currentUserFollowers.map((user, i) => {
    
         return(
@@ -84,8 +90,9 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         onClick={ () => {this.getUser(user.id)}}
         >Profile</button>
         <div>
-        <button className='follow' onClick={ () => {this.props.followUser(this.state.currentUser.id, user.id)}}
-        > follow</button>  
+        <button className='FOLLOW' onClick={ () => {this.props.followUser(this.props.currentUserId, this.props.match.params.id)}}
+        > hi</button>  
+ 
         </div>
     </div>
         )
@@ -109,10 +116,16 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         </div>
         <div className='title-username-profile-wrapper'>
             <div className='username'>{this.state.currentUser.username}</div>
-            <div className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, harum!</div>
+            <div className='description'>{this.state.currentUser.bio}</div>
         </div>
         <div className='follow-padding'>
         <div className='follow-button'>FOLLOW</div>
+        <Link to={`/edit/${this.props.currentUserId}`}>
+        <div  className={this.props.currentUserId == this.props.match.params.id ?'edit-button' : 'cantSeeMe'}>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
+        </div>
+        </Link>
+        <div className='follow-button' onClick={ () => {this.props.followUser(this.props.currentUserId, this.props.match.params.id)}}
+       >FOLLOW</div>
         {/* <div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
         </div> */}
         </div>
@@ -128,13 +141,16 @@ let following = this.props.currentUserFollowing.map((user, i) => {
     </div>
     <div className='profile-filter'>
         <div className='filter-flex'>
-        <img className='filter-badge-icon' src='https://s1.postimg.org/401n421t9r/badges_Asset_3_3x.png' alt='icon' />
-        <img className='filter-badge-icon' src='https://s1.postimg.org/3hyu1b2acf/photo_grid_Asset_1.png' />
-        <img className='filter-badge-icon' src='https://s1.postimg.org/7qe1b508wv/newsfeed_Asset_2_3x.png' />
-        <img className='filter-badge-icon' src='https://s1.postimg.org/56kycnp04v/groups_Asset_4_3x.png' alt='icon' />
+        <img onClick={() => {this.setState({view: 'groups'})}} className='filter-badge-icon' src='https://s1.postimg.org/401n421t9r/badges_Asset_3_3x.png' alt='icon' />
+        <img onClick={() => {this.setState({view: 'grid'})}} className='filter-badge-icon' src='https://s1.postimg.org/3hyu1b2acf/photo_grid_Asset_1.png' />
+        <img onClick={() => {this.setState({view: 'newsfeed'})}} className='filter-badge-icon' src='https://s1.postimg.org/7qe1b508wv/newsfeed_Asset_2_3x.png' />
+        <img onClick={() => {this.setState({view: 'notifications'})}} className='filter-badge-icon' src='https://s1.postimg.org/56kycnp04v/groups_Asset_4_3x.png' alt='icon' />
         </div>
     </div>
-    <div className='profile-content'>{allGroups}</div>
+    <div className={this.state.view === 'groups' ? 'profile-content' : 'noShow'}>{allGroups}</div>
+    <div className={this.state.view === 'grid' ? 'profile-content' : 'noShow'}>Grid</div>
+    <div className={this.state.view === 'newsfeed' ? 'profile-content' : 'noShow'}><Newsfeed></Newsfeed></div>
+    <div className={this.state.view === 'notifications' ? 'profile-content' : 'noShow'}>Notifications</div>
     <div className='profile-footer'></div>
 </div>
     );
@@ -142,7 +158,7 @@ let following = this.props.currentUserFollowing.map((user, i) => {
 }
 
 function mapStateToProps( state ) {
-    const { currentUser, currentUserFollowing, currentUserFollowers, singleUser, allBadgeGroups } = state;
+    const { currentUser, currentUserFollowing, currentUserFollowers, singleUser, allBadgeGroups, currentUserId } = state;
 
     return {
       currentUser,
@@ -150,6 +166,7 @@ function mapStateToProps( state ) {
       currentUserFollowers,
       currentUserFollowing,
       allBadgeGroups,
+      currentUserId,
     };
   }
 

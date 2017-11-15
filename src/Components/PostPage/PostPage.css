@@ -130,6 +130,8 @@ input {
     font-size: 12px;
     letter-spacing: 1px;
     cursor: pointer;
+    background-color: white;
+    color: black;
 }
 .file-input{
     padding: 10px;
