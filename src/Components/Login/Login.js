@@ -9,7 +9,7 @@ class Login extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <a href={process.env.SERVERHOST}>
+                    <a href={`/auth`}>
                     <button>Login</button>
                     </a>
                  
