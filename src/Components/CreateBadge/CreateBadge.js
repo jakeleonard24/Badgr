@@ -106,6 +106,8 @@ class CreateBadge extends Component {
             <div className={this.state.badgeIsChosen ?  'hiddenView' : 'createBadgeBody'}>
                   Which badge did you complete? {badges}
             </div>
+
+            
             <div className={this.state.badgeIsChosen ? 'createBadgeBody' : 'hiddenView'}>
             Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>
 

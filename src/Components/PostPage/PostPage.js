@@ -177,7 +177,7 @@ class PostPage extends Component {
         })
         return (
                 <div>
-                    <div className='create-complete-header'>
+                    {/* <div className='create-complete-header'>
                         <div className='create-complete-wrapper'>
                         <div className='create-create-title'>Create Badge</div>
                         <div className="title-nav">
@@ -210,9 +210,9 @@ class PostPage extends Component {
                     <div className='create-badge-button' onClick={() => {this.createBadge()}}>CREATE BADGE </div>
                     </div>
                 </div>
-                </div>
+                </div>     <div className={this.state.badgeCreated ? 'createBadge' : 'noShow'}> */}
 
-                <div className={this.state.badgeCreated ? 'createBadge' : 'noShow'}>
+                <div className='createBadge'>
                     <div className='followerRow'>
                         {/* <h1>Challenged</h1>
                             {challenged} */}
