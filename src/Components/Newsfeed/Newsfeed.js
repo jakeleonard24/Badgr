@@ -6,6 +6,7 @@ import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
 import { joinBadgeGroup, getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
 import addone from '../../utiliy/addone';
+import {addLikeTest} from '../../utiliy/addLikeTest';
 
 const customStyles = {
     content : {
@@ -66,7 +67,8 @@ componentWillReceiveProps(nextProps){
     })
 }
 addLikes(i){
-    this.state.posts[i].likes=this.state.posts[i].likes + addone();
+    // this.state.posts[i].likes=this.state.posts[i].likes + 1;
+    this.state.posts[i].likes=addLikeTest(this.state.posts[i].likes)
 
     // console.log(this.props.posts[i].id, this.props.posts[i].likes)
     axios.post('/api/addlike', {
