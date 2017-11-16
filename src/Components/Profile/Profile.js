@@ -159,8 +159,8 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         className='follow-button' 
         onClick={ () => {this.props.followUser(this.props.currentUserId, this.props.match.params.id)}}
        >FOLLOW</div>) }
-        {/* <div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
-        </div> */}
+        <div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
+        </div>
         </div>
     </div>
     <div className='profile-showcase'><div className='showcase-text'>SHOWCASE</div>
