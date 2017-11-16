@@ -34,7 +34,7 @@ const JOIN_BADGE_GROUP = "JOIN_BADGE_GROUP";
 // Post Functions 
 // =============================================================================
 export function getPosts(){
-    const allPosts = axios.get('http://localhost:3333/api/allposts').then(response => {
+    const allPosts = axios.get('/api/allposts').then(response => {
         return response.data
     })
     return {
