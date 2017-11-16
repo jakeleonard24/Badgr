@@ -1,7 +1,9 @@
 
   
   
-     function addLikeTest(a) {
+
+  module.exports = {     
+     addLikeTest: function(a) {
     return a + 1;
-  };
-  export {addLikeTest}
+  }
+}

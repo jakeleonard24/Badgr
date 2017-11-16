@@ -1,8 +1,8 @@
-const addLikeTest = require('./addLikeTest');
+const tests = require('./addLikeTest');
 
 
 describe('addLikeTest', () => {
   it('should add one to the input number', () => {
-    expect(addLikeTest(2)).toBe(3);
+    expect(tests.addLikeTest(2)).toBe(3);
   });
 });
