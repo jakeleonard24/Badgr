@@ -83,20 +83,20 @@ updateUser(){
         </Link> */}
 
 <div>
-<div className='create-badge-wrapper'>
+<div className='edit-badge-wrapper'>
 <div className='upload-picture' type='file' name='user-image' >
 <img  className='upload-badge-image'  src={this.state.picture ? this.state.picture : this.state.currentUser.picture} />
-<div className='create-description-wrapper'>
+<div className='edit-description-wrapper'>
 <div className='current-username'>{this.state.currentUser.username}</div>
 <div className='current-bio'>{this.state.currentUser.bio}</div>
 </div>
 </div>
 <div className='title-description'>
-<div className='create-description-wrapper'>
-<textarea value={this.state.bio} onChange={(e)=> {this.setState({bio: e.target.value})}} className='create-description-badge' type="text" placeholder='Description' rows='10'/>
+<div className='edit-description-wrapper'>
+<textarea value={this.state.bio} onChange={(e)=> {this.setState({bio: e.target.value})}} className='edit-description-badge' type="text" placeholder='Description' rows='10'/>
 </div>
-<div className='create-badge-button-padding'>
-<div className='create-badge-button' onClick={() => {this.updateUser()}}>UPDATE PROFILE </div>
+<div className='edit-badge-button-padding'>
+<div className='edit-badge-button' onClick={() => {this.updateUser()}}>UPDATE PROFILE </div>
 </div>
 </div>
 </div>
