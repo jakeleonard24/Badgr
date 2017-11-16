@@ -6,7 +6,7 @@ import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
 import { joinBadgeGroup, getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
 import addone from '../../utiliy/addone';
-import {addLikeTest} from '../../utiliy/addLikeTest';
+import {addLikeTest, minusLikeTest, checkCommentLengthTest} from '../../utiliy/addLikeTest';
 
 const customStyles = {
     content : {
@@ -84,6 +84,11 @@ addLikes(i){
     this.setState({display:'none'})
 }
 
+//Couldn't get in final code
+minusLikes(i){
+    // this.state.posts[i].likes=this.state.posts[i].likes - 1;
+    this.state.posts[i].likes=minusLikeTest(this.state.posts[i].likes)
+}
  
 addCommentButton(i, id){
     this.setState({
@@ -109,7 +114,7 @@ closeModal() {
     this.setState({modalIsOpen: false});
 }
 postComment(){
-    if(this.state.comment.length > 0){
+    if(checkCommentLengthTest){
         axios.post('/api/addcomment', {
             comment: this.state.comment,
             userId: this.props.currentUserId,
