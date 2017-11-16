@@ -162,7 +162,7 @@ let comments = this.state.comments.map((comment, i) => {
 let posts = this.props.followingFeed.map((post, i) => {
     if(post.type === 'complete') {
     var likeButtonType=null
-    if(this.state.likes.userid==this.props.currentUserId){
+    if(this.state.likes.userid === this.props.currentUserId){
       likeButtonType= <button className="like-button"  onClick={()=>{this.addLikes(i)}}>Unlike</button>
       console.log("unlike",this.state.likes.userid, this.props.currentUserId)
     } else {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import './EditProfile.css'
 
 class EditProfile extends Component {
@@ -85,7 +85,7 @@ updateUser(){
 <div>
 <div className='edit-badge-wrapper'>
 <div className='upload-picture' type='file' name='user-image' >
-<img  className='upload-badge-image'  src={this.state.picture ? this.state.picture : this.state.currentUser.picture} />
+<img  className='upload-badge-image'  src={this.state.picture ? this.state.picture : this.state.currentUser.picture} alt='' />
 <div className='edit-description-wrapper'>
 <div className='current-username'>{this.state.currentUser.username}</div>
 <div className='current-bio'>{this.state.currentUser.bio}</div>
