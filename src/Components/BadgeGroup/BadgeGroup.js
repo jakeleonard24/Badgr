@@ -28,7 +28,7 @@ class BadgeGroup extends Component {
                 <Link to={`/profile/${user.uniqueuserid}`}>
                 <div className='jakesBorderClassLOL' key={i}>
                     <div>
-                        <img className='bg-main-profile-icon' src={user.picture} />
+                        <img className='bg-main-profile-icon' src={user.picture} alt='' />
                         <p>{user.username}</p>
                     </div>
                 </div>
@@ -71,8 +71,8 @@ class BadgeGroup extends Component {
     <div className='bg-profile-filter'>
         <div className='bg-filter-flex'>
         <img onClick={() => {this.setState({view: 'newsfeed'})}} className='bg-filter-badge-icon' src='https://s1.postimg.org/7lys2r10xr/newsfeed_Asset_2_3x.png' alt='icon' />
-        <img onClick={() => {this.setState({view: 'members'})}} className='bg-filter-badge-icon' src='https://s1.postimg.org/77scbvvq3j/members_Asset_7_3x.png' />
-        <img onClick={() => {this.setState({view: 'chat'})}} className='bg-filter-badge-icon' src='https://s1.postimg.org/55cjnu17nz/comment_Asset_9_3x.png' />
+        <img onClick={() => {this.setState({view: 'members'})}} className='bg-filter-badge-icon' src='https://s1.postimg.org/77scbvvq3j/members_Asset_7_3x.png' alt='' />
+        <img onClick={() => {this.setState({view: 'chat'})}} className='bg-filter-badge-icon' src='https://s1.postimg.org/55cjnu17nz/comment_Asset_9_3x.png' alt='' />
         </div>
     </div>
     <div className='bg-profile-content'></div>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
+import './EditProfile.css'
 
 class EditProfile extends Component {
     constructor(){
@@ -65,22 +66,42 @@ updateUser(){
         console.log('state', this.state)
         return (
             <div>
-                <img src={this.state.picture ? this.state.picture : this.state.currentUser.picture} />
-                <p>{this.state.currentUser.username}</p>
-                current bio: {this.state.currentUser.bio}
-                
-                <br/>
-                Change Bio:
-                <textarea value={this.state.bio} onChange={(e)=> {this.setState({bio: e.target.value})}}></textarea>
-
+            {/* <img className='edit-profile-pic' src={this.state.picture ? this.state.picture : this.state.currentUser.picture} />
+            <p>{this.state.currentUser.username}</p>
+            current bio: {this.state.currentUser.bio}
+            
             <br/>
+            Change Bio:
+            <textarea value={this.state.bio} onChange={(e)=> {this.setState({bio: e.target.value})}}></textarea>
 
-            Change Profile Picture:
-            <input  type='file' name='userImage' onChange={this.handleFileUpload} />
-            <Link to={`/profile/${this.props.currentUserId}`}>
-            <button onClick={() => {this.updateUser()}}>Update User BOI</button>
-            </Link>
-            </div>
+        <br/>
+
+        Change Profile Picture:
+        <input  type='file' name='userImage' onChange={this.handleFileUpload} />
+        <Link to={`/profile/${this.props.currentUserId}`}>
+        <button onClick={() => {this.updateUser()}}>Update User BOI</button>
+        </Link> */}
+
+<div>
+<div className='edit-badge-wrapper'>
+<div className='upload-picture' type='file' name='user-image' >
+<img  className='upload-badge-image'  src={this.state.picture ? this.state.picture : this.state.currentUser.picture} alt='' />
+<div className='edit-description-wrapper'>
+<div className='current-username'>{this.state.currentUser.username}</div>
+<div className='current-bio'>{this.state.currentUser.bio}</div>
+</div>
+</div>
+<div className='title-description'>
+<div className='edit-description-wrapper'>
+<textarea value={this.state.bio} onChange={(e)=> {this.setState({bio: e.target.value})}} className='edit-description-badge' type="text" placeholder='Description' rows='10'/>
+</div>
+<div className='edit-badge-button-padding'>
+<div className='edit-badge-button' onClick={() => {this.updateUser()}}>UPDATE PROFILE </div>
+</div>
+</div>
+</div>
+</div>
+</div>
         );
     }
 }

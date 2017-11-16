@@ -112,7 +112,7 @@ onClick={()=>{this.addLikes(i)}}
 }  
 if(post.type === 'create') {
   return (
-        <div>
+        <div key={i}>
         <div className='creator-container'>  
 
         <div className='creator-container-padding'>

@@ -24,6 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
+app.use(express.static(`${__dirname}./../build`));
 
 
 massive(process.env.CONNECTION_STRING)
@@ -104,7 +105,7 @@ const storage = multer.diskStorage({
 // =============================================================================
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0',{
-    successRedirect: `http://localhost:3000/#/`,
+    successRedirect: `${process.env.SERVERHOST}`,
     failureRedirect: '/auth'
     }))
     app.get('/auth/logout', (req,res) => {

@@ -86,7 +86,7 @@ class CreateBadge extends Component {
        let badges = this.props.allBadgeGroups.map((badge, i) => {
             return(
                 <div onClick={() => {this.selectBadge(badge.creatorid, badge.title, badge.logo, badge.origin_id)}} key={i}>
-                    <img className='createBadgeLogo' src={badge.logo} />
+                    <img className='createBadgeLogo' src={badge.logo} alt='' />
                 </div>
             )
        })
@@ -110,7 +110,7 @@ class CreateBadge extends Component {
             Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>
 
             <div className='editProfileImageBox'>
-            <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} />
+            <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} alt='' />
             <div className='fileInput'>
             <input  type='file' name='userImage' onChange={this.handleFileUpload} />
             <Link to='/'>

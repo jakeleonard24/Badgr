@@ -67,7 +67,7 @@ let manageView = this.props.allBadgeGroups.map((badges, i) => {
     return(
         <Link to={`/group/${badges.origin_id}`}>
         <div className = 'jakesBorderClassLOL' key={i}>
-            <div><img className='showcase-badge-icon' src={badges.logo} /></div>
+            <div><img className='showcase-badge-icon' src={badges.logo} alt='showcase' /></div>
             <div>{badges.title} : </div>
             <div>{badges.description}</div>
             <Link to='/create'>
@@ -81,7 +81,7 @@ let manageView = this.props.allBadgeGroups.map((badges, i) => {
 let photoGrid = this.state.userPosts.map((post, i) => {
     return(
         <div key={i}>
-            <img src={post.content} />
+            <img src={post.content} alt='content' />
         </div>
     )
 })
@@ -146,13 +146,19 @@ let following = this.props.currentUserFollowing.map((user, i) => {
             <div className='description'>{this.state.currentUser.bio}</div>
         </div>
         <div className='follow-padding'>
-        
-        <Link to={`/edit/${this.props.currentUserId}`}>
-        <div  className={this.props.currentUserId == this.props.match.params.id ?'edit-button' : 'cantSeeMe'}>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
+        { this.props.currentUserId ?
+        (<Link 
+        style={{ textDecoration: 'none' }}
+        to={`/edit/${this.props.currentUserId}`}>
+        <div  
+        className={this.props.currentUserId === this.props.match.params.id ?'edit-button' : 'cantSeeMe'}>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
         </div>
-        </Link>
-        <div className='follow-button' onClick={ () => {this.props.followUser(this.props.currentUserId, this.props.match.params.id)}}
-       >FOLLOW</div>
+        </Link>)
+        :
+        (<div 
+        className='follow-button' 
+        onClick={ () => {this.props.followUser(this.props.currentUserId, this.props.match.params.id)}}
+       >FOLLOW</div>) }
         {/* <div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
         </div> */}
         </div>
@@ -161,16 +167,16 @@ let following = this.props.currentUserFollowing.map((user, i) => {
     <div className='showcase-flex'>
         <img className='showcase-badge-icon' src='http://icons.iconarchive.com/icons/seanau/fresh-web/512/Badge-icon.png' alt='icon' />
         <img className='showcase-badge-icon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Circle-icons-trophy.svg/1024px-Circle-icons-trophy.svg.png' alt='icon' />
-        <img className='showcase-badge-icon' src='https://d3dzkvk4v33mce.cloudfront.net/assets/badge-list-icon-7bcb4445fa28a0231b1f64c3b177be4a9ce216ac11d570ceeadb292f61ef4688.png' />
-        <img className='showcase-badge-icon' src='https://nexusipe-resource-exchange.s3.amazonaws.com/pictures/commentator_l1_large.png' />
+        <img className='showcase-badge-icon' src='https://d3dzkvk4v33mce.cloudfront.net/assets/badge-list-icon-7bcb4445fa28a0231b1f64c3b177be4a9ce216ac11d570ceeadb292f61ef4688.png' alt='' />
+        <img className='showcase-badge-icon' src='https://nexusipe-resource-exchange.s3.amazonaws.com/pictures/commentator_l1_large.png' alt='' />
         <img className='showcase-badge-icon' src='https://i.pinimg.com/736x/7a/89/9a/7a899a3a256febe4154f0658f968d4e6--friend-birthday-th-birthday.jpg' alt='icon' />
     </div>
     </div>
     <div className='profile-filter'>
         <div className='filter-flex'>
         <img onClick={() => {this.setState({view: 'groups'})}} className='filter-badge-icon' src='https://s1.postimg.org/401n421t9r/badges_Asset_3_3x.png' alt='icon' />
-        <img onClick={() => {this.setState({view: 'grid'})}} className='filter-badge-icon' src='https://s1.postimg.org/3hyu1b2acf/photo_grid_Asset_1.png' />
-        <img onClick={() => {this.setState({view: 'newsfeed'})}} className='filter-badge-icon' src='https://s1.postimg.org/7qe1b508wv/newsfeed_Asset_2_3x.png' />
+        <img onClick={() => {this.setState({view: 'grid'})}} className='filter-badge-icon' src='https://s1.postimg.org/3hyu1b2acf/photo_grid_Asset_1.png' alt='' />
+        <img onClick={() => {this.setState({view: 'newsfeed'})}} className='filter-badge-icon' src='https://s1.postimg.org/7qe1b508wv/newsfeed_Asset_2_3x.png' alt='' />
         <img onClick={() => {this.setState({view: 'notifications'})}} className='filter-badge-icon' src='https://s1.postimg.org/56kycnp04v/groups_Asset_4_3x.png' alt='icon' />
         </div>
     </div>
