@@ -14,9 +14,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  /* background-color: rgb(255, 255, 255); */
-  /* border-bottom: 1px solid #E4E4E4; */
-  /* height: 275px; */
 }
 .current-bio{
   text-align: center;
