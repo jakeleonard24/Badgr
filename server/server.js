@@ -241,6 +241,6 @@ app.get('/api/userposts/:id', (req, res) => {
 
 
 
-const port = 80;
+const port = 3333;
 
 app.listen(port, () => console.log(`listening on port ${port}`));
