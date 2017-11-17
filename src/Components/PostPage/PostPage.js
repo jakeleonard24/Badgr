@@ -201,10 +201,10 @@ class PostPage extends Component {
                 </div>
                 <div className='title-description'>
                     <div className='create-title-wrapper'>
-                        <input  value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} className='create-title-badge' type="text" placeholder='Title'/>
+                        <input  onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} className='create-title-badge' type="text" placeholder='Title' maxlength='15'/>
                     </div>
                     <div className='create-description-wrapper'>
-                        <textarea onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} className='create-description-badge' type="text" placeholder='Description' rows='10'/>
+                        <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}}className='create-description-badge' type="text" placeholder='Description' rows='10'/>
                     </div>
                     <div className='create-badge-button-padding'>
                     <div className='create-badge-button' onClick={() => {this.createBadge()}}>CREATE BADGE </div>
@@ -229,6 +229,7 @@ class PostPage extends Component {
                 {challenged}
                         <Link to='/'>
                         <div onClick={this.sendInvites} className='invite-button-followers'>INVITE</div>
+                        <div onClick={this.sendInvites} className='invite-button-followers-padding'></div>
                         </Link>
                 </div>  
             </div>

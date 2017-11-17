@@ -58,12 +58,15 @@
 } */
 
 .badges-content-image {
-  padding: 10px;
-  width: 175px;
-  height: 175px;
+  /* padding: 10px; */
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: 5px solid white;
   box-shadow: 0 1px 1px 2px rgba(80, 80, 80, 0.19);
+}
+.badge-padding{
+  padding: 5px;
 }
 .badge-content-container{
   padding: 10px;
@@ -252,10 +255,9 @@
     border-radius: 50%;
     height: 100px;
     width: 100px;
-    object-fit: scale-down;
-    background-size: cover;
+    object-fit: cover;
+    object-position:10 10;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
   }
 
   .follow-header {

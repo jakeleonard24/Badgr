@@ -27,7 +27,6 @@ componentDidMount(){
     axios.get(`/api/singleuser/${this.props.match.params.id}`).then((response)=>{
         this.setState({
             currentUser:response.data
-            
     })
 
     axios.get(`/api/userposts/${this.props.match.params.id}`).then((response) => {
@@ -36,10 +35,6 @@ componentDidMount(){
     this.props.getAllBadgeGroups(this.state.currentUser.id) //TEMP TEST WILL PLACE SOMEWHERE ELSE
    this.getFollowers()
    this.getFollowing() }); 
-    
-    
-    console.log('look at this',this.props.currentUserFollowers.length)
-    console.log('user flollowing', this.props.currentUserFollowing.length)
 }
 // getAllBadgeGroups() {
 //     this.props.getAllBadgeGroups(30)
@@ -88,7 +83,9 @@ let photoGrid = this.state.userPosts.map((post, i) => {
 let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
         return(
         <div key={i}>
+            <div className='badge-padding'>
            <Link to={`/group/${badges.badge_id}`}><img className='badges-content-image' src={badges.logo} alt='' /></Link>
+           </div>
         </div>
     )
 
@@ -156,8 +153,12 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         className='follow-button' 
         onClick={ () => {this.props.followUser(this.props.currentUserId, this.props.match.params.id)}}
        >FOLLOW</div>) }
-        <div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
+       
+       <Link 
+        style={{ textDecoration: 'none' }}
+        to={`/edit/${this.props.currentUserId}`}><div className='edit-button'>EDIT PROFILE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
         </div>
+    </Link>
         </div>
     </div>
     <div className='profile-showcase'><div className='showcase-text'>SHOWCASE</div>

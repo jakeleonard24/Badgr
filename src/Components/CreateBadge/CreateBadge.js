@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import {getCurrentUser, getFollowers} from '../../ducks/reducer';
+import {getCurrentUser, getFollowers, getAllBadgeGroups} from '../../ducks/reducer';
 import {connect} from 'react-redux';
 import './CreateBadge.css'
 
@@ -23,6 +23,10 @@ class CreateBadge extends Component {
         this.uploadSuccess = this.uploadSuccess.bind(this);
         this.createBadge = this.createBadge.bind(this);
         this.selectBadge = this.selectBadge.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.getAllBadgeGroups(this.state.currentUserId)
     }
     handleFileUpload(event){
          const file = event.target.files[0]
@@ -86,7 +90,7 @@ class CreateBadge extends Component {
        let badges = this.props.allBadgeGroups.map((badge, i) => {
             return(
                 <div onClick={() => {this.selectBadge(badge.creatorid, badge.title, badge.logo, badge.origin_id)}} key={i}>
-                    <img className='createBadgeLogo' src={badge.logo} alt='' />
+                    <img className='create-badge-logo' src={badge.logo} alt='logo' />
                 </div>
             )
        })
@@ -109,10 +113,9 @@ class CreateBadge extends Component {
 
             
             <div className={this.state.badgeIsChosen ? 'createBadgeBody' : 'hiddenView'}>
-            Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>
-
             <div className='editProfileImageBox'>
             <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} alt='' />
+            Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>
             <div className='fileInput'>
             <input  type='file' name='userImage' onChange={this.handleFileUpload} />
             <Link to='/'>
@@ -139,4 +142,4 @@ function mapStateToProps( state ) {
     };
   }
   
-  export default connect( mapStateToProps, { getCurrentUser, getFollowers})( CreateBadge );
+  export default connect( mapStateToProps, { getCurrentUser, getFollowers, getAllBadgeGroups})( CreateBadge );

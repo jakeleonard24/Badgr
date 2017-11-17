@@ -7,7 +7,7 @@ class Login extends Component {
                 Login Page
                 <div>
                     <br/>
-                    <a href={`http://localhost:3333/auth`}> 
+                    <a href={`/auth`}> 
                     <button>Login</button>
                     </a>
                  

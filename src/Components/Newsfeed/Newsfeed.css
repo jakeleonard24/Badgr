@@ -306,8 +306,10 @@ div.like-number {
         border-top: 1px solid #D0D0D0;
     }
     .badge-newsfeed-description-padding{
+    text-align: left;
     padding: 20px;
     padding-left: 20px;
+    font-size: 12px;
     }
     .badge-group-post-padding-wrapper {
         display: flex;
@@ -439,9 +441,11 @@ div.like-number {
     }
     
     .newsfeed-image {
+        object-fit: cover;
+        object-position:10 10;
+        border-radius: 50%;
         width: 40px;
         height: 40px;
-        border-radius: 50%;
         padding: 10px;
     }
 

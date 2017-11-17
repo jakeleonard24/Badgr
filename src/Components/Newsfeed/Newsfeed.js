@@ -268,13 +268,13 @@ onClick={()=>{this.addCommentButton(i, post.id); this.getComments(post.id)}}
 if(post.type === 'create') {
     return (
         <div>
-                <div className='creator-container'>  
-
-                <div className='creator-container-padding'>
-                {post.username} has created a badge
-                </div>
-                </div>
+        <Link to={`/profile/${post.uniqueuserid}`}><div className='creator-container'>  
+        <div className='creator-container-padding'>
+        {post.username} has created a badge
+        </div> 
+        </div></Link>  
          <div className='badge-group-badge-group-header'>
+         {/* <Link to={`/group/${post.origin_id}`} > */}
                 <div className='badge-group-post-padding-wrapper'>
                 <div className='badge-group-left-header'>
                 
@@ -287,6 +287,7 @@ if(post.type === 'create') {
                 </div>  
                 </div>
                 </div>
+                {/* </Link>   */}
                 <div className='group-right-header'>
                 <div className='group-join-padding'>
                 <div onClick={ () => {this.props.joinBadgeGroup(this.props.currentUserId, post.uniquebadgeid)}} className='group-join-button-head' >
@@ -294,9 +295,9 @@ if(post.type === 'create') {
                 </div>
                 </div>
                 </div>
-                </div>         
+                </div>     
+              
                 <div className='badge-newsfeed-description'>  
-
                 <div className='badge-newsfeed-description-padding'>
                 {post.description}
                 </div>

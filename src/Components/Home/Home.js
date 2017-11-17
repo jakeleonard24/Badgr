@@ -173,7 +173,7 @@ return <div key={i}>
       </div>
       </div>   
       </div>
-
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem vitae optio ipsa tempore eum ea!
     </div>  
         });
         console.log('hi', this.props.currentUserId);

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Newsfeed from '../Newsfeed/Newsfeed'
 import {getPosts, getCurrentUser, getFollowingFeed, getSingleBadge} from '../../ducks/reducer';
 import './BadgeGroup.css'
+import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 class BadgeGroup extends Component {
@@ -10,17 +11,20 @@ class BadgeGroup extends Component {
         super()
 
         this.state = {
-            view: 'newsfeed'
+            view: 'newsfeed',
+            userPosts:[]
         }
     }
 
     componentDidMount() {
+        this.props.getCurrentUser()
         this.props.getSingleBadge(this.props.match.params.id)
+        axios.get(`/api/userposts/${this.props.match.params.id}`).then((response) => {
+            this.setState({userPosts: response.data}) 
+         })
       }
     render() {
         
-        console.log(this.props)
-
        let members = 'no members'
        if(this.props.singleBadge[0]) {
       members = this.props.singleBadge.map((user, i) => {
@@ -28,7 +32,7 @@ class BadgeGroup extends Component {
                 <Link to={`/profile/${user.uniqueuserid}`}>
                 <div className='jakesBorderClassLOL' key={i}>
                     <div>
-                        <img className='bg-main-profile-icon' src={user.picture} alt='' />
+                        <img className='bg-main-profile-icon' src={user.picture} alt='picture' />
                         <p>{user.username}</p>
                     </div>
                 </div>
@@ -64,8 +68,7 @@ class BadgeGroup extends Component {
     {/* <div className='bg-showcase-text'>JOIN GROUP</div> */}
     <div className='bg-follow-padding'>
         <div className='bg-join-button'>JOIN BADGE</div>
-        {/* <div className='edit-button'>LEAVE BADGE <img className='settings-icon' src='https://s1.postimg.org/24t5bnkfy7/settings_white_Asset_6_3x.png' alt='icon' />
-        </div> */}
+
         </div>
     </div>
     <div className='bg-profile-filter'>

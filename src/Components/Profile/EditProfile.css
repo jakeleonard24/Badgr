@@ -458,4 +458,15 @@ width: 100%; /* Full width */
   padding: 20px;
   
 }
+.profile-upload-button{
+  opacity: 0;
+  position: absolute;
+  object-fit: cover;
+  object-position:10 10;
+  border-radius: 50%;
+  height: 125px;
+  width: 125px;
+  padding: 20px;
+  
+}
 }

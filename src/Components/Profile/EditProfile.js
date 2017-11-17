@@ -81,10 +81,10 @@ updateUser(){
         <Link to={`/profile/${this.props.currentUserId}`}>
         <button onClick={() => {this.updateUser()}}>Update User BOI</button>
         </Link> */}
-
 <div>
 <div className='edit-badge-wrapper'>
 <div className='upload-picture' type='file' name='user-image' >
+<input className='profile-upload-button' type='file' name='userImage' onChange={this.handleFileUpload} />
 <img  className='upload-badge-image'  src={this.state.picture ? this.state.picture : this.state.currentUser.picture} alt='' />
 <div className='edit-description-wrapper'>
 <div className='current-username'>{this.state.currentUser.username}</div>

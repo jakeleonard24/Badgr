@@ -298,3 +298,44 @@ select * from comments
 -- FROM follows
 -- JOIN badges on badges.userid = follows.follower_id
 -- WHERE user_id = 27;
+
+INSERT INTO logos
+(url)
+VALUES
+('https://i.pinimg.com/originals/11/5f/0a/115f0ac90dfc685ff3564a27cb9e11d1.png'),
+('http://icons.iconarchive.com/icons/jozef89/services-flat/256/idea-icon.png'),
+('https://cdn.iconscout.com/public/images/icon/free/png-512/badge-flag-leader-mountain-sport-top-winner-33a18455ad02ff6d-512x512.png'),
+('https://cdn.iconscout.com/public/images/icon/free/png-512/activity-badge-practice-run-running-shoe-sport-3a2a2b6bf8dce81c-512x512.png'),
+('https://cdn.iconscout.com/public/images/icon/free/png-512/achievement-leader-podium-sport-stand-victory-winner-34479d19e41f7785-512x512.png'),
+('http://www.mollymchugh.com/media/Tent-Sleep-icon.png'),
+('https://www.testive.com/wp-content/uploads/2017/01/goal-1.png'),
+('https://cdn.iconscout.com/public/images/icon/free/png-512/finish-route-running-sport-winner-34b1f2902b163ce9-512x512.png'),
+('https://cdn0.iconfinder.com/data/icons/sport-achievment-badges/128/sport_badges-02-512.png'),
+('https://cdn.iconscout.com/public/images/icon/free/png-512/finish-route-running-sport-winner-34b1f2902b163ce9-512x512.png'),
+('https://cdn0.iconfinder.com/data/icons/sport-achievment-badges/128/sport_badges-01-512.png'),
+('https://cdn.iconscout.com/public/images/icon/free/png-512/achievement-award-badge-fire-olimpic-sport-triumph-36d370a62238bcb7-512x512.png'),
+('https://cdn0.iconfinder.com/data/icons/education-flat-icons-set/128/student-identity-badge-512.png'),
+('https://cdn.iconscout.com/public/images/icon/premium/png-512/biodata-cv-job-application-profile-resume-3dc5d646f14f8376-512x512.png'),
+('https://cdn0.iconfinder.com/data/icons/creative-business-and-development/512/idea_creative_thinking_brainstorming_creativity_solution_think_brain_ideas_mind_control_human_head_flat_design_icon-512.png'),
+('https://cdn1.iconfinder.com/data/icons/financial-colored-icons-vol-2/128/051-512.png'),
+('https://cdn0.iconfinder.com/data/icons/sport-achievment-badges/128/sport_badges-09-512.png'),
+('https://images.vexels.com/media/users/3/137253/isolated/preview/90dd9f12fdd1eefb8c8976903944c026-facebook-icon-logo-by-vexels.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Circle-icons-money.svg/1024px-Circle-icons-money.svg.png'),
+('https://cdn4.iconfinder.com/data/icons/banking-and-finance/500/hand-coins-512.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circle-icons-magnifyingglass.svg/2000px-Circle-icons-magnifyingglass.svg.png'),
+('http://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/Cd-icon.png'),
+('https://etc.canyonsdistrict.org/skypics/etc/badges/22.png'),
+('http://www.giesencoffeeroasters.eu/wp-content/uploads/2016/11/Icoon-elekctro.png'),
+('http://www.miankoutu.com/uploadfiles/2015-9-24/2015924122055724.png'),
+('http://minkfoodiee.com/foodiee/user/landing_pages/images/tiffin-icon-3.png'),
+('https://i2.wp.com/sandiegopaintpros.com/wp-content/uploads/2017/04/task-done-flat.png?fit=256%2C256'),
+('https://s17.postimg.org/o1twgwqxr/apps.png'),
+('https://www.hippotrip.com/temas/hippotrip_v2/images/icon-location.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Circle-icons-train.svg/600px-Circle-icons-train.svg.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Circle-icons-radio.svg/768px-Circle-icons-radio.svg.png'),
+('http://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/Photo-icon.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-polaroidcamera.svg/480px-Circle-icons-polaroidcamera.svg.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Circle-icons-smartphone.svg/480px-Circle-icons-smartphone.svg.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Circle-icons-creditcard.svg/768px-Circle-icons-creditcard.svg.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Circle-icons-weather.svg/1000px-Circle-icons-weather.svg.png'),
+('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Circle-icons-anchor.svg/1000px-Circle-icons-anchor.svg.png')
