@@ -13,7 +13,7 @@ class Login extends Component {
                  
                 </div>
             </div>
-        );
+        ); 
     }
 }
 
