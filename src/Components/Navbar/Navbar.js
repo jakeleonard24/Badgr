@@ -40,7 +40,7 @@ src='https://s1.postimg.org/9n2brz2owf/home_Asset_6_3x.png' alt='ALPHA' />
 <Link to='/notifications' style={{ textDecoration: 'none' }} ><div className="title-nav">
 { invitesNotification >= 1 ?
 <div className='notification-alert'></div> : <div></div>
-}
+} 
 <img className='notifications-icon' src='https://s1.postimg.org/36umzp5ca7/mail_Asset_4_3x.png' alt='Notify Me Baby' />
 </div></Link>
 {/* <Link to='/login' style={{ textDecoration: 'none' }} > <div className="title-nav">Login</div></Link> */}

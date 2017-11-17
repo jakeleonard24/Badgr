@@ -229,7 +229,7 @@ class PostPage extends Component {
                 {challenged}
                         <Link to='/'>
                         <div onClick={this.sendInvites} className='invite-button-followers'>INVITE</div>
-                        <div onClick={this.sendInvites} className='invite-button-followers-padding'></div>
+                        <div className='invite-button-followers-padding'></div>
                         </Link>
                 </div>  
             </div>
