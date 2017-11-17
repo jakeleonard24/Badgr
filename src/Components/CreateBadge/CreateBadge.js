@@ -113,18 +113,25 @@ class CreateBadge extends Component {
 
             
             <div className={this.state.badgeIsChosen ? 'createBadgeBody' : 'hiddenView'}>
+            <div className='title-description'>
             <div className='editProfileImageBox'>
+            <div className='post-padding'>
+            <input className='file-upload-post' type='file' name='userImage' onChange={this.handleFileUpload} />
             <img className='editProfileImage' src={this.state.image ? this.state.image : 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'} alt='' />
-            Description: <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe your challenge'></textarea>
-            <div className='fileInput'>
-            <input  type='file' name='userImage' onChange={this.handleFileUpload} />
-            <Link to='/'>
-            <button onClick={this.createBadge}>Post Completed Badge</button>
+            </div>
+            <div className='post-padding'>
+            <textarea className='input-post' value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}} placeholder='Describe how you finished this badge'></textarea>
+            </div>
+            <div className='post-padding'>
+            <Link to='/'
+            style={{ textDecoration: 'none' }}>
+            <div className='post-badge-button' onClick={this.createBadge}>CLAIM BADGE</div>
             </Link>
             </div>
             </div>
+       
             </div>
-
+            </div>
             </div>
         );
     }
