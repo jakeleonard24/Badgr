@@ -320,7 +320,7 @@ onAfterOpen={this.afterOpenModal}
 onRequestClose={this.closeModal}
 style={customStyles}
 contentLabel="Example Modal">
-<img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'}alt='OH HEY MAN' />
+{/* <img className='imageSize' src={this.state.posts[0] ? this.state.posts[this.state.selectedPostIndex].content : 'loading'}alt='OH HEY MAN' /> */}
 <h2 ref={subtitle => this.subtitle = subtitle}></h2>
 
 <div className='badge-footer-wrapper'>
@@ -342,10 +342,12 @@ contentLabel="Example Modal">
 </div>
 </div>
 </div>
-{comments}
+{/* <div className='comment-section'>{comments}</div> */}
 <div className='comment-wrapper'>
-<textarea className='comment-input' value={this.state.comment} onChange={(e) => {this.setState({comment: e.target.value})}}></textarea>
-<div className='comment-button' onClick={() => {this.postComment(); this.getComments(this.state.selectedPostId)}}>Comment</div>
+{comments}
+<input className='comment-input' value={this.state.comment} onChange={(e) => {this.setState({comment: e.target.value})}}></input>
+<div className='comment-button' onClick={() => {this.postComment(); this.getComments(this.state.selectedPostId)}}>
+    <div className='comment-button-padding'><img  className='comment-icon'  src='https://s17.postimg.org/batifbnsf/comment_Asset_9_3x.png' alt='' /></div></div>
 </div>
 </Modal>
 </div>
