@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Newsfeed from '../Newsfeed/Newsfeed'
 import { SearchService } from './search-service';
-import { joinBadgeGroup, getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
+import { getUserInvites, joinBadgeGroup, getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser} from '../../ducks/reducer';
 import {connect} from 'react-redux';
 import './Home.css';
 
@@ -16,8 +16,11 @@ class Home extends Component {
       componentDidMount() {
         this.props.getPosts()
         this.props.getCurrentUser().then( () => {
-          this.props.getFollowingFeed(this.props.currentUserId)
-              })
+        this.props.getFollowingFeed(this.props.currentUserId)
+            }).then( () => {
+              this.props.getUserInvites(this.props.currentUserId)
+            })
+        
 
         this.searchService
             .getResults()
@@ -199,7 +202,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem vitae optio ipsa 
 }
 
 function mapStateToProps( state ) {
-  const { badgeJoin, posts, currentUserId, currentUserFollowing, currentUserFollowers, followingFeed, badgePost } = state;
+  const { userInvites, badgeJoin, posts, currentUserId, currentUserFollowing, currentUserFollowers, followingFeed, badgePost } = state;
 
   return {
     posts,
@@ -209,7 +212,8 @@ function mapStateToProps( state ) {
     followingFeed,
     badgePost,
     badgeJoin,
+    userInvites,
   };
 }
 
-export default connect( mapStateToProps, { joinBadgeGroup, getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser})( Home ); 
+export default connect( mapStateToProps, { getUserInvites, joinBadgeGroup, getNewBadgeGroupFeed, getPosts, getCurrentUser, getFollowingFeed, followUser})( Home ); 

@@ -401,5 +401,25 @@
         background-color: #00b5b7; */
     }
 
+    .notification-alert {
+        background: #f88379;
+        border-radius: 50%;
+        text-align: center;
+        color: white;
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        top: 12px;
+        right: 100px;
+    }
+.number {
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+    right: 70px;
+}
   
     }

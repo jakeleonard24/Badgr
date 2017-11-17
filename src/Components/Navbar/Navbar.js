@@ -2,11 +2,22 @@ import {Link} from 'react-router-dom';
 import React, { Component } from 'react';
 import './Navbar.css';
 import {connect} from 'react-redux';
+import {getUserInvites, getCurrentUser} from '../../ducks/reducer';
 
 class Navbar extends Component {
+  constructor(props){
+    super(props)
+
+}
+componentDidMount(){
+        this.props.getUserInvites(this.props.currentUserId)
+}
   render() {
+    let invitesNotification = this.props.userInvites.reduce((sum, invite) => {
+      return sum + (invite.user_id = 1)
+    }, 0)
     return (
-<div> 
+<div>
   
 <header className='main-nav'>
 <nav>
@@ -27,6 +38,9 @@ src='https://s1.postimg.org/9n2brz2owf/home_Asset_6_3x.png' alt='ALPHA' />
 </div></Link> */}
 
 <Link to='/notifications' style={{ textDecoration: 'none' }} ><div className="title-nav">
+{ invitesNotification >= 1 ?
+<div className='notification-alert'></div> : <div></div>
+}
 <img className='notifications-icon' src='https://s1.postimg.org/36umzp5ca7/mail_Asset_4_3x.png' alt='Notify Me Baby' />
 </div></Link>
 {/* <Link to='/login' style={{ textDecoration: 'none' }} > <div className="title-nav">Login</div></Link> */}
@@ -70,14 +84,15 @@ src='https://s1.postimg.org/8hkxcmvqy7/badger_googlefix.png' alt='ALPHA' />
 }
 
 function mapStateToProps( state ) {
-  const {currentUserId } = state;
+  const {currentUserId,  userInvites } = state;
 
   return {
     
     currentUserId,
+    userInvites,
     
     
   };
 }
 
-export default connect( mapStateToProps)( Navbar ); 
+export default connect( mapStateToProps, {getUserInvites, getCurrentUser})( Navbar ); 
