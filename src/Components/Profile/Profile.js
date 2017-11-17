@@ -72,14 +72,15 @@ let manageView = this.props.allBadgeGroups.map((badges, i) => {
         </Link>
     )
 })
-     
+
 let photoGrid = this.state.userPosts.map((post, i) => {
+    if(post.type === 'complete') {
     return(
         <div key={i}>
-            <img src={post.content} alt='content' />
+            <Link to={`/group/${post.origin_id}`} ><img className='grid-image' src={post.content} alt='content' /></Link>
         </div>
     )
-})
+}})
 let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
         return(
         <div key={i}>
@@ -119,6 +120,7 @@ let following = this.props.currentUserFollowing.map((user, i) => {
         )
     })
     return (
+        
 <div className='profile-wrapper'>
     <div className='profile-header'></div>
     <div className='profile-left'></div>
