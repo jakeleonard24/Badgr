@@ -201,7 +201,7 @@ class PostPage extends Component {
                 </div>
                 <div className='title-description'>
                     <div className='create-title-wrapper'>
-                        <input  onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} className='create-title-badge' type="text" placeholder='Title' maxlength='15'/>
+                        <input  onChange={(e) => {this.setState({title: e.target.value})}} value={this.state.title} className='create-title-badge' type="text" placeholder='Title' maxlength='25'/>
                     </div>
                     <div className='create-description-wrapper'>
                         <textarea value={this.state.description} onChange={(e) => {this.setState({description: e.target.value})}}className='create-description-badge' type="text" placeholder='Description' rows='10'/>

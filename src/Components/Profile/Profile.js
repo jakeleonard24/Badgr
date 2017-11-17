@@ -180,9 +180,18 @@ let following = this.props.currentUserFollowing.map((user, i) => {
     </div>
     <div className={this.state.view === 'groups' ? 'profile-content' : 'noShow'}>{allGroups}</div>
     <div className={this.state.view === 'grid' ? 'profile-content' : 'noShow'}>{photoGrid}</div>
-    <div className={this.state.view === 'newsfeed' ? 'profile-content' : 'noShow'}><Newsfeed></Newsfeed></div>
+    <div className={this.state.view === 'newsfeed' ? 'profile-content' : 'noShow'}>
+    <div className='home-content-wrapper'>
+    <div className='home-left-margin'></div>
+    <div className='home-right-margin'></div>
+    <div className='home-news-feed'><Newsfeed></Newsfeed></div>
+    </div>
+    </div>
     <div className={this.state.view === 'notifications' ? 'profile-content' : 'noShow'}>{manageView}</div>
-    <div className='profile-footer'></div>
+    <div className='profile-footer'>
+
+        
+    </div>
 </div>
     );
 }
