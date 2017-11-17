@@ -93,9 +93,6 @@ let allGroups = this.props.allBadgeGroups.map((badges, i) =>{
     )
 
 })
-console.log('ME',this.props.currentUserId)
-console.log('state', this.state)
-    console.log('V',this.props.match.params.id)
 let followers = this.props.currentUserFollowers.map((user, i) => {
    
         return(
